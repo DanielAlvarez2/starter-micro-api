@@ -39,7 +39,7 @@ let sushi = {
 }
 
 app.get('/',(request,response)=>{
-    response.sendFile(__dirname + '/client-side-sushi/index.html')    
+    response.sendFile(__dirname + '/index.html')    
 })
 
 app.get('/api/sushi/:sushiName',(request,response)=>{
