@@ -7,8 +7,10 @@ const PORT = process.env.PORT || 3000
 const uri = process.env.MONGO_CONNECTION_STRING;
 const client = new MongoClient(uri);
 
-app.get ("/", ()=>{
+app.get ("/", (req,res)=>{
     console.log('App Running');
+    res.write('App Running')
+    res.end()
 })
 app.get("/items/:my_item", async (req, res) => {
     let my_item = req.params.my_item;
