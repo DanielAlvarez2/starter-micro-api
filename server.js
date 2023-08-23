@@ -1,69 +1,71 @@
-// daniel.cyclic.app
-
 const express = require('express')
 const app = express()
-const cors = require('cors')
-app.use(cors())
-const PORT = process.env.PORT || 8000
+const MongoClient = require('mongodb').MongoClient
+const PORT = 2121
+require('dotenv').config()
 
-let sushi = {
-    'umeiro':{
-        'japaneseName' : 'Umeiro',
-        'englishName': 'Yellowtail Blue Snapper'    
-    },
-    'isaki':{
-        'japaneseName': 'Isaki',
-        'englishName': 'Grunt Fish'
-    },
-    'shima aji':{
-        'japaneseName': 'Shima Aji',
-        'englishName': 'Striped Jack Mackerel'
-    },
-    'saba':{
-        'japaneseName': 'Saba',
-        'englishName': 'Mackerel'
-    },
-    'aji':{
-        'japaneseName': 'Aji',
-        'englishName': 'Horse Mackerel'
-    },
-    'tachi uo':{
-        'japaneseName':'Tachi Uo',
-        'englishName': 'Belt Fish'
-    },
-    'unknown':{
-        'japaneseName':'unknown',
-        'englishName':'unknown'
-    }
+
+let db,
+    dbConnectionStr = process.env.DB_STRING,
+    dbName = 'rap'
+
+MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
+    .then(client => {
+        console.log(`Connected to ${dbName} Database`)
+        db = client.db(dbName)
+    })
     
-}
+app.set('view engine', 'ejs')
+app.use(express.static('public'))
+app.use(express.urlencoded({ extended: true }))
+app.use(express.json())
 
-app.get('/',(request,response)=>{
-    response.sendFile(__dirname + '/index.html')    
+
+app.get('/',(request, response)=>{
+    db.collection('rappers').find().sort({likes: -1}).toArray()
+    .then(data => {
+        response.render('index.ejs', { info: data })
+    })
+    .catch(error => console.error(error))
 })
 
-app.get('/api/sushi/:sushiName',(request,response)=>{
-    const sushiRequest = request.params.sushiName.toLowerCase()
-    console.log(sushiRequest);
-    if (sushi[sushiRequest]){
-        response.json(sushi[sushiRequest])
-    }else{
-        response.json(sushi['unknown'])
-    }
+app.post('/addRapper', (request, response) => {
+    db.collection('rappers').insertOne({stageName: request.body.stageName,
+    birthName: request.body.birthName, likes: 0})
+    .then(result => {
+        console.log('Rapper Added')
+        response.redirect('/')
+    })
+    .catch(error => console.error(error))
 })
 
-app.listen(PORT, ()=>{
-    console.log(`Server running on port ${PORT}`);
+app.put('/addOneLike', (request, response) => {
+    db.collection('rappers').updateOne({stageName: request.body.stageNameS, birthName: request.body.birthNameS,likes: request.body.likesS},{
+        $set: {
+            likes:request.body.likesS + 1
+          }
+    },{
+        sort: {_id: -1},
+        upsert: true
+    })
+    .then(result => {
+        console.log('Added One Like')
+        response.json('Like Added')
+    })
+    .catch(error => console.error(error))
+
 })
 
+app.delete('/deleteRapper', (request, response) => {
+    db.collection('rappers').deleteOne({stageName: request.body.stageNameS})
+    .then(result => {
+        console.log('Rapper Deleted')
+        response.json('Rapper Deleted')
+    })
+    .catch(error => console.error(error))
 
+})
 
-
-// SIMPLE SERVER WORKING ON CYCLIC daniel.cyclic.app
-// let http = require('http');
-// let x = 'working from server.js';
-// http.createServer(function (req, res) {
-//     console.log(`Just got a request at ${req.url}!`)
-//     res.write(x);
-//     res.end();
-// }).listen(process.env.PORT || 3000);
+app.listen(process.env.PORT || PORT, ()=>{
+    console.log(`Server running on port ${PORT}`)
+})
