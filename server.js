@@ -1,58 +1,25 @@
-require('dotenv').config()
-const express = require('express')
-const mongoose = require('mongoose')
-const Book = require('./models/books')
 
-const app = express()
+const { MongoClient } = require('mongodb');
+const express = require('express');
+const app = express();
 const PORT = process.env.PORT || 3000
 
-mongoose.set('strictQuery', false)
-const connectDB = async()=>{
-    try{
-        const conn = await mongoose.connect(process.env.MONGO_URI)
-        console.log(`MongoDB Atlas Connected: ${conn.connection.host}`);
-    }catch(error){
-        console.log(error)
-        process.exit(1)
-    }
-}
+const uri = process.env.MONGO_CONNECTION_STRING;
+const client = new MongoClient(uri);
 
-app.get('/', (req, res) =>{
-    res.send({title: 'Books'})
+app.get("/items/:my_item", async (req, res) => {
+    let my_item = req.params.my_item;
+    let item = await client.db("my_db")
+                .collection("my_collection")
+                .findOne({my_item: my_item})
+
+    return res.json(item)
 })
 
-app.get('/add-note', async (req, res) =>{
-    try {
-        await Book.insertMany([
-            {
-                title: "Sons of Anarchy",
-                body: "Body text goes here...",
-            },
-            {
-                title: "Game of Thrones",
-                body: "Body text goes here..."
-            }
-        ])
-        res.send("Data added...")
-    } catch (error) {
-        console.log("Error: " + error);
-    }
-})
-
-app.get('/books', async (req, res) => {
-    const book = await Book.find()
-
-    if (book){
-        res.json(book)
-    }else{
-        res.send("Something went wrong")
-    }
-})
-
-
-
-connectDB().then(() => {
-    app.listen(PORT, ()=>{
-        console.log(`Listening on port ${PORT}`);
+client.connect(err => {
+    if(err){ console.error(err); return false;}
+    // connection to mongo is successful, listen for requests
+    app.listen(PORT, () => {
+        console.log("listening for requests");
     })
-})
+});
