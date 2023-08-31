@@ -1,14 +1,33 @@
-const http = require('http')
-const fs = require('fs')
-const server = http.createServer((req,res)=>{
-    res.writeHead(200, {'Content-Type':'text/html'})
-    fs.readFile('index.html',(error,data)=>{
-        res.write(data)
-        res.end()
-    })
-})
+const {MongoClient} = require('mongodb');
 
-HTTP_PORT = process.env.PORT || 8080;
-server.listen(HTTP_PORT, ()=>{
-    console.log(`Node Server now listening on port ${HTTP_PORT}`)
-})
+async function main(){
+
+    const uri = "mongodb+srv://danielyllanes:stuff12345@cluster0.xliuzfn.mongodb.net/?retryWrites=true&w=majority";
+
+    const client = new MongoClient(uri);
+    try {
+        await client.connect();
+
+        await listDatabases(client);
+        
+    } catch (error) {
+        console.error(error);
+    } finally {
+        await client.close();
+    }
+
+
+}
+
+main().catch(console.error);
+
+async function listDatabases(client){
+    const databasesList = await client.db().admin().listDatabases();
+    console.log('Databases:');
+    databasesList.databases.forEach(db => {
+        console.log(`- ${db.name}`);
+    })
+}
+
+
+
