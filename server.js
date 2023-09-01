@@ -1,33 +1,43 @@
-const {MongoClient} = require('mongodb');
+const express = require('express');
+const { MongoClient } = require('mongodb');
+const dotenv = require('dotenv');
 
-async function main(){
+dotenv.config();
+const app = express();
 
-    const uri = "mongodb+srv://danielyllanes:stuff12345@cluster0.xliuzfn.mongodb.net/?retryWrites=true&w=majority";
+const uri = process.env.ATLAS_URI;
 
-    const client = new MongoClient(uri);
+const client = new MongoClient(uri);
+
+let PORT = process.env.PORT || 3000;
+
+let connectedClient, db;
+
+async function connectToMongoDB(){
     try {
-        await client.connect();
-
-        await listDatabases(client);
-        
+        connectedClient = await client.connect();
+        console.log('Dan connected to MongoDB!');
     } catch (error) {
-        console.error(error);
+        console.log(error);
     } finally {
-        await client.close();
+        db = connectedClient.db('myDatabase')
     }
 
-
 }
 
-main().catch(console.error);
+app.listen(PORT, () => {
+    console.log(`Dan's Server is listening on port ${PORT}`);
+})
 
-async function listDatabases(client){
-    const databasesList = await client.db().admin().listDatabases();
-    console.log('Databases:');
-    databasesList.databases.forEach(db => {
-        console.log(`- ${db.name}`);
-    })
-}
+connectToMongoDB();
 
+app.get('/users', async (req, res) =>{
+    try {
+        let collection = await db.collection('users');
+        let users = await collection.find().toArray();
+        res.status(200).json(users);
 
-
+    } catch (error) {
+        res.status(500).json({error: "Users could not be returned."})
+    }
+})
