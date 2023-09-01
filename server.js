@@ -20,7 +20,7 @@ async function connectToMongoDB(){
     } catch (error) {
         console.log(error);
     } finally {
-        db = connectedClient.db('myDatabase')
+        db = connectedClient.db('Nama')
     }
 
 }
@@ -31,9 +31,9 @@ app.listen(PORT, () => {
 
 connectToMongoDB();
 
-app.get('/users', async (req, res) =>{
+app.get('/nama', async (req, res) =>{
     try {
-        let collection = await db.collection('users');
+        let collection = await db.collection('sushi');
         let users = await collection.find().toArray();
         res.status(200).json(users);
 
