@@ -23,7 +23,11 @@ app.listen(PORT, () => {
 })
 connectToMongoDB();
 app.get('/nama', async (req, res) =>{
+    try {
         let collection = await db.collection('sushi');
         let namaSushiList = await collection.find().toArray();
         res.status(200).json(namaSushiList);
+    } catch (error) {
+        res.status(500).json({error: "Users could not be returned."})
+    }
 })
