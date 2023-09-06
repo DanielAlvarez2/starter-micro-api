@@ -38,6 +38,38 @@ let otoro = {
 app.get('/api/otoro',(request,response)=>{
     response.json(otoro)
 })
+let oleaSpecials = {
+    figSalad : {
+        category: 'appetizer',
+        name:'fig and beets salad',
+        description: 'organic fresh California black figs, beets, arugula, crispy tomato skins, goat cheese ice cream, sunflower seed-white balsamic vinaigrette, sunflower crunch',
+        price:17,
+        allergies:'dairy,seeds'
+    },
+    boquerones:{
+        category:'appetizer',
+        name:'boquerones',
+        description:'marinated fresh anchovies, avocado-cilantro purée, toast ',
+        price:14,
+        allergies:'GARLIC, gluten'
+    },
+    shortRibs:{
+        category:'entree',
+        name:'boneless beef shortribs',
+        description:'grass fed, braised, celery root purée, organic carrots, puffed Dijon mustard gnocchi, Rioja red wine truffle jus',
+        price:35,
+        allergies:'GARLIC, dairy, gluten'
+    },
+    sobaito:{
+        category:'dessert',
+        name:'sobaito',
+        description:'white chocolate sponge cake, white chocolate vanilla ganache, mango-ginger compote, kiwi gelatin, chocolate caramel tuile, Thai-basil-black pepper mocktail',
+        allergies:'DAIRY'
+    }
+}
+app.get('/api/olea',(request,response)=>{
+    response.json(oleaSpecials)
+})
 app.listen(PORT, () => {
     console.log(`Dan's Server is listening on port ${PORT}`);
 })
