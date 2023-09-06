@@ -18,9 +18,6 @@ async function connectToMongoDB(){
         db = connectedClient.db('Nama')
     }
 }
-app.listen(PORT, () => {
-    console.log(`Dan's Server is listening on port ${PORT}`);
-})
 connectToMongoDB();
 app.get('/nama', async (req, res) =>{
     try {
@@ -28,6 +25,9 @@ app.get('/nama', async (req, res) =>{
         let namaSushiList = await collection.find().toArray();
         res.status(200).json(namaSushiList);
     } catch (error) {
-        res.status(500).json({error: "Users could not be returned."})
+        res.status(500).json({error: "Database could not be returned."})
     }
+})
+app.listen(PORT, () => {
+    console.log(`Dan's Server is listening on port ${PORT}`);
 })
