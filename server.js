@@ -31,6 +31,13 @@ app.get('/nama', async (req, res) =>{
 app.get('/', (request,response)=>{
     response.sendFile(__dirname + '/index.html')
 })
+let otoro = {
+    japaneseName: 'Otoro',
+    englishName: 'Fatty Tuna'
+}
+app.get('/api/otoro',(request,response)=>{
+    response.json(otoro)
+})
 app.listen(PORT, () => {
     console.log(`Dan's Server is listening on port ${PORT}`);
 })
