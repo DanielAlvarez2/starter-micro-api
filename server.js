@@ -28,6 +28,9 @@ app.get('/nama', async (req, res) =>{
         res.status(500).json({error: "Database could not be returned."})
     }
 })
+app.get('/', (request,response)=>{
+    response.sendFile(__dirname + '/index.html')
+})
 app.listen(PORT, () => {
     console.log(`Dan's Server is listening on port ${PORT}`);
 })
