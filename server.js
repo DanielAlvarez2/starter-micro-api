@@ -4,6 +4,8 @@ const dotenv = require('dotenv');
 const saslprep = require('saslprep');
 dotenv.config();
 const app = express();
+const cors = require('cors');
+app.use(cors());
 const uri = process.env.ATLAS_URI;
 const client = new MongoClient(uri);
 let PORT = process.env.PORT || 3000;
@@ -64,7 +66,15 @@ let oleaSpecials = {
         category:'dessert',
         name:'sobaito',
         description:'white chocolate sponge cake, white chocolate vanilla ganache, mango-ginger compote, kiwi gelatin, chocolate caramel tuile, Thai-basil-black pepper mocktail',
+        price:14,
         allergies:'DAIRY'
+    },
+    unknown:{
+        category:'unknown',
+        name:'unknown',
+        description:'unknown',
+        price:0,
+        allergies:'unknown'
     }
 }
 app.get('/api/olea',(request,response)=>{
