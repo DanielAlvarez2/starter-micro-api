@@ -91,6 +91,8 @@ app.get('/api/olea-items/:specialItem', (req,res)=>{
 })
 app.get('/client-side-olea', (req,res)=>{
     res.sendFile(__dirname + '/client-side-olea/index.html')
+})
+app.get('/client-side-olea/main.js',(req,res)=>{
     res.sendFile(__dirname + '/client-side-olea/main.js')
 })
 app.listen(PORT, () => {
