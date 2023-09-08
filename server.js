@@ -80,6 +80,15 @@ let oleaSpecials = {
 app.get('/api/olea',(request,response)=>{
     response.json(oleaSpecials)
 })
+app.get('/api/olea-items/:specialItem', (req,res)=>{
+    const special = req.params.specialItem
+    console.log(special)
+    if (oleaSpecials[special]){
+        res.json(oleaSpecials[special])
+    }else{
+        res.json(oleaSpecials['unknown'])
+    }
+})
 app.listen(PORT, () => {
     console.log(`Dan's Server is listening on port ${PORT}`);
 })
