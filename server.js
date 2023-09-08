@@ -89,6 +89,9 @@ app.get('/api/olea-items/:specialItem', (req,res)=>{
         res.json(oleaSpecials['unknown'])
     }
 })
+app.get('/client-side-olea', (req,res)=>{
+    response.sendFile(__dirname + '/client-side-olea/index.html')
+})
 app.listen(PORT, () => {
     console.log(`Dan's Server is listening on port ${PORT}`);
 })
