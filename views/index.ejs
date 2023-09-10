@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Olea Specials</title>
+</head>
+<body>
+    <h1>Olea Specials</h1>
+    <ul class="specials">
+    <% for(let i=0; i<info.length;i++){%>
+        <li class="special">
+            <span><%= info[i].category %></span>
+            <span><%= info[i].name %></span>
+            <span><%= info[i].description %></span>
+            <span><%= info[i].price %></span>
+            <span><%= info[i].allergies %></span>
+            <span class="del">delete</span>
+        </li>
+    <% } %>
+    </ul>
+
+    <h2>Add New Special:</h2>
+
+    <form action="/addSpecial" method="POST">
+        <input type="text" placeholder="Category" name="category"><br>
+        <input type="text" placeholder="Name" name="name"><br>
+        <input type="text" placeholder="Description" name="description"><br>
+        <input type="text" placeholder="Price" name="price"><br>
+        <input type="text" placeholder="Allergies" name="allergies"><br>
+        <input type="submit">
+    </form>
+
+    <script src="main.js"></script>
+
+</body>
+</html>
