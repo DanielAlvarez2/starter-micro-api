@@ -24,12 +24,12 @@
     <ul class="specials">
     <% for(let i=0; i<info.length;i++){%>
         <li class="special">
-            <span><%= info[i]._id %></span>
-            <span><%= info[i].category %></span>
-            <span><%= info[i].name %></span>
-            <span><%= info[i].description %></span>
-            <span><%= info[i].price %></span>
-            <span><%= info[i].allergies %></span>
+            <div><%= info[i]._id %></div>
+            <div><%= info[i].category %></div>
+            <div><%= info[i].name %></div>
+            <div><%= info[i].description %></div>
+            <div><%= info[i].price %></div>
+            <div><%= info[i].allergies %></div>
             <span class="del"><i class="fa-solid fa-trash-can"></i> Delete</span>&nbsp;&nbsp;
             <span class="edit"><i class="fa-solid fa-pencil"></i> Edit</span>
         </li>
