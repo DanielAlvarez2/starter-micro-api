@@ -12,7 +12,7 @@ Array.from(editText).forEach((element)=>{
 function populateEditForm(){
     const editID = this.parentNode.childNodes[1].innerText
     document.querySelector('#display-ID').innerText = editID;
-    document.querySelector('#edit-category').innerText = this.parentNode.childNodes[3].innerText;
+    document.querySelector('#edit-category').value = this.parentNode.childNodes[3].innerText;
 
 }
 
