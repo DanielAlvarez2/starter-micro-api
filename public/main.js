@@ -1,8 +1,18 @@
 const deleteText = document.querySelectorAll('.del')
+const editText = document.querySelectorAll('.edit')
 
 Array.from(deleteText).forEach((element)=>{
     element.addEventListener('click', deleteSpecial)
 })
+
+Array.from(editText).forEach((element)=>{
+    element.addEventListener('click', populateEditForm)
+})
+
+function populateEditForm(){
+    const editID = this.parentnode.childnodes[1].innerText
+    console.log(editID);
+}
 
 async function deleteSpecial(){
     const specialName = this.parentNode.childNodes[3].innerText
