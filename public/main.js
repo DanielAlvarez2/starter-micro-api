@@ -11,8 +11,9 @@ Array.from(editText).forEach((element)=>{
 
 function populateEditForm(){
     const editID = this.parentNode.childNodes[1].innerText
-    console.log(editID);
-    document.querySelector('#displayID').innerText = editID;
+    document.querySelector('#display-ID').innerText = editID;
+    document.querySelector('#edit-category').innerText = this.parentNode.childNodes[3].innerText;
+
 }
 
 async function deleteSpecial(){
