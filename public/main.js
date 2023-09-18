@@ -14,6 +14,7 @@ function populateEditForm(){
     document.querySelector('#display-ID').innerText = editID;
     document.querySelector('#edit-category').value = this.parentNode.childNodes[3].innerText;
     document.querySelector('#edit-name').value = this.parentNode.childNodes[5].innerText;
+    document.querySelector('#edit-description').value = this.parentNode.childNodes[7].innerText;
 
 }
 
