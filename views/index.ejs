@@ -6,6 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Olea Specials</title>
     <script src="https://kit.fontawesome.com/21ef82ed30.js" crossorigin="anonymous"></script>
+    <style>
+        .del{
+            color:red;
+            font-size:20px;
+        }
+    </style>
 </head>
 <body>
     <h1>Olea Specials</h1>
@@ -17,7 +23,7 @@
             <span><%= info[i].description %></span>
             <span><%= info[i].price %></span>
             <span><%= info[i].allergies %></span>
-            <span class="del" style="color:red"><i class="fa-solid fa-trash-can"></i></span>
+            <span class="del"><i class="fa-solid fa-trash-can"></i></span>
         </li>
     <% } %>
     </ul>
