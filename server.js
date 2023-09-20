@@ -1,5 +1,6 @@
 const express = require('express');
 const { MongoClient } = require('mongodb');
+const {ObjectId} = require('mongodb');
 const dotenv = require('dotenv');
 const saslprep = require('saslprep');
 dotenv.config();
@@ -49,6 +50,24 @@ app.delete('/deleteSpecial', (request,response) => {
     })
     .catch(error => console.error(error))
 })
+app.post('/editSpecial', (request, response) => {
+    console.log(request.body);
+    console.log(`ObjectId('${request.body._id}')`);
+    db.collection('Specials').updateOne({_id: new ObjectId(request.body._id)},{
+        $set:{
+            category: request.body.category,
+            name: request.body.name,
+            description: request.body.description,
+            price: request.body.price,
+            allergies: request.body.allergies
+        }
+    })
+    .then(result =>{
+        console.log('Existing Special Modified')
+        response.redirect('/')
+    })
+})
+
 app.listen(PORT, () => {
     console.log(`Dan's Server is listening on port ${PORT}`);
 })

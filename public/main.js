@@ -12,13 +12,15 @@ Array.from(editText).forEach((element)=>{
 function populateEditForm(){
     const editID = this.parentNode.childNodes[1].innerText
     document.querySelector('#display-ID').innerText = editID;
+    document.querySelector('#edit-id').value = editID;
+    document.querySelector('#edit-category').value = this.parentNode.childNodes[3].innerText;
     document.querySelector('#edit-category').value = this.parentNode.childNodes[3].innerText;
     document.querySelector('#edit-name').value = this.parentNode.childNodes[5].innerText;
     document.querySelector('#edit-description').value = this.parentNode.childNodes[7].innerText;
     document.querySelector('#edit-price').value = this.parentNode.childNodes[9].innerText;
     document.querySelector('#edit-allergies').value = this.parentNode.childNodes[11].innerText;
-
 }
+
 
 async function deleteSpecial(){
     const specialName = this.parentNode.childNodes[3].innerText

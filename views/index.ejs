@@ -47,13 +47,14 @@
         <input type="text" placeholder="Description" name="description"><br>
         <input type="text" placeholder="Price" name="price"><br>
         <input type="text" placeholder="Allergies" name="allergies"><br>
-        <input type="submit" value="Create">
+        <input type="submit" id="update-button" value="Create">
     </form>
 
     <h2>Edit Exisiting Special:</h2>
 
-    <form action="/editSpecial" method="PUT">
-        <div id="display-ID"></div>
+    <form action="/editSpecial" method="POST">
+        <div name="_id" id="display-ID"></div>
+        <input type="text" id="edit-id" placeholder="ID#" name="_id"><br>
         <input type="text" id="edit-category" placeholder="Category" name="category"><br>
         <input type="text" id="edit-name" placeholder="Name" name="name"><br>
         <input type="text" id="edit-description" placeholder="Description" name="description"><br>
