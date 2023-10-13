@@ -42,9 +42,8 @@ app.post('/addSpecial', (request,response)=>{
     .catch(error => console.log(error))
 })
 app.delete('/deleteSpecial', (request,response) => {
-    db.collection('Specials').deleteOne({name: request.body.specialNameX})
+    db.collection('Specials').deleteOne({_id: new ObjectId(request.body._id)})
     .then(result => {
-        console.log(request.body.specialNameX)
         console.log('Old Special Deleted')
         response.json('Old Special Deleted')
     })
