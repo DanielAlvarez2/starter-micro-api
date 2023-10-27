@@ -30,7 +30,7 @@ app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 app.get('/', (request, response) =>{
-    db.collection('Specials').find().toArray()
+    db.collection('Specials: Appetizers').find().toArray()
     .then(data => {
         response.render('index.ejs', {info: data})
     })
