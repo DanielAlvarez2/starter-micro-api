@@ -33,6 +33,9 @@
             background:white;
             border:solid 1px black;
         }
+        .name, .price{
+            font-weight:bold;
+        }
     </style>
 </head>
 <body>
@@ -42,11 +45,10 @@
     <ul class="specials">
     <% for(let i=0; i<info.length;i++){%>
         <li class="special">
-            <div><%= info[i]._id %></div>
             <div><%= info[i].category %></div>
-            <div><%= info[i].name %></div>
+            <div class="name"><%= info[i].name %></div>
             <div><%= info[i].description %></div>
-            <div><%= info[i].price %></div>
+            <div class="price"><%= info[i].price %></div>
             <div class="allergies"><%= info[i].allergies %></div>
         </li>
     <% } %>
