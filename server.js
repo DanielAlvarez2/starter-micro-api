@@ -36,6 +36,14 @@ app.get('/', (request, response) =>{
     })
     .catch(error => console.error(error))
 })
+app.get('/edit', (request, response) =>{
+    db.collection('Specials: Appetizers').find().toArray()
+    .then(data => {
+        response.render('edit.ejs', {info: data})
+    })
+    .catch(error => console.error(error))
+})
+
 app.post('/addSpecial', (request,response)=>{
     db.collection('Specials').insertOne(request.body)
     .then(result =>{

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Olea Specials</title>
+    <script src="https://kit.fontawesome.com/21ef82ed30.js" crossorigin="anonymous"></script>
+    <style>
+        .del, .edit{
+            cursor:pointer;
+            font-size:20px;
+        }
+        .del{
+            color:red;
+        }
+        .edit{
+            color:rgb(183, 183, 0);
+        }
+        .special{
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>EDIT Olea Specials</h1>
+    <ul class="specials">
+    <% for(let i=0; i<info.length;i++){%>
+        <li class="special">
+            <div><%= info[i]._id %></div>
+            <div><%= info[i].category %></div>
+            <div><%= info[i].name %></div>
+            <div><%= info[i].description %></div>
+            <div><%= info[i].price %></div>
+            <div><%= info[i].allergies %></div>
+            <span class="del"><i class="fa-solid fa-trash-can"></i> Delete</span>&nbsp;&nbsp;
+            <span class="edit"><i class="fa-solid fa-pencil"></i> Edit</span>
+        </li>
+    <% } %>
+    </ul>
+
+    <h2>Add New Special:</h2>
+
+    <form action="/addSpecial" method="POST">
+        <input type="text" placeholder="Category" name="category"><br>
+        <input type="text" placeholder="Name" name="name"><br>
+        <input type="text" placeholder="Description" name="description"><br>
+        <input type="text" placeholder="Price" name="price"><br>
+        <input type="text" placeholder="Allergies" name="allergies"><br>
+        <input type="submit" id="update-button" value="Create">
+    </form>
+
+    <h2>Edit Exisiting Special:</h2>
+
+    <form action="/editSpecial" method="POST">
+        <div name="_id" id="display-ID"></div>
+        <input type="text" id="edit-id" placeholder="ID#" name="_id"><br>
+        <input type="text" id="edit-category" placeholder="Category" name="category"><br>
+        <input type="text" id="edit-name" placeholder="Name" name="name"><br>
+        <input type="text" id="edit-description" placeholder="Description" name="description"><br>
+        <input type="text" id="edit-price" placeholder="Price" name="price"><br>
+        <input type="text" id="edit-allergies" placeholder="Allergies" name="allergies"><br>
+        <input type="submit" value="Update">
+    </form>
+
+
+    <h2></h2>
+
+    <script src="main.js"></script>
+
+</body>
+</html>
