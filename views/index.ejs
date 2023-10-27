@@ -36,13 +36,16 @@
         .name, .price{
             font-weight:bold;
         }
+        ul{
+            list-style-type:none;
+        }
     </style>
 </head>
 <body>
 <div id="wrapper">
 <div id="specials">
     <h1>today's specials</h1>
-    <ul class="specials">
+    <ul>
     <% for(let i=0; i<info.length;i++){%>
         <li class="special">
             <div><%= info[i].category %></div>
