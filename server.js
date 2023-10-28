@@ -43,6 +43,13 @@ app.get('/edit', (request, response) =>{
     })
     .catch(error => console.error(error))
 })
+app.get('/print', (request, response) =>{
+    db.collection('Specials: Appetizers').find().toArray()
+    .then(data => {
+        response.render('print.ejs', {info: data})
+    })
+    .catch(error => console.error(error))
+})
 
 app.post('/addSpecial', (request,response)=>{
     db.collection('Specials').insertOne(request.body)
