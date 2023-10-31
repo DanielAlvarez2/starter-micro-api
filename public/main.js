@@ -14,11 +14,11 @@ function populateEditForm(){
     document.querySelector('#display-ID').innerText = editID;
     document.querySelector('#edit-id').value = editID;
     document.querySelector('#edit-category').value = this.parentNode.childNodes[3].innerText;
-    document.querySelector('#edit-category').value = this.parentNode.childNodes[3].innerText;
-    document.querySelector('#edit-name').value = this.parentNode.childNodes[5].innerText;
-    document.querySelector('#edit-description').value = this.parentNode.childNodes[7].innerText;
-    document.querySelector('#edit-price').value = this.parentNode.childNodes[9].innerText;
-    document.querySelector('#edit-allergies').value = this.parentNode.childNodes[11].innerText;
+    document.querySelector('#edit-sequence').value = this.parentNode.childNodes[5].innerText;
+    document.querySelector('#edit-name').value = this.parentNode.childNodes[7].innerText;
+    document.querySelector('#edit-description').value = this.parentNode.childNodes[9].innerText;
+    document.querySelector('#edit-price').value = this.parentNode.childNodes[11].innerText;
+    document.querySelector('#edit-allergies').value = this.parentNode.childNodes[13].innerText;
 }
 
 

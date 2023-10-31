@@ -1,0 +1,10 @@
+@font-face{
+    font-family: FuturaLight;
+    src: url("assets/FuturaLight.otf");
+}
+body{
+    font-family: FuturaLight;
+    background:red;
+    color:blue;
+}
+

@@ -30,21 +30,21 @@ app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 app.get('/', (request, response) =>{
-    db.collection('Specials: Appetizers').find().toArray()
+    db.collection('Specials').find().toArray()
     .then(data => {
         response.render('index.ejs', {info: data})
     })
     .catch(error => console.error(error))
 })
 app.get('/edit', (request, response) =>{
-    db.collection('Specials: Appetizers').find().toArray()
+    db.collection('Specials').find().toArray()
     .then(data => {
         response.render('edit.ejs', {info: data})
     })
     .catch(error => console.error(error))
 })
 app.get('/print', (request, response) =>{
-    db.collection('Specials: Appetizers').find().toArray()
+    db.collection('Specials').find().toArray()
     .then(data => {
         response.render('print.ejs', {info: data})
     })
@@ -55,7 +55,7 @@ app.post('/addSpecial', (request,response)=>{
     db.collection('Specials').insertOne(request.body)
     .then(result =>{
         console.log('New Special Added')
-        response.redirect('/')
+        response.redirect('/edit')
     })
     .catch(error => console.log(error))
 })
@@ -73,6 +73,7 @@ app.post('/editSpecial', (request, response) => {
     db.collection('Specials').updateOne({_id: new ObjectId(request.body._id)},{
         $set:{
             category: request.body.category,
+            sequence: request.body.sequence,
             name: request.body.name,
             description: request.body.description,
             price: request.body.price,
@@ -81,7 +82,7 @@ app.post('/editSpecial', (request, response) => {
     })
     .then(result =>{
         console.log('Existing Special Modified')
-        response.redirect('/')
+        response.redirect('/edit')
     })
 })
 

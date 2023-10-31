@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Olea Specials</title>
+    <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/21ef82ed30.js" crossorigin="anonymous"></script>
     <style>
         *{
@@ -59,6 +60,7 @@
     <% for(let i=0; i<info.length;i++){%>
         <li class="special">
             <div><%= info[i].category %></div>
+            <div><%= info[i].sequence %></div>
             <div class="name"><%= info[i].name %></div>
             <div><%= info[i].description %></div>
             <div class="price"><%= info[i].price %></div>

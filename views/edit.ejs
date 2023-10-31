@@ -29,6 +29,7 @@
         <li class="special">
             <div><%= info[i]._id %></div>
             <div><%= info[i].category %></div>
+            <div><%= info[i].sequence %></div>
             <div><%= info[i].name %></div>
             <div><%= info[i].description %></div>
             <div><%= info[i].price %></div>
@@ -43,6 +44,7 @@
 
     <form action="/addSpecial" method="POST">
         <input type="text" placeholder="Category" name="category"><br>
+        <input type="text" placeholder="Sequence" name="sequence"><br>
         <input type="text" placeholder="Name" name="name"><br>
         <input type="text" placeholder="Description" name="description"><br>
         <input type="text" placeholder="Price" name="price"><br>
@@ -56,6 +58,7 @@
         <div name="_id" id="display-ID"></div>
         <input type="text" id="edit-id" placeholder="ID#" name="_id"><br>
         <input type="text" id="edit-category" placeholder="Category" name="category"><br>
+        <input type="text" id="edit-sequence" placeholder="Sequence" name="sequence"><br>
         <input type="text" id="edit-name" placeholder="Name" name="name"><br>
         <input type="text" id="edit-description" placeholder="Description" name="description"><br>
         <input type="text" id="edit-price" placeholder="Price" name="price"><br>
