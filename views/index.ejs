@@ -8,67 +8,110 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/21ef82ed30.js" crossorigin="anonymous"></script>
     <style>
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-        }
-        .del, .edit{
-            cursor:pointer;
-            font-size:20px;
-        }
-        .allergies{
-            color:red;
-        }
-        .edit{
-            color:rgb(183, 183, 0);
-        }
+        
+        
         .special{
-            margin-bottom: 20px;
+            margin-bottom: 0px;
         }
         #wrapper{
             width:100%;
             min-height:100vh;
-            background:grey;
+            /* background:grey; */
             display:grid;
             place-content:center;
         }
         #specials{
             width:4.25in;
-            min-height:5.5in;
+            height:5.5in;
             background:white;
             border:solid 1px black;
-            padding:0 20px;
-        }
-        .name, .price{
-            font-weight:bold;
+            padding: 0px 50px;
+            
+            
         }
         ul{
-            list-style-type:none;
-            padding:0;
+            font-size: 16px;
+            font-family:serif;
         }
+        
         h1{
-            padding:20px 0;
+            padding:0px 0;
         }
     </style>
 </head>
+
+<% 
+    let appetizerCount=0
+    let entreeCount=0
+    let dessertCount=0
+    for (let i=0; i<info.length; i++){
+        if (info[i].category == "SPECIALS: Appetizer") appetizerCount++ 
+        if (info[i].category == "SPECIALS: Entrée") entreeCount++ 
+        if (info[i].category == "SPECIALS: Dessert") dessertCount++ 
+    }
+    
+%>
+
 <body>
 <div id="wrapper">
 <div id="specials">
     <h1>today's specials</h1>
+
+    <% if (appetizerCount == 1) { %>
+        <h2>appetizer</h2>
+    <% } %>
+    <% if (appetizerCount > 1) { %>
+        <h2>appetizers</h2>
+    <% } %>    
     <ul>
-    <% for(let i=0; i<info.length;i++){%>
+    <% for(let i=0; i<info.length;i++){ %>
+        <% if (info[i].category == "SPECIALS: Appetizer"){ %>
         <li class="special">
-            <div><%= info[i].category %></div>
-            <div><%= info[i].sequence %></div>
-            <div class="name"><%= info[i].name %></div>
-            <div><%= info[i].description %></div>
-            <div class="price"><%= info[i].price %></div>
-            <div class="allergies"><%= info[i].allergies %></div>
+            <span class="name"><%= info[i].name %></span>
+            <span><%= info[i].description %></span>
+            <span class="price"><%= info[i].price %></span>
         </li>
+        <% } %>
     <% } %>
     </ul>
 
+    <% if (entreeCount == 1) { %>
+        <h2>entrée</h2>
+    <% } %>
+    <% if (appetizerCount > 1) { %>
+        <h2>entrées</h2>
+    <% } %>
+    <ul>
+        <% for(let i=0; i<info.length;i++){ %>
+            <% if (info[i].category == "SPECIALS: Entrée"){ %>
+            <li class="special">
+                <span class="name"><%= info[i].name %></span>
+                <span><%= info[i].description %></span>
+                <span class="price"><%= info[i].price %></span>
+            </li>
+            <% } %>
+        <% } %>
+    </ul>
+ 
+    <% if (dessertCount == 1) { %>
+        <h2>dessert</h2>
+    <% } %>
+    <% if (dessertCount > 1) { %>
+        <h2>desserts</h2>
+    <% } %>
+
+    <ul>
+        <% for(let i=0; i<info.length;i++){ %>
+            <% if (info[i].category == "SPECIALS: Dessert"){ %>
+            <li class="special">
+                <span class="name"><%= info[i].name %></span>
+                <span><%= info[i].description %></span>
+                <span class="price"><%= info[i].price %></span>
+            </li>
+            <% } %>
+        <% } %>
+    </ul>
+            
 
 </div><!--#specials-->
 </div><!--#wrapper-->
