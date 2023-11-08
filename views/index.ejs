@@ -25,7 +25,7 @@
             height:5.5in;
             background:white;
             border:solid 1px black;
-            padding: 0px 50px;
+            padding: 0px 10px;
             display:inline-block;
             
         }
@@ -36,6 +36,9 @@
         
         h1{
             padding:0px 0;
+        }
+        input{
+            text-align: center;
         }
         #flexbox{
             display:flex;
@@ -77,6 +80,13 @@
 
 <div id="flexbox">    
 
+<div id="controls">
+        FORMAT PAGE LAYOUT<br><br>
+        Page Whitespace Left & Right: <input id="padding-sides" type="text" size="2"> px <br><br>
+        Page Whitespace Top: <input id="padding-top" type="text" size="2"> px <br>
+    
+</div><!--#controls-->
+    
 <div id="specials">
     <h1>today's specials</h1>
 
@@ -136,13 +146,26 @@
     </ul>
 </div><!--#specials-->
 
-<div id="controls">
-    controls
-</div><!--#controls-->
 
 </div><!--#flexbox-->
 
 </div><!--#wrapper-->
 <script src="main.js"></script>
+
+<script>
+    let specialsPage = document.querySelector('#specials')
+    let paddingTop = document.querySelector('#padding-top')
+    let paddingSides = document.querySelector('#padding-sides')
+    paddingTop.addEventListener('input', function(evt){
+        specialsPage.style.paddingTop = `${Number(this.value)}px`
+        
+    })
+    paddingSides.addEventListener('input', function(evt){
+        specialsPage.style.paddingLeft = `${Number(this.value)}px`
+        specialsPage.style.paddingRight = `${Number(this.value)}px`
+    })
+
+</script>
+
 </body>
 </html>
