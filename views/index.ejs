@@ -20,12 +20,15 @@
             display:grid;
             place-content:center;
         }
+        #specials{
+            position: relative;;
+        }
         #specials, #controls{
             width:4.25in;
             height:5.5in;
             background:white;
             border:solid 1px black;
-            padding: 0px 10px;
+            padding: 0px 0px;
             display:inline-block;
             
         }
@@ -39,6 +42,22 @@
         }
         input{
             text-align: center;
+        }
+        #legal-disclaimer{
+            position:absolute;
+            bottom:0px;
+            left:0px;
+            padding: inherit;
+        }
+        #legal-toggle{
+            cursor:pointer;
+            font-size:25px;
+        }
+        .hidden{
+            opacity:0;
+        }
+        .remove{
+            display:none;
         }
         #flexbox{
             display:flex;
@@ -80,21 +99,43 @@
 
 <div id="flexbox">    
 
-<div id="controls">
+<div id="controls" style="font-size:14px">
         FORMAT PAGE LAYOUT<br><br>
         Page Whitespace Left & Right: <input id="padding-sides" type="text" size="2"> px <br><br>
-        Page Whitespace Top: <input id="padding-top" type="text" size="2"> px <br>
-    
+        Page Whitespace Top: <input id="padding-top" type="text" size="2"> px <br><br>
+        "today's specials" Whitespace Bottom: <input id="todays-specials-padding-bottom" type="text" size="2"> px <br><br>
+        Whitespace between "appetizers/entr&eacute;es/desserts": <input id="headings-padding" type="text" size="2"> px <br><br>
+        Whitespace between menu items: <input id="menu-items-padding" type="text" size="2"> px <br><br>
+        Whitespace between lines of menu items: <input id="menu-items-line-space" type="text" size="2"> px <br><br>
+        Whitespace below "appetizers/entr&eacute;es/desserts": <input id="headings-padding-bottom" type="text" size="2"> px <br><br>
+        Legal Disclaimer: SHOW 
+        <span id="legal-toggle">
+            <i id="on" class="fa-solid fa-toggle-on remove"></i>
+            <i id="off" class="fa-solid fa-toggle-off"></i>
+        </span> 
+        HIDE<br><br>
+        <div id="padding-bottom-control">
+        Legal Disclaimer Whitespace Bottom: <input id="padding-bottom" type="text" size="2"> px<br><br> 
+        </div>
+    <hr>
+
+    FONT-SIZES<br><br>
+    <div id="legal-font-size-control">
+    Legal Disclaimer Font Size: <input id="legal-font-size" type="text" size="2"> px<br><br> 
+    </div>
+    "today's specials" Font Size: <input id="todays-specials-font-size" type="text" size="2"> px<br><br> 
+    "appetizers/entr&eacute;es/desserts" Font Size: <input id="headings-font-size" type="text" size="2"> px<br><br> 
+    Menu Items Font Size: <input id="menu-items-font-size" type="text" size="2"> px<br><br> 
 </div><!--#controls-->
     
 <div id="specials">
-    <h1>today's specials</h1>
+    <h1 id="todays-specials">today's specials</h1>
 
     <% if (appetizerCount == 1) { %>
-        <h2>appetizer</h2>
+        <h2 id="appetizer-heading">appetizer</h2>
     <% } %>
     <% if (appetizerCount > 1) { %>
-        <h2>appetizers</h2>
+        <h2 id="appetizer-heading">appetizers</h2>
     <% } %>    
     <ul>
     <% for(let i=0; i<info.length;i++){ %>
@@ -109,10 +150,10 @@
     </ul>
 
     <% if (entreeCount == 1) { %>
-        <h2>entrée</h2>
+        <h2 id="entree-heading">entrée</h2>
     <% } %>
     <% if (appetizerCount > 1) { %>
-        <h2>entrées</h2>
+        <h2 id="entree-heading">entrées</h2>
     <% } %>
     <ul>
         <% for(let i=0; i<info.length;i++){ %>
@@ -127,10 +168,10 @@
     </ul>
  
     <% if (dessertCount == 1) { %>
-        <h2>dessert</h2>
+        <h2 id="dessert-heading">dessert</h2>
     <% } %>
     <% if (dessertCount > 1) { %>
-        <h2>desserts</h2>
+        <h2 id="dessert-heading">desserts</h2>
     <% } %>
 
     <ul>
@@ -144,6 +185,16 @@
             <% } %>
         <% } %>
     </ul>
+
+    
+    <div id="legal-disclaimer">
+        
+        Consumer advisory: consumption of undercooked meat, poultry, eggs, 
+        or seafood may increase the risk of food-borne illnesses. Please 
+        alert your server if you have special dietary requirements.
+    
+    </div><!--#legal-disclaimer-->
+    
 </div><!--#specials-->
 
 
@@ -156,6 +207,25 @@
     let specialsPage = document.querySelector('#specials')
     let paddingTop = document.querySelector('#padding-top')
     let paddingSides = document.querySelector('#padding-sides')
+    let paddingBottom = document.querySelector('#padding-bottom')
+    let headingsPadding = document.querySelector('#headings-padding')
+    let menuItemsPadding = document.querySelector('#menu-items-padding')
+    let menuItemsLineSpace = document.querySelector('#menu-items-line-space')
+    let headingsPaddingBottom = document.querySelector('#headings-padding-bottom')
+    let todaysSpecials = document.querySelector('#todays-specials')
+    let todaysSpecialsPaddingBottom = document.querySelector('#todays-specials-padding-bottom')
+    let paddingBottomControl = document.querySelector('#padding-bottom-control')
+    let legalToggle = document.querySelector('#legal-toggle')
+    let legalDisclaimer = document.querySelector('#legal-disclaimer')
+    let legalFontSize = document.querySelector('#legal-font-size')
+    let todaysSpecialsFontSize = document.querySelector('#todays-specials-font-size')
+    let headingsFontSize = document.querySelector('#headings-font-size')
+    let menuItemsFontSize = document.querySelector('#menu-items-font-size')
+    let p = document.querySelectorAll('.special')
+    let appetizerHeading = document.querySelector('#appetizer-heading')
+    let entreeHeading = document.querySelector('#entree-heading')
+    let dessertHeading = document.querySelector('#dessert-heading')
+    let legalFontSizeControl = document.querySelector('#legal-font-size-control')
     paddingTop.addEventListener('input', function(evt){
         specialsPage.style.paddingTop = `${Number(this.value)}px`
         
@@ -163,6 +233,55 @@
     paddingSides.addEventListener('input', function(evt){
         specialsPage.style.paddingLeft = `${Number(this.value)}px`
         specialsPage.style.paddingRight = `${Number(this.value)}px`
+    })
+    todaysSpecialsPaddingBottom.addEventListener('input', function(evt){
+        todaysSpecials.style.paddingBottom = `${Number(this.value)}px`
+    })
+    paddingBottom.addEventListener('input', function(evt){
+        legalDisclaimer.style.paddingBottom = `${Number(this.value)}px`
+    })
+    menuItemsPadding.addEventListener('input', function(evt){
+        p.forEach((special,i)=>{
+            special.style.paddingTop = `${(Number(this.value))/2}px`
+            special.style.paddingBottom = `${(Number(this.value))/2}px`
+        })
+    })
+    menuItemsLineSpace.addEventListener('input', function(evt){
+        p.forEach((special,i)=>{
+            special.style.lineHeight = `${Number(this.value)}px`
+        })
+    })
+    headingsPadding.addEventListener('input', function(evt){
+        entreeHeading.style.paddingTop = `${Number(this.value)}px`
+        dessertHeading.style.paddingTop = `${Number(this.value)}px`
+    })
+    headingsPaddingBottom.addEventListener('input', function(evt){
+        appetizerHeading.style.paddingBottom = `${Number(this.value)}px`
+        entreeHeading.style.paddingBottom = `${Number(this.value)}px`
+        dessertHeading.style.paddingBottom = `${Number(this.value)}px`
+    })
+    legalFontSize.addEventListener('input', function(evt){
+        legalDisclaimer.style.fontSize = `${Number(this.value)}px`
+    })
+    todaysSpecialsFontSize.addEventListener('input', function(evt){
+        todaysSpecials.style.fontSize = `${Number(this.value)}px`
+    })
+    headingsFontSize.addEventListener('input', function(evt){
+        appetizerHeading.style.fontSize = `${Number(this.value)}px`
+        entreeHeading.style.fontSize = `${Number(this.value)}px`
+        dessertHeading.style.fontSize = `${Number(this.value)}px`
+    })
+    menuItemsFontSize.addEventListener('input', function(evt){
+        p.forEach((special,i)=>{
+            special.style.fontSize = `${Number(this.value)}px`
+        })
+    })
+    legalToggle.addEventListener('click', function(evt){
+        legalDisclaimer.classList.toggle('hidden')
+        paddingBottomControl.classList.toggle('hidden')
+        legalFontSizeControl.classList.toggle('hidden')
+        on.classList.toggle('remove')
+        off.classList.toggle('remove')
     })
 
 </script>
