@@ -69,20 +69,26 @@
         button{
             padding:10px 20px;
         }
-        @media (max-width: 8.5in){
-                #wrapper{
-                    width:8.5in;
-                }
-            }
         @media (orientation: landscape){
             #flexbox{
                 flex-direction: row;
+            }
+            @media (max-width: 8.5in){
+                #wrapper{
+                    width:8.5in;
+                }
             }
         }
         @media (orientation: portrait){
             #flexbox{
                 flex-direction: column;
             }
+            @media (max-width: 4.25in){
+                #wrapper{
+                    width:4.25in;
+                }
+            }
+
         }
 
     </style>
