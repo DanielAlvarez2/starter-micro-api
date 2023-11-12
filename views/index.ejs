@@ -36,6 +36,20 @@
             display:inline-block;
             
         }
+        #specials{
+            padding-top:
+            <% 
+                for (let i=0; i<info.length; i++){
+                    if (info[i].category == 'controls' && info[i].name == 'padding-top'){ %>
+                        <%= info[i].pixels%>
+            <%
+                    } 
+                } 
+            %>;
+
+            
+        }
+        
         ul{
             font-size: 16px;
             font-family:serif;
@@ -68,6 +82,7 @@
         }
         button{
             padding:10px 20px;
+            cursor:pointer;
         }
         @media (orientation: landscape){
             #flexbox{
@@ -139,7 +154,9 @@
     "today's specials" Font Size: <input id="todays-specials-font-size" type="text" size="2"> px<br>
     Headings Font Size: <input id="headings-font-size" type="text" size="2"> px<br>
     Menu Items Font Size: <input id="menu-items-font-size" type="text" size="2"> px<br>
-    <button>Clear Changes</button> <button>Save Changes</button> <button>Print Preview</button>
+    <button id="reload">Clear Changes</button> 
+    <button id="save">Save Changes</button> 
+    <button id="print">Print Preview</button>
 </div><!--#controls-->
     
 <div id="specials">
@@ -240,6 +257,11 @@
     let entreeHeading = document.querySelector('#entree-heading')
     let dessertHeading = document.querySelector('#dessert-heading')
     let legalFontSizeControl = document.querySelector('#legal-font-size-control')
+    let reload = document.querySelector('#reload')
+
+    reload.addEventListener('click',()=>{
+        location.reload()
+    })
     paddingTop.addEventListener('input', function(evt){
         specialsPage.style.paddingTop = `${Number(this.value)}px`
         
