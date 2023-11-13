@@ -82,6 +82,14 @@ app.post('/saveChanges', (request,response)=>{
         })
     }
 
+    if (request.body.lineHeight != "") {
+        db.collection('Specials').updateOne({_id: new ObjectId("6552843bc830309949e62da3")},{
+                $set:{
+                    pixels: `${request.body.lineHeight}px`
+                }
+        })
+    }
+
     response.redirect('/')
     
 })

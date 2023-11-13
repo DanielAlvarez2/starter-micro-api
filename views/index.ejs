@@ -122,6 +122,15 @@
                     } 
                 } 
             %>;
+            line-height:
+            <% 
+                for (let i=0; i<info.length; i++){
+                    if (info[i].category == 'controls' && info[i].name == 'lineHeight'){ %>
+                        <%= info[i].pixels%>
+            <%
+                    } 
+                } 
+            %>;
 
         }
         input{
@@ -201,7 +210,7 @@
         "today's specials" Space Bottom: <input name="h1paddingBottom" id="todays-specials-padding-bottom" type="text" size="2"> px <br>
         Space between sections: <input name="headingsPadding" id="headings-padding" type="text" size="2"> px <br>
         Space between menu items: <input name="menuItemsPadding" id="menu-items-padding" type="text" size="2"> px <br>
-        Space between lines of menu items: <input name="" id="menu-items-line-space" type="text" size="2"> px <br>
+        Space between lines of menu items: <input name="lineHeight" id="menu-items-line-height" type="text" size="2"> px <br>
         Space below headings: <input id="headings-padding-bottom" type="text" size="2"> px <br>
         Legal Disclaimer: SHOW 
         <span id="legal-toggle">
@@ -309,7 +318,7 @@
     let paddingBottom = document.querySelector('#padding-bottom')
     let headingsPadding = document.querySelector('#headings-padding')
     let menuItemsPadding = document.querySelector('#menu-items-padding')
-    let menuItemsLineSpace = document.querySelector('#menu-items-line-space')
+    let menuItemsLineHeight = document.querySelector('#menu-items-line-height')
     let headingsPaddingBottom = document.querySelector('#headings-padding-bottom')
     let todaysSpecials = document.querySelector('#todays-specials')
     let todaysSpecialsPaddingBottom = document.querySelector('#todays-specials-padding-bottom')
@@ -354,7 +363,7 @@
             special.style.paddingBottom = `${(Number(this.value))/2}px`
         })
     })
-    menuItemsLineSpace.addEventListener('input', function(evt){
+    menuItemsLineHeight.addEventListener('input', function(evt){
         p.forEach((special,i)=>{
             special.style.lineHeight = `${Number(this.value)}px`
         })
