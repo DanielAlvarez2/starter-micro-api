@@ -97,8 +97,15 @@ app.post('/saveChanges', (request,response)=>{
                 }
         })
     }
+    console.log(`${request.body.legalDisclaimer}`);
+    db.collection('Specials').updateOne({_id: new ObjectId("65529cf61d34afc4583f9717")},{
+        $set:{
+            display: `${request.body.legalDisclaimer}`
+        }
+    })
 
-    response.redirect('/')
+    setTimeout(()=>response.redirect('/'),1000)
+    
     
 })
 app.get('/edit', (request, response) =>{

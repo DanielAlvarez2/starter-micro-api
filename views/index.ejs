@@ -225,17 +225,63 @@
         Space below headings: <input name="headingsPaddingBottom" id="headings-padding-bottom" type="text" size="2"> px <br>
         Legal Disclaimer: SHOW 
         <span id="legal-toggle">
-            <i id="on" class="fa-solid fa-toggle-on remove"></i>
-            <i id="off" class="fa-solid fa-toggle-off"></i>
+            <i id="on" class="fa-solid fa-toggle-on 
+            <%             
+            for (let i=0; i<info.length; i++){
+                if (info[i].category == 'controls' && info[i].name == 'legalDisclaimer'){ 
+                    if (info[i].display == 'true'){ %>
+                        remove
+                    <%
+                    }    
+                } 
+            } 
+            %>                
+            "></i>
+            <i id="off" class="fa-solid fa-toggle-off
+            <% 
+            for (let i=0; i<info.length; i++){
+                if (info[i].category == 'controls' && info[i].name == 'legalDisclaimer'){ 
+                    if (info[i].display == 'false'){ 
+                        %>
+                        remove
+                    <%
+                    }    
+                } 
+            } 
+            %>
+            "></i>
         </span> 
         HIDE<br>
-        <div id="padding-bottom-control">
+        <input type="hidden" name="legalDisclaimer" id="legal-disclaimer-switch">
+        <div id="padding-bottom-control"
+        <% 
+        for (let i=0; i<info.length; i++){
+            if (info[i].category == 'controls' && info[i].name == 'legalDisclaimer'){ 
+                if (info[i].display == 'false' ){ %>
+                    class="hidden"
+                <%
+                }    
+            } 
+        } 
+        %>    
+        >
         Legal Disclaimer Space Bottom: <input id="padding-bottom" type="text" size="2"> px<br> 
         </div>
         <hr>
 
         FONT-SIZES<br>
-        <div id="legal-font-size-control">
+        <div id="legal-font-size-control"
+        <% 
+        for (let i=0; i<info.length; i++){
+            if (info[i].category == 'controls' && info[i].name == 'legalDisclaimer'){ 
+                if (info[i].display == 'false' ){ %>
+                    class="hidden"
+                <%
+                }    
+            } 
+        } 
+        %>
+        >
         Legal Disclaimer Font Size: <input id="legal-font-size" type="text" size="2"> px<br>
         </div>
         "today's specials" Font Size: <input id="todays-specials-font-size" type="text" size="2"> px<br>
@@ -305,8 +351,33 @@
         <% } %>
     </ul>
 
-    
-    <div id="legal-disclaimer">
+    <script>let legalDisclaimerBoolean;</script>
+    <div id="legal-disclaimer"
+
+    <% 
+    for (let i=0; i<info.length; i++){
+        if (info[i].category == 'controls' && info[i].name == 'legalDisclaimer'){ 
+            if (info[i].display == 'false' ){ %>
+                class="hidden"
+            <%
+            }    
+        } 
+    } 
+    %>
+    >
+    <% 
+    for (let i=0; i<info.length; i++){
+        if (info[i].category == 'controls' && info[i].name == 'legalDisclaimer'){ 
+            if (info[i].display == 'false' ){ %>
+                <script>legalDisclaimerBoolean = false;</script>
+            <%
+            }else{ %>
+                <script>legalDisclaimerBoolean = true;</script>
+            <%
+            }    
+        } 
+    } 
+    %>
         
         Consumer advisory: consumption of undercooked meat, poultry, eggs, 
         or seafood may increase the risk of food-borne illnesses. Please 
@@ -347,6 +418,7 @@
     let legalFontSizeControl = document.querySelector('#legal-font-size-control')
     let reload = document.querySelector('#reload')
     let saveChanges = document.querySelector('#save-changes')
+    let legalDisclaimerSwitch = document.querySelector('#legal-disclaimer-switch')
 
     reload.addEventListener('click',()=>{
         location.reload()
@@ -405,6 +477,11 @@
         })
     })
     legalToggle.addEventListener('click', function(evt){
+        if (legalDisclaimerBoolean){
+            legalDisclaimerSwitch.value = 'false';
+        }else{
+            legalDisclaimerSwitch.value = 'true';
+        }
         legalDisclaimer.classList.toggle('hidden')
         paddingBottomControl.classList.toggle('hidden')
         legalFontSizeControl.classList.toggle('hidden')
