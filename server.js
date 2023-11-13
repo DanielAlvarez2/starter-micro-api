@@ -41,9 +41,22 @@ app.post('/saveChanges', (request,response)=>{
     console.log(request.body);
     console.log(request.body.paddingTop);
 
+    db.collection('Specials').updateOne({_id: new ObjectId("65526e13458b31706ba327c6")},{
+        $set:{
+            pixels: `${request.body.h1paddingBottom}px`
+
+        }
+    })
+    db.collection('Specials').updateOne({_id: new ObjectId("6552683e620b78c09f6ad4ee")},{
+        $set:{
+            pixels: `${request.body.paddingSides}px`
+
+        }
+    })
     db.collection('Specials').updateOne({_id: new ObjectId("654e59526db7f75b37effb75")},{
         $set:{
             pixels: `${request.body.paddingTop}px`
+
         }
     })
     .then(result=>{

@@ -21,7 +21,7 @@
             place-content:center;
         }
         #specials{
-            position: relative;;
+            position: relative;
         }
         #controls{
             line-height:30px;
@@ -47,6 +47,25 @@
                 } 
             %>;
 
+            padding-left:
+            <% 
+                for (let i=0; i<info.length; i++){
+                    if (info[i].category == 'controls' && info[i].name == 'padding-sides'){ %>
+                        <%= info[i].pixels%>
+            <%
+                    } 
+                } 
+            %>;
+            
+            padding-right:
+            <% 
+                for (let i=0; i<info.length; i++){
+                    if (info[i].category == 'controls' && info[i].name == 'padding-sides'){ %>
+                        <%= info[i].pixels%>
+            <%
+                    } 
+                } 
+            %>;
             
         }
         
@@ -56,7 +75,16 @@
         }
         
         h1{
-            padding:0px 0;
+            padding-bottom:
+            <% 
+                for (let i=0; i<info.length; i++){
+                    if (info[i].category == 'controls' && info[i].name == 'h1paddingBottom'){ %>
+                        <%= info[i].pixels%>
+            <%
+                    } 
+                } 
+            %>;
+            
         }
         input{
             text-align: center;
@@ -130,9 +158,9 @@
 <div id="controls">
     <form method="POST" action="/saveChanges">
         FORMAT PAGE LAYOUT<br>
-        Page Space Left & Right: <input id="padding-sides" type="text" size="2"> px <br>
+        Page Space Left & Right: <input name="paddingSides" id="padding-sides" type="text" size="2"> px <br>
         Page Space Top: <input name="paddingTop" id="padding-top" type="text" size="2"> px <br>
-        "today's specials" Space Bottom: <input id="todays-specials-padding-bottom" type="text" size="2"> px <br>
+        "today's specials" Space Bottom: <input name="h1paddingBottom" id="todays-specials-padding-bottom" type="text" size="2"> px <br>
         Space between sections: <input id="headings-padding" type="text" size="2"> px <br>
         Space between menu items: <input id="menu-items-padding" type="text" size="2"> px <br>
         Space between lines of menu items: <input id="menu-items-line-space" type="text" size="2"> px <br>
