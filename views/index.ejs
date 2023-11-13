@@ -86,6 +86,17 @@
             %>;
             
         }
+        #entree-heading, #dessert-heading{
+            padding-top: 
+            <% 
+                for (let i=0; i<info.length; i++){
+                    if (info[i].category == 'controls' && info[i].name == 'headingsPadding'){ %>
+                        <%= info[i].pixels%>
+            <%
+                    } 
+                } 
+            %>;
+        }
         input{
             text-align: center;
         }
@@ -161,7 +172,7 @@
         Page Space Left & Right: <input name="paddingSides" id="padding-sides" type="text" size="2"> px <br>
         Page Space Top: <input name="paddingTop" id="padding-top" type="text" size="2"> px <br>
         "today's specials" Space Bottom: <input name="h1paddingBottom" id="todays-specials-padding-bottom" type="text" size="2"> px <br>
-        Space between sections: <input id="headings-padding" type="text" size="2"> px <br>
+        Space between sections: <input name="headingsPadding" id="headings-padding" type="text" size="2"> px <br>
         Space between menu items: <input id="menu-items-padding" type="text" size="2"> px <br>
         Space between lines of menu items: <input id="menu-items-line-space" type="text" size="2"> px <br>
         Space below headings: <input id="headings-padding-bottom" type="text" size="2"> px <br>

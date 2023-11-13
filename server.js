@@ -41,28 +41,42 @@ app.post('/saveChanges', (request,response)=>{
     console.log(request.body);
     console.log(request.body.paddingTop);
 
-    db.collection('Specials').updateOne({_id: new ObjectId("65526e13458b31706ba327c6")},{
-        $set:{
-            pixels: `${request.body.h1paddingBottom}px`
 
-        }
-    })
+    if (request.body.paddingSides != ""){
     db.collection('Specials').updateOne({_id: new ObjectId("6552683e620b78c09f6ad4ee")},{
         $set:{
             pixels: `${request.body.paddingSides}px`
-
         }
     })
+    }
+
+    if (request.body.paddingTop != ""){
     db.collection('Specials').updateOne({_id: new ObjectId("654e59526db7f75b37effb75")},{
         $set:{
             pixels: `${request.body.paddingTop}px`
-
         }
     })
-    .then(result=>{
-        console.log('Changes Have Been Saved')
-        response.redirect('/')
-    })
+    }
+
+    if (request.body.h1paddingBottom != "") {
+        db.collection('Specials').updateOne({_id: new ObjectId("65526e13458b31706ba327c6")},{
+                $set:{
+                    pixels: `${request.body.h1paddingBottom}px`
+                }
+        })
+    }
+
+    if (request.body.headingsPadding != "") {
+        db.collection('Specials').updateOne({_id: new ObjectId("6552745d458b31706ba327c7")},{
+                $set:{
+                    pixels: `${request.body.headingsPadding}px`
+                }
+        })
+    }
+
+
+    response.redirect('/')
+    
 })
 app.get('/edit', (request, response) =>{
     db.collection('Specials').find().toArray()
