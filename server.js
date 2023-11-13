@@ -37,6 +37,20 @@ app.get('/', (request, response) =>{
     })
     .catch(error => console.error(error))
 })
+app.post('/saveChanges', (request,response)=>{
+    console.log(request.body);
+    console.log(request.body.paddingTop);
+
+    db.collection('Specials').updateOne({_id: new ObjectId("654e59526db7f75b37effb75")},{
+        $set:{
+            pixels: `${request.body.paddingTop}px`
+        }
+    })
+    .then(result=>{
+        console.log('Changes Have Been Saved')
+        response.redirect('/')
+    })
+})
 app.get('/edit', (request, response) =>{
     db.collection('Specials').find().toArray()
     .then(data => {

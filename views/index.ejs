@@ -128,9 +128,10 @@
 <div id="flexbox">    
 
 <div id="controls">
+    <form method="POST" action="/saveChanges">
         FORMAT PAGE LAYOUT<br>
         Page Space Left & Right: <input id="padding-sides" type="text" size="2"> px <br>
-        Page Space Top: <input id="padding-top" type="text" size="2"> px <br>
+        Page Space Top: <input name="paddingTop" id="padding-top" type="text" size="2"> px <br>
         "today's specials" Space Bottom: <input id="todays-specials-padding-bottom" type="text" size="2"> px <br>
         Space between sections: <input id="headings-padding" type="text" size="2"> px <br>
         Space between menu items: <input id="menu-items-padding" type="text" size="2"> px <br>
@@ -145,18 +146,19 @@
         <div id="padding-bottom-control">
         Legal Disclaimer Space Bottom: <input id="padding-bottom" type="text" size="2"> px<br> 
         </div>
-    <hr>
+        <hr>
 
-    FONT-SIZES<br>
-    <div id="legal-font-size-control">
-    Legal Disclaimer Font Size: <input id="legal-font-size" type="text" size="2"> px<br>
-    </div>
-    "today's specials" Font Size: <input id="todays-specials-font-size" type="text" size="2"> px<br>
-    Headings Font Size: <input id="headings-font-size" type="text" size="2"> px<br>
-    Menu Items Font Size: <input id="menu-items-font-size" type="text" size="2"> px<br>
-    <button id="reload">Clear Changes</button> 
-    <button id="save">Save Changes</button> 
-    <button id="print">Print Preview</button>
+        FONT-SIZES<br>
+        <div id="legal-font-size-control">
+        Legal Disclaimer Font Size: <input id="legal-font-size" type="text" size="2"> px<br>
+        </div>
+        "today's specials" Font Size: <input id="todays-specials-font-size" type="text" size="2"> px<br>
+        Headings Font Size: <input id="headings-font-size" type="text" size="2"> px<br>
+        Menu Items Font Size: <input id="menu-items-font-size" type="text" size="2"> px<br>
+        <button id="reload">Clear Changes</button> 
+        <input type="submit" id="save-changes" value="Save Changes"> 
+        <button id="print-preview">Print Preview</button>
+    </form>
 </div><!--#controls-->
     
 <div id="specials">
@@ -258,9 +260,13 @@
     let dessertHeading = document.querySelector('#dessert-heading')
     let legalFontSizeControl = document.querySelector('#legal-font-size-control')
     let reload = document.querySelector('#reload')
+    let saveChanges = document.querySelector('#save-changes')
 
     reload.addEventListener('click',()=>{
         location.reload()
+    })
+    saveChanges.addEventListener('click',function(){
+
     })
     paddingTop.addEventListener('input', function(evt){
         specialsPage.style.paddingTop = `${Number(this.value)}px`
