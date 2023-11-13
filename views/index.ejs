@@ -40,8 +40,10 @@
             padding-top:
             <% 
                 for (let i=0; i<info.length; i++){
-                    if (info[i].category == 'controls' && info[i].name == 'padding-top'){ %>
-                        <%= info[i].pixels%>
+                    if (info[i].category == 'controls' && info[i].name == 'padding-top'){ 
+                        
+                        %>
+                        <%= info[i].pixels %>
             <%
                     } 
                 } 
@@ -96,6 +98,31 @@
                     } 
                 } 
             %>;
+        }
+        li{
+            padding-top:            
+            <% 
+                for (let i=0; i<info.length; i++){
+                    if (info[i].category == 'controls' && info[i].name == 'menuItemsPadding'){ 
+                        let half=(info[i].pixels).substring(0,info[i].pixels.length-2)/2
+                        %>
+                        <%= half%>px
+            <%
+                    } 
+                } 
+            %>;
+            padding-bottom:
+            <% 
+                for (let i=0; i<info.length; i++){
+                    if (info[i].category == 'controls' && info[i].name == 'menuItemsPadding'){ 
+                        let half=(info[i].pixels).substring(0,info[i].pixels.length-2)/2
+                        %>
+                        <%= half%>px
+            <%
+                    } 
+                } 
+            %>;
+
         }
         input{
             text-align: center;
@@ -173,8 +200,8 @@
         Page Space Top: <input name="paddingTop" id="padding-top" type="text" size="2"> px <br>
         "today's specials" Space Bottom: <input name="h1paddingBottom" id="todays-specials-padding-bottom" type="text" size="2"> px <br>
         Space between sections: <input name="headingsPadding" id="headings-padding" type="text" size="2"> px <br>
-        Space between menu items: <input id="menu-items-padding" type="text" size="2"> px <br>
-        Space between lines of menu items: <input id="menu-items-line-space" type="text" size="2"> px <br>
+        Space between menu items: <input name="menuItemsPadding" id="menu-items-padding" type="text" size="2"> px <br>
+        Space between lines of menu items: <input name="" id="menu-items-line-space" type="text" size="2"> px <br>
         Space below headings: <input id="headings-padding-bottom" type="text" size="2"> px <br>
         Legal Disclaimer: SHOW 
         <span id="legal-toggle">

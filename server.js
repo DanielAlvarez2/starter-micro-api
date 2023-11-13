@@ -74,6 +74,13 @@ app.post('/saveChanges', (request,response)=>{
         })
     }
 
+    if (request.body.menuItemsPadding != "") {
+        db.collection('Specials').updateOne({_id: new ObjectId("655277f12695fb229cd2f8bb")},{
+                $set:{
+                    pixels: `${request.body.menuItemsPadding}px`
+                }
+        })
+    }
 
     response.redirect('/')
     
