@@ -90,6 +90,14 @@ app.post('/saveChanges', (request,response)=>{
         })
     }
 
+    if (request.body.headingsPaddingBottom != "") {
+        db.collection('Specials').updateOne({_id: new ObjectId("65529aad1d34afc4583f9716")},{
+                $set:{
+                    pixels: `${request.body.headingsPaddingBottom}px`
+                }
+        })
+    }
+
     response.redirect('/')
     
 })

@@ -88,6 +88,17 @@
             %>;
             
         }
+        h2{
+            padding-bottom:
+            <% 
+                for (let i=0; i<info.length; i++){
+                    if (info[i].category == 'controls' && info[i].name == 'headingsPaddingBottom'){ %>
+                        <%= info[i].pixels%>
+            <%
+                    } 
+                } 
+            %>;
+        }
         #entree-heading, #dessert-heading{
             padding-top: 
             <% 
@@ -211,7 +222,7 @@
         Space between sections: <input name="headingsPadding" id="headings-padding" type="text" size="2"> px <br>
         Space between menu items: <input name="menuItemsPadding" id="menu-items-padding" type="text" size="2"> px <br>
         Space between lines of menu items: <input name="lineHeight" id="menu-items-line-height" type="text" size="2"> px <br>
-        Space below headings: <input id="headings-padding-bottom" type="text" size="2"> px <br>
+        Space below headings: <input name="headingsPaddingBottom" id="headings-padding-bottom" type="text" size="2"> px <br>
         Legal Disclaimer: SHOW 
         <span id="legal-toggle">
             <i id="on" class="fa-solid fa-toggle-on remove"></i>
