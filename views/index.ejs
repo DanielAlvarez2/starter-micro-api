@@ -159,6 +159,15 @@
                     } 
                 } 
             %>;
+            font-size:
+            <% 
+                for (let i=0; i<info.length; i++){
+                    if (info[i].category == 'controls' && info[i].name == 'menuItemsFontSize'){ %>
+                        <%= info[i].pixels%>
+            <%
+                    } 
+                } 
+            %>;
 
         }
         input{
@@ -352,7 +361,7 @@
         </div>
         "today's specials" Font Size: <input name="todaysSpecialsFontSize" id="todays-specials-font-size" type="text" size="2"> px<br>
         Headings Font Size: <input name="headingsFontSize" id="headings-font-size" type="text" size="2"> px<br>
-        Menu Items Font Size: <input id="menu-items-font-size" type="text" size="2"> px<br>
+        Menu Items Font Size: <input name="menuItemsFontSize" id="menu-items-font-size" type="text" size="2"> px<br>
         <button id="reload">Clear Changes</button> 
         <input type="submit" id="save-changes" value="Save Changes"> 
         <button id="print-preview">Print Preview</button>
