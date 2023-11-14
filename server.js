@@ -90,6 +90,14 @@ app.post('/saveChanges', (request,response)=>{
         })
     }
 
+    if (request.body.paddingBottom != "") {
+        db.collection('Specials').updateOne({_id: new ObjectId("6552b499c5ef1e93714ad81b")},{
+                $set:{
+                    pixels: `${request.body.paddingBottom}px`
+                }
+        })
+    }
+
     if (request.body.headingsPaddingBottom != "") {
         db.collection('Specials').updateOne({_id: new ObjectId("65529aad1d34afc4583f9716")},{
                 $set:{

@@ -149,9 +149,22 @@
         }
         #legal-disclaimer{
             position:absolute;
-            bottom:0px;
+            bottom:0;
+            padding-bottom:
+            <% 
+                for (let i=0; i<info.length; i++){
+                    if (info[i].category == 'controls' && info[i].name == 'legalBottomPadding'){ 
+                        
+                        %>
+                        <%= info[i].pixels %>
+            <%
+                    } 
+                } 
+            %>;
+
             left:0px;
-            padding: inherit;
+            padding-left: inherit;
+            padding-right: inherit;
         }
         #legal-toggle{
             cursor:pointer;
@@ -252,7 +265,31 @@
             "></i>
         </span> 
         HIDE<br>
-        <input type="hidden" name="legalDisclaimer" id="legal-disclaimer-switch">
+        <% 
+        for (let i=0; i<info.length; i++){
+            if (info[i].category == 'controls' && info[i].name == 'legalDisclaimer'){ 
+                if (info[i].display == 'true'){ 
+                    %>
+                    <input type="hidden" name="legalDisclaimer" id="legal-disclaimer-switch" value="true">
+                <%
+                }    
+            } 
+        } 
+        %>
+        <% 
+        for (let i=0; i<info.length; i++){
+            if (info[i].category == 'controls' && info[i].name == 'legalDisclaimer'){ 
+                if (info[i].display == 'false'){ 
+                    %>
+                    <input type="hidden" name="legalDisclaimer" id="legal-disclaimer-switch" value="false">
+                <%
+                }    
+            } 
+        } 
+        %>
+
+        
+        
         <div id="padding-bottom-control"
         <% 
         for (let i=0; i<info.length; i++){
@@ -265,7 +302,7 @@
         } 
         %>    
         >
-        Legal Disclaimer Space Bottom: <input id="padding-bottom" type="text" size="2"> px<br> 
+        Legal Disclaimer Space Bottom: <input name="paddingBottom" id="padding-bottom" type="text" size="2"> px<br> 
         </div>
         <hr>
 
