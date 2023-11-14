@@ -124,6 +124,12 @@ app.post('/saveChanges', (request,response)=>{
         }
     })
 
+    db.collection('Specials').updateOne({_id: new ObjectId("6552deb4c7561e1a7e641ab0")},{
+        $set:{
+            pixels: `${request.body.headingsFontSize}px`
+        }
+    })
+
     setTimeout(()=>response.redirect('/'),1000)
     
     
