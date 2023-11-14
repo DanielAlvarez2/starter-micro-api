@@ -105,10 +105,16 @@ app.post('/saveChanges', (request,response)=>{
                 }
         })
     }
-    console.log(`${request.body.legalDisclaimer}`);
+    
     db.collection('Specials').updateOne({_id: new ObjectId("65529cf61d34afc4583f9717")},{
         $set:{
             display: `${request.body.legalDisclaimer}`
+        }
+    })
+
+    db.collection('Specials').updateOne({_id: new ObjectId("6552da9842bc2235c2d5166a")},{
+        $set:{
+            pixels: `${request.body.legalDisclaimerFontSize}px`
         }
     })
 

@@ -165,6 +165,18 @@
             left:0px;
             padding-left: inherit;
             padding-right: inherit;
+            font-size:
+            <% 
+                for (let i=0; i<info.length; i++){
+                    if (info[i].category == 'controls' && info[i].name == 'legalDisclaimerFontSize'){ 
+                        
+                        %>
+                        <%= info[i].pixels %>
+            <%
+                    } 
+                } 
+            %>;
+
         }
         #legal-toggle{
             cursor:pointer;
@@ -179,7 +191,7 @@
         #flexbox{
             display:flex;
         }
-        button{
+        button, #save-changes{
             padding:10px 20px;
             cursor:pointer;
         }
@@ -319,7 +331,7 @@
         } 
         %>
         >
-        Legal Disclaimer Font Size: <input id="legal-font-size" type="text" size="2"> px<br>
+        Legal Disclaimer Font Size: <input name="legalDisclaimerFontSize" id="legal-font-size" type="text" size="2"> px<br>
         </div>
         "today's specials" Font Size: <input id="todays-specials-font-size" type="text" size="2"> px<br>
         Headings Font Size: <input id="headings-font-size" type="text" size="2"> px<br>
