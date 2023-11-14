@@ -86,7 +86,15 @@
                     } 
                 } 
             %>;
-            
+            font-size:
+            <% 
+                for (let i=0; i<info.length; i++){
+                    if (info[i].category == 'controls' && info[i].name == 'todaysSpecialsFontSize'){ %>
+                        <%= info[i].pixels%>
+            <%
+                    } 
+                } 
+            %>;
         }
         h2{
             padding-bottom:
@@ -333,7 +341,7 @@
         >
         Legal Disclaimer Font Size: <input name="legalDisclaimerFontSize" id="legal-font-size" type="text" size="2"> px<br>
         </div>
-        "today's specials" Font Size: <input id="todays-specials-font-size" type="text" size="2"> px<br>
+        "today's specials" Font Size: <input name="todaysSpecialsFontSize" id="todays-specials-font-size" type="text" size="2"> px<br>
         Headings Font Size: <input id="headings-font-size" type="text" size="2"> px<br>
         Menu Items Font Size: <input id="menu-items-font-size" type="text" size="2"> px<br>
         <button id="reload">Clear Changes</button> 
