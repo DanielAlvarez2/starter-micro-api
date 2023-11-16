@@ -30,6 +30,11 @@ app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
+app.get('/checklist', (request,response)=>{
+    response.render('checklist.ejs')
+})
+
+
 app.get('/', (request, response) =>{
     db.collection('Specials').find().toArray()
     .then(data => {

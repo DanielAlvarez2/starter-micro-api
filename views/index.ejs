@@ -72,7 +72,6 @@
         }
         
         ul{
-            font-size: 16px;
             font-family:serif;
         }
         
@@ -168,7 +167,6 @@
                     } 
                 } 
             %>;
-
         }
         input{
             text-align: center;
@@ -362,7 +360,7 @@
         "today's specials" Font Size: <input name="todaysSpecialsFontSize" id="todays-specials-font-size" type="text" size="2"> px<br>
         Headings Font Size: <input name="headingsFontSize" id="headings-font-size" type="text" size="2"> px<br>
         Menu Items Font Size: <input name="menuItemsFontSize" id="menu-items-font-size" type="text" size="2"> px<br>
-        <button id="reload">Clear Changes</button> 
+        <button id="clear-changes">Clear Changes</button> 
         <input type="submit" id="save-changes" value="Save Changes"> 
         <button id="print-preview">Print Preview</button>
     </form>
@@ -491,15 +489,17 @@
     let entreeHeading = document.querySelector('#entree-heading')
     let dessertHeading = document.querySelector('#dessert-heading')
     let legalFontSizeControl = document.querySelector('#legal-font-size-control')
-    let reload = document.querySelector('#reload')
-    let saveChanges = document.querySelector('#save-changes')
+    let clearChanges = document.querySelector('#clear-changes')
+    let printPreview = document.querySelector('#print-preview')
     let legalDisclaimerSwitch = document.querySelector('#legal-disclaimer-switch')
 
-    reload.addEventListener('click',()=>{
-        location.reload()
+    printPreview.addEventListener('click',(event)=>{
+        event.preventDefault()
+        location.replace('/print')
     })
-    saveChanges.addEventListener('click',function(){
-
+    clearChanges.addEventListener('click',(event)=>{
+        event.preventDefault()
+        location.reload()
     })
     paddingTop.addEventListener('input', function(evt){
         specialsPage.style.paddingTop = `${Number(this.value)}px`
