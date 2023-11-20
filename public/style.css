@@ -17,7 +17,7 @@
 h2{
     font-family: FuturaHeavy;
 }
-.del, .edit{
+.del, .edit, .archive{
     cursor:pointer;
     font-size:20px;
 }
@@ -26,6 +26,9 @@ h2{
 }
 .edit{
     color:rgb(183, 183, 0);
+}
+.archive{
+    color:blue;
 }
 ul{
     list-style-type:none;

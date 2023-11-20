@@ -1,5 +1,10 @@
 const deleteText = document.querySelectorAll('.del')
 const editText = document.querySelectorAll('.edit')
+const archiveText = document.querySelectorAll('.archive')
+
+Array.from(archiveText).forEach((element)=>{
+    element.addEventListener('click', archiveSpecial)
+})
 
 Array.from(deleteText).forEach((element)=>{
     element.addEventListener('click', deleteSpecial)
@@ -8,6 +13,7 @@ Array.from(deleteText).forEach((element)=>{
 Array.from(editText).forEach((element)=>{
     element.addEventListener('click', populateEditForm)
 })
+
 
 function populateEditForm(){
     const editID = this.parentNode.childNodes[1].innerText
@@ -21,6 +27,24 @@ function populateEditForm(){
     document.querySelector('#edit-allergies').value = this.parentNode.childNodes[13].innerText;
 }
 
+async function archiveSpecial(){
+    const _id = this.parentNode.childNodes[1].innerText
+    console.log(_id);
+    try{
+        const response = await fetch('archiveSpecial',{
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                '_id': _id
+            })
+        })
+        const data = await response.json()
+        console.log(data);
+        location.reload()
+    }catch(error){
+        // console.log(error)
+    }
+}
 
 async function deleteSpecial(){
     const _id = this.parentNode.childNodes[1].innerText

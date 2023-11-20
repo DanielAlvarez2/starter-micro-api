@@ -36,11 +36,10 @@ app.get('/checklist', (request,response)=>{
 
 
 app.get('/', (request, response) =>{
-    db.collection('Specials').find().toArray()
+    db.collection('Specials').find().sort({sequence:1}).toArray()
     .then(data => {
         response.render('index.ejs', {info: data})
     })
-    .catch(error => console.error(error))
 })
 app.post('/saveChanges', (request,response)=>{
     console.log(request.body);
@@ -146,18 +145,22 @@ app.post('/saveChanges', (request,response)=>{
     
 })
 app.get('/edit', (request, response) =>{
-    db.collection('Specials').find().toArray()
+    db.collection('Specials').find().sort({sequence:1}).toArray()
     .then(data => {
         response.render('edit.ejs', {info: data})
     })
-    .catch(error => console.error(error))
+})
+app.get('/archive', (request, response) =>{
+    db.collection('Specials').find().sort({sequence:1}).toArray()
+    .then(data => {
+        response.render('archive.ejs', {info: data})
+    })
 })
 app.get('/print', (request, response) =>{
     db.collection('Specials').find().toArray()
     .then(data => {
         response.render('print.ejs', {info: data})
     })
-    .catch(error => console.error(error))
 })
 
 app.post('/addSpecial', (request,response)=>{
@@ -166,7 +169,6 @@ app.post('/addSpecial', (request,response)=>{
         console.log('New Special Added')
         response.redirect('/edit')
     })
-    .catch(error => console.log(error))
 })
 app.delete('/deleteSpecial', (request,response) => {
     db.collection('Specials').deleteOne({_id: new ObjectId(request.body._id)})
@@ -174,8 +176,20 @@ app.delete('/deleteSpecial', (request,response) => {
         console.log('Old Special Deleted')
         response.json('Old Special Deleted')
     })
-    .catch(error => console.error(error))
 })
+
+app.post('/archiveSpecial', (request,response)=>{
+    db.collection('Specials').updateOne({_id: new ObjectId(request.body._id)},{
+        $set:{
+            sequence: "0"
+        }
+    })
+    .then(result => {
+        console.log('Special Archived')
+        response.json('Special Archived')
+    })
+})
+
 app.post('/editSpecial', (request, response) => {
     console.log(request.body);
     console.log(`ObjectId('${request.body._id}')`);

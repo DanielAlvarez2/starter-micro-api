@@ -38,14 +38,14 @@
     </style>
   </head>
   <body>
-    <h1>EDIT Olea Specials</h1>
+    <h1>ARCHIVES: Olea Specials</h1>
 
     <h2>SPECIALS: Appetizers</h2>
     <ul class="specials-appetizers">
       <% for(let i=0; i<info.length;i++){ 
         if( info[i].sequence &&
-            info[i].sequence != "" &&
-            info[i].sequence != "0" && 
+            info[i].sequence != "" && 
+            info[i].sequence == "0" &&
             info[i].category == "SPECIALS: Appetizer"){ %>
       <li class="special">
         <div><%= info[i]._id %></div>
@@ -55,15 +55,10 @@
         <div><%= info[i].description %></div>
         <div><%= info[i].price %></div>
         <div><%= info[i].allergies %></div>
-        <span class="edit"><i class="fa-solid fa-pencil"></i> Edit</span
-        >&nbsp;&nbsp;
         <span class="archive"
-          ><i class="fa-solid fa-box-archive"></i> Archive</span
+          ><i class="fa-solid fa-box-archive"></i> UNarchive/Restore</span
         >&nbsp;&nbsp;
         <span class="del"><i class="fa-solid fa-trash-can"></i> Delete</span
-        >&nbsp;&nbsp;
-        <span class="move"
-          ><i class="fa-solid fa-arrow-right-arrow-left"></i> Move</span
         >&nbsp;&nbsp;
       </li>
       <% } } %>
@@ -73,8 +68,8 @@
     <ul class="specials-entrees">
       <% for(let i=0; i<info.length;i++){ 
         if( info[i].sequence &&
-            info[i].sequence != "" && 
-            info[i].sequence != "0" &&
+            info[i].sequence != "" &&
+            info[i].sequence == "0" &&
             info[i].category == "SPECIALS: Entrée"){ %>
       <li class="special">
         <div><%= info[i]._id %></div>
@@ -84,15 +79,10 @@
         <div><%= info[i].description %></div>
         <div><%= info[i].price %></div>
         <div><%= info[i].allergies %></div>
-        <span class="edit"><i class="fa-solid fa-pencil"></i> Edit</span
-        >&nbsp;&nbsp;
         <span class="archive"
-          ><i class="fa-solid fa-box-archive"></i> Archive</span
+          ><i class="fa-solid fa-box-archive"></i> UNarchive/Restore</span
         >&nbsp;&nbsp;
         <span class="del"><i class="fa-solid fa-trash-can"></i> Delete</span
-        >&nbsp;&nbsp;
-        <span class="move"
-          ><i class="fa-solid fa-arrow-right-arrow-left"></i> Move</span
         >&nbsp;&nbsp;
       </li>
       <% } } %>
@@ -102,8 +92,8 @@
     <ul class="specials-desserts">
       <% for(let i=0; i<info.length;i++){ 
         if( info[i].sequence &&
-            info[i].sequence != "" && 
-            info[i].sequence != "0" &&
+            info[i].sequence != "" &&
+            info[i].sequence == "0" && 
             info[i].category == "SPECIALS: Dessert"){ %>
       <li class="special">
         <div><%= info[i]._id %></div>
@@ -113,79 +103,15 @@
         <div><%= info[i].description %></div>
         <div><%= info[i].price %></div>
         <div><%= info[i].allergies %></div>
-        <span class="edit"><i class="fa-solid fa-pencil"></i> Edit</span
-        >&nbsp;&nbsp;
         <span class="archive"
-          ><i class="fa-solid fa-box-archive"></i> Archive</span
+          ><i class="fa-solid fa-box-archive"></i> UNarchive/Restore</span
         >&nbsp;&nbsp;
         <span class="del"><i class="fa-solid fa-trash-can"></i> Delete</span
-        >&nbsp;&nbsp;
-        <span class="move"
-          ><i class="fa-solid fa-arrow-right-arrow-left"></i> Move</span
         >&nbsp;&nbsp;
       </li>
       <% } } %>
     </ul>
 
-    <h2>Add New Special:</h2>
-
-    <form action="/addSpecial" method="POST">
-      <input type="text" placeholder="Category" name="category" /><br />
-      <input type="text" placeholder="Sequence" name="sequence" /><br />
-      <input type="text" placeholder="Name" name="name" /><br />
-      <textarea
-        rows="5"
-        cols="40"
-        placeholder="Description"
-        name="description"
-      ></textarea
-      ><br />
-      <input type="text" placeholder="Price" name="price" /><br />
-      <input type="text" placeholder="Allergies" name="allergies" /><br />
-      <input type="submit" id="update-button" value="Create" />
-    </form>
-
-    <h2>Edit Exisiting Special:</h2>
-
-    <form action="/editSpecial" method="POST">
-      <div name="_id" id="display-ID"></div>
-      <input type="text" id="edit-id" placeholder="ID#" name="_id" /><br />
-      <input
-        type="text"
-        id="edit-category"
-        placeholder="Category"
-        name="category"
-      /><br />
-      <input
-        type="text"
-        id="edit-sequence"
-        placeholder="Sequence"
-        name="sequence"
-      /><br />
-      <input type="text" id="edit-name" placeholder="Name" name="name" /><br />
-      <textarea
-        rows="5"
-        cols="40"
-        placeholder="Description"
-        name="description"
-      ></textarea
-      ><br />
-      <input
-        type="text"
-        id="edit-price"
-        placeholder="Price"
-        name="price"
-      /><br />
-      <input
-        type="text"
-        id="edit-allergies"
-        placeholder="Allergies"
-        name="allergies"
-      /><br />
-      <input type="submit" value="Update" />
-    </form>
-
-    
 
     <script src="main.js"></script>
   </body>
