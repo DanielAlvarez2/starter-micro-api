@@ -253,8 +253,19 @@
         if (info[i].category == "SPECIALS: Entrée") entreeCount++ 
         if (info[i].category == "SPECIALS: Dessert") dessertCount++ 
     }
+    console.log(appetizerCount)
+    console.log(entreeCount)
+    console.log(dessertCount)
     
 %>
+<script>
+    let appetizerCount = <%=appetizerCount%>
+    let entreeCount = <%=entreeCount%>
+    let dessertCount = <%=dessertCount%>
+    console.log(appetizerCount);
+    console.log(entreeCount);
+    console.log(dessertCount);
+</script>
 
 <body>
 <div id="wrapper">
@@ -377,7 +388,7 @@
     <% } %>    
     <ul>
     <% for(let i=0; i<info.length;i++){ %>
-        <% if (info[i].category == "SPECIALS: Appetizer"){ %>
+        <% if (info[i].category == "SPECIALS: Appetizer" && info[i].sequence != "0"){ %>
         <li class="special">
             <span class="name"><%= info[i].name %></span>
             <span><%= info[i].description %></span>
@@ -395,7 +406,7 @@
     <% } %>
     <ul>
         <% for(let i=0; i<info.length;i++){ %>
-            <% if (info[i].category == "SPECIALS: Entrée"){ %>
+            <% if (info[i].category == "SPECIALS: Entrée" && info[i].sequence != "0"){ %>
             <li class="special">
                 <span class="name"><%= info[i].name %></span>
                 <span><%= info[i].description %></span>
@@ -414,7 +425,7 @@
 
     <ul>
         <% for(let i=0; i<info.length;i++){ %>
-            <% if (info[i].category == "SPECIALS: Dessert"){ %>
+            <% if (info[i].category == "SPECIALS: Dessert" && info[i].sequence != "0"){ %>
             <li class="special">
                 <span class="name"><%= info[i].name %></span>
                 <span><%= info[i].description %></span>

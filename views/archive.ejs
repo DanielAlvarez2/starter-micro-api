@@ -12,7 +12,7 @@
     <style>
       .del,
       .edit,
-      .archive,
+      .unarchive,
       .move {
         cursor: pointer;
         font-size: 20px;
@@ -26,7 +26,7 @@
       .edit {
         color: rgb(183, 183, 0);
       }
-      .archive {
+      .unarchive {
         color: #654321;
       }
       .special {
@@ -37,6 +37,30 @@
       }
     </style>
   </head>
+
+  <% 
+    let appetizerCount=0
+    let entreeCount=0
+    let dessertCount=0
+    for (let i=0; i<info.length; i++){
+        if (info[i].category == "SPECIALS: Appetizer" && info[i].sequence != "0") appetizerCount++ 
+        if (info[i].category == "SPECIALS: Entrée" && info[i].sequence != "0") entreeCount++ 
+        if (info[i].category == "SPECIALS: Dessert" && info[i].sequence != "0") dessertCount++ 
+    }
+    console.log(appetizerCount)
+    console.log(entreeCount)
+    console.log(dessertCount)
+    
+%>
+<script>
+    let appetizerCount = <%=appetizerCount%>
+    let entreeCount = <%=entreeCount%>
+    let dessertCount = <%=dessertCount%>
+    console.log(appetizerCount);
+    console.log(entreeCount);
+    console.log(dessertCount);
+</script>
+
   <body>
     <h1>ARCHIVES: Olea Specials</h1>
 
@@ -55,7 +79,7 @@
         <div><%= info[i].description %></div>
         <div><%= info[i].price %></div>
         <div><%= info[i].allergies %></div>
-        <span class="archive"
+        <span class="unarchive"
           ><i class="fa-solid fa-box-archive"></i> UNarchive/Restore</span
         >&nbsp;&nbsp;
         <span class="del"><i class="fa-solid fa-trash-can"></i> Delete</span
@@ -79,7 +103,7 @@
         <div><%= info[i].description %></div>
         <div><%= info[i].price %></div>
         <div><%= info[i].allergies %></div>
-        <span class="archive"
+        <span class="unarchive"
           ><i class="fa-solid fa-box-archive"></i> UNarchive/Restore</span
         >&nbsp;&nbsp;
         <span class="del"><i class="fa-solid fa-trash-can"></i> Delete</span
@@ -103,7 +127,7 @@
         <div><%= info[i].description %></div>
         <div><%= info[i].price %></div>
         <div><%= info[i].allergies %></div>
-        <span class="archive"
+        <span class="unarchive"
           ><i class="fa-solid fa-box-archive"></i> UNarchive/Restore</span
         >&nbsp;&nbsp;
         <span class="del"><i class="fa-solid fa-trash-can"></i> Delete</span

@@ -13,11 +13,11 @@
       .del,
       .edit,
       .archive,
-      .move {
+      .transfer {
         cursor: pointer;
         font-size: 20px;
       }
-      .move {
+      .transfer {
         color: blue;
       }
       .del {
@@ -37,6 +37,31 @@
       }
     </style>
   </head>
+
+  <% 
+  let appetizerCount=0
+  let entreeCount=0
+  let dessertCount=0
+  for (let i=0; i<info.length; i++){
+      if (info[i].category == "SPECIALS: Appetizer" && info[i].sequence != "0") appetizerCount++ 
+      if (info[i].category == "SPECIALS: Entrée" && info[i].sequence != "0") entreeCount++ 
+      if (info[i].category == "SPECIALS: Dessert" && info[i].sequence != "0") dessertCount++ 
+  }
+  console.log(appetizerCount)
+  console.log(entreeCount)
+  console.log(dessertCount)
+  
+%>
+<script>
+  let appetizerCount = <%=appetizerCount%>
+  let entreeCount = <%=entreeCount%>
+  let dessertCount = <%=dessertCount%>
+  console.log(appetizerCount);
+  console.log(entreeCount);
+  console.log(dessertCount);
+</script>
+
+
   <body>
     <h1>EDIT Olea Specials</h1>
 
@@ -62,8 +87,8 @@
         >&nbsp;&nbsp;
         <span class="del"><i class="fa-solid fa-trash-can"></i> Delete</span
         >&nbsp;&nbsp;
-        <span class="move"
-          ><i class="fa-solid fa-arrow-right-arrow-left"></i> Move</span
+        <span class="transfer"
+          ><i class="fa-solid fa-arrow-right-arrow-left"></i> Transfer</span
         >&nbsp;&nbsp;
       </li>
       <% } } %>
@@ -91,8 +116,8 @@
         >&nbsp;&nbsp;
         <span class="del"><i class="fa-solid fa-trash-can"></i> Delete</span
         >&nbsp;&nbsp;
-        <span class="move"
-          ><i class="fa-solid fa-arrow-right-arrow-left"></i> Move</span
+        <span class="transfer"
+          ><i class="fa-solid fa-arrow-right-arrow-left"></i> Transfer</span
         >&nbsp;&nbsp;
       </li>
       <% } } %>
@@ -120,8 +145,8 @@
         >&nbsp;&nbsp;
         <span class="del"><i class="fa-solid fa-trash-can"></i> Delete</span
         >&nbsp;&nbsp;
-        <span class="move"
-          ><i class="fa-solid fa-arrow-right-arrow-left"></i> Move</span
+        <span class="transfer"
+          ><i class="fa-solid fa-arrow-right-arrow-left"></i> Transfer</span
         >&nbsp;&nbsp;
       </li>
       <% } } %>
@@ -167,6 +192,7 @@
         rows="5"
         cols="40"
         placeholder="Description"
+        id="edit-description"
         name="description"
       ></textarea
       ><br />

@@ -41,6 +41,16 @@ app.get('/', (request, response) =>{
         response.render('index.ejs', {info: data})
     })
 })
+app.get('/debug', (request, response) =>{
+    db.collection('Specials').find({
+        category: "SPECIALS: Appetizer",
+        sequence: "3"
+    })
+        .toArray()
+    .then(data => {
+        response.render('debug.ejs', {info: data})
+    })
+})
 app.post('/saveChanges', (request,response)=>{
     console.log(request.body);
     console.log(request.body.paddingTop);
@@ -140,7 +150,7 @@ app.post('/saveChanges', (request,response)=>{
         }
     })
 
-    setTimeout(()=>response.redirect('/'),1000)
+    setTimeout(()=>response.redirect('/'),250)
     
     
 })
@@ -179,6 +189,36 @@ app.delete('/deleteSpecial', (request,response) => {
 })
 
 app.post('/archiveSpecial', (request,response)=>{
+    let totalCount;
+    if (request.body.category == "SPECIALS: Appetizer"){totalCount=request.body.appetizerCount}
+    if (request.body.category == "SPECIALS: Entrée"){totalCount=request.body.entreeCount}
+    if (request.body.category == "SPECIALS: Dessert"){totalCount=request.body.dessertCount}
+    console.log("totalCount: "+totalCount);
+
+    for (let i=Number(request.body.sequence)+1;i<=totalCount;i++){
+        console.log("i = "+i)
+        console.log("request.body.category = " + request.body.category)
+        console.log("i = "+i)
+
+        db.collection('Specials').updateOne({
+            category: `${request.body.category}`,
+            sequence: `${i}`
+        },{
+            $set:{
+                sequence: `${new String(i-1)}`
+            }
+        })
+        .then(result=>{
+            console.log('looping...')
+        })
+    
+
+    }
+    console.log("request.body.sequence: " + request.body.sequence);
+    console.log("request.body.appetizerCount: " + request.body.appetizerCount);
+    console.log("request.body.entreeCount: " + request.body.entreeCount);
+    console.log("request.body.dessertCount: " + request.body.dessertCount);
+
     db.collection('Specials').updateOne({_id: new ObjectId(request.body._id)},{
         $set:{
             sequence: "0"
@@ -186,7 +226,22 @@ app.post('/archiveSpecial', (request,response)=>{
     })
     .then(result => {
         console.log('Special Archived')
-        response.json('Special Archived')
+        setTimeout(()=>{
+            response.json('Special Archived')
+        },250)
+    })
+})
+
+app.post('/unarchiveSpecial', (request,response)=>{
+    console.log('unarchiveSpecial()');
+    db.collection('Specials').updateOne({_id: new ObjectId(request.body._id)},{
+        $set:{
+            sequence: request.body.sequence
+        }
+    })
+    .then(result => {
+        console.log('Special UNarchived/Restored')
+        response.json('Special UNarchived/Restored')
     })
 })
 
