@@ -13,9 +13,17 @@
       .del,
       .edit,
       .archive,
-      .transfer {
+      .transfer,
+      .move-up,
+      .move-down {
         cursor: pointer;
         font-size: 20px;
+        transform:scaleX(3);
+      }
+      .move-up, .move-down{
+        color:green;
+        width:100%;
+        text-align: center;
       }
       .transfer {
         color: blue;
@@ -32,6 +40,9 @@
       .special {
         margin-bottom: 20px;
       }
+      ul{
+        list-style-type: none;
+      }
       li {
         max-width: 50ch;
       }
@@ -47,18 +58,12 @@
       if (info[i].category == "SPECIALS: Entrée" && info[i].sequence != "0") entreeCount++ 
       if (info[i].category == "SPECIALS: Dessert" && info[i].sequence != "0") dessertCount++ 
   }
-  console.log(appetizerCount)
-  console.log(entreeCount)
-  console.log(dessertCount)
   
 %>
 <script>
   let appetizerCount = <%=appetizerCount%>
   let entreeCount = <%=entreeCount%>
   let dessertCount = <%=dessertCount%>
-  console.log(appetizerCount);
-  console.log(entreeCount);
-  console.log(dessertCount);
 </script>
 
 
@@ -73,6 +78,11 @@
             info[i].sequence != "0" && 
             info[i].category == "SPECIALS: Appetizer"){ %>
       <li class="special">
+        <% if(info[i].sequence == "1"){ %>
+            <div class="move-up" style="visibility:hidden"><i class="fa-solid fa-sort-up"></i></div>
+        <% }else{ %>
+            <div class="move-up"><i class="fa-solid fa-sort-up"></i></div>
+        <% } %>
         <div><%= info[i]._id %></div>
         <div><%= info[i].category %></div>
         <div><%= info[i].sequence %></div>
@@ -90,9 +100,14 @@
         <span class="transfer"
           ><i class="fa-solid fa-arrow-right-arrow-left"></i> Transfer</span
         >&nbsp;&nbsp;
-      </li>
+        <% if(info[i].sequence != appetizerCount){ %>
+            <div class="move-down"><i class="fa-solid fa-sort-down"></i></div>
+        <% } %>
+       </li>
       <% } } %>
     </ul>
+
+
 
     <h2>SPECIALS: Entrees</h2>
     <ul class="specials-entrees">
@@ -102,6 +117,11 @@
             info[i].sequence != "0" &&
             info[i].category == "SPECIALS: Entrée"){ %>
       <li class="special">
+        <% if(info[i].sequence == "1"){ %>
+            <div class="move-up" style="visibility:hidden"><i class="fa-solid fa-sort-up"></i></div>
+        <% }else{ %>
+            <div class="move-up"><i class="fa-solid fa-sort-up"></i></div>
+        <% } %>
         <div><%= info[i]._id %></div>
         <div><%= info[i].category %></div>
         <div><%= info[i].sequence %></div>
@@ -119,6 +139,10 @@
         <span class="transfer"
           ><i class="fa-solid fa-arrow-right-arrow-left"></i> Transfer</span
         >&nbsp;&nbsp;
+        <% if(info[i].sequence != entreeCount){ %>
+            <div class="move-down"><i class="fa-solid fa-sort-down"></i></div>
+        <% } %>
+
       </li>
       <% } } %>
     </ul>
@@ -131,6 +155,12 @@
             info[i].sequence != "0" &&
             info[i].category == "SPECIALS: Dessert"){ %>
       <li class="special">
+        <% if(info[i].sequence == "1"){ %>
+            <div class="move-up" style="visibility:hidden"><i class="fa-solid fa-sort-up"></i></div>
+        <% }else{ %>
+            <div class="move-up"><i class="fa-solid fa-sort-up"></i></div>
+        <% } %>
+ 
         <div><%= info[i]._id %></div>
         <div><%= info[i].category %></div>
         <div><%= info[i].sequence %></div>
@@ -148,6 +178,10 @@
         <span class="transfer"
           ><i class="fa-solid fa-arrow-right-arrow-left"></i> Transfer</span
         >&nbsp;&nbsp;
+        <% if(info[i].sequence != dessertCount){ %>
+            <div class="move-down"><i class="fa-solid fa-sort-down"></i></div>
+        <% } %>
+
       </li>
       <% } } %>
     </ul>

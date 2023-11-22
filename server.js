@@ -295,3 +295,53 @@ app.post('/editSpecial', (request, response) => {
     })
 })
 
+app.post('/moveUp', (request,response)=>{
+    
+    db.collection('Specials').updateOne({
+        category: request.body.category,
+        sequence: `${request.body.sequence-1}`
+    },
+    {
+        $set:{
+            sequence: `${request.body.sequence}`
+        }})
+
+    db.collection('Specials').updateOne({_id: new ObjectId(request.body._id)},
+    {
+        $set:{
+            sequence: `${request.body.sequence - 1}`
+        }
+    })
+
+        
+    .then(result =>{
+        console.log('Special Moved Up')
+        response.json('Special Moved Up')
+    })
+})
+
+app.post('/moveDown', (request,response)=>{
+    
+    db.collection('Specials').updateOne({
+        category: request.body.category,
+        sequence: `${Number(request.body.sequence) + 1}`
+    },
+    {
+        $set:{
+            sequence: `${request.body.sequence}`
+        }})
+
+    db.collection('Specials').updateOne({_id: new ObjectId(request.body._id)},
+    {
+        $set:{
+            sequence: `${Number(request.body.sequence) + 1}`
+        }
+    })
+
+        
+    .then(result =>{
+        console.log('Special Moved Down')
+        response.json('Special Moved Down')
+    })
+})
+
