@@ -52,9 +52,7 @@ app.get('/debug', (request, response) =>{
     })
 })
 app.post('/saveChanges', (request,response)=>{
-    console.log(request.body);
-    console.log(request.body.paddingTop);
-
+  
 
     if (request.body.paddingSides != ""){
     db.collection('Specials').updateOne({_id: new ObjectId("6552683e620b78c09f6ad4ee")},{
@@ -185,10 +183,6 @@ app.delete('/deleteSpecial', (request,response) => {
         if (request.body.category == "SPECIALS: Appetizer"){
             if (!(request.body.sequence == "1" && request.body.appetizerCount == "1")){
                 for (let i=Number(request.body.sequence)+1;i<=request.body.appetizerCount;i++){
-                    console.log("i = "+i)
-                    console.log("request.body.category = " + request.body.category)
-                    console.log("i = "+i)
-            
                     db.collection('Specials').updateOne({
                         category: `${request.body.category}`,
                         sequence: `${i}`
@@ -196,24 +190,37 @@ app.delete('/deleteSpecial', (request,response) => {
                         $set:{
                             sequence: `${new String(i-1)}`
                         }
-                    })
-                    .then(result=>{
-                        console.log('looping...')
-                    })
-                
-            
+                    })                
                 }
                
             }
         }
         if (request.body.category == "SPECIALS: Entrée"){
             if (!(request.body.sequence == "1" && request.body.entreeCount == "1")){
-
+                for (let i=Number(request.body.sequence)+1;i<=request.body.entreeCount;i++){
+                    db.collection('Specials').updateOne({
+                        category: `${request.body.category}`,
+                        sequence: `${i}`
+                    },{
+                        $set:{
+                            sequence: `${new String(i-1)}`
+                        }
+                    })                
+                }
             }
         }
         if (request.body.category == "SPECIALS: Dessert"){
             if (!(request.body.sequence == "1" && request.body.dessertCount == "1")){
-                console.log('NOT solo entry')
+                for (let i=Number(request.body.sequence)+1;i<=request.body.dessertCount;i++){
+                    db.collection('Specials').updateOne({
+                        category: `${request.body.category}`,
+                        sequence: `${i}`
+                    },{
+                        $set:{
+                            sequence: `${new String(i-1)}`
+                        }
+                    })                
+                }
             }
         }
     }
@@ -229,13 +236,8 @@ app.post('/archiveSpecial', (request,response)=>{
     if (request.body.category == "SPECIALS: Appetizer"){totalCount=request.body.appetizerCount}
     if (request.body.category == "SPECIALS: Entrée"){totalCount=request.body.entreeCount}
     if (request.body.category == "SPECIALS: Dessert"){totalCount=request.body.dessertCount}
-    console.log("totalCount: "+totalCount);
 
     for (let i=Number(request.body.sequence)+1;i<=totalCount;i++){
-        console.log("i = "+i)
-        console.log("request.body.category = " + request.body.category)
-        console.log("i = "+i)
-
         db.collection('Specials').updateOne({
             category: `${request.body.category}`,
             sequence: `${i}`
@@ -250,11 +252,6 @@ app.post('/archiveSpecial', (request,response)=>{
     
 
     }
-    console.log("request.body.sequence: " + request.body.sequence);
-    console.log("request.body.appetizerCount: " + request.body.appetizerCount);
-    console.log("request.body.entreeCount: " + request.body.entreeCount);
-    console.log("request.body.dessertCount: " + request.body.dessertCount);
-
     db.collection('Specials').updateOne({_id: new ObjectId(request.body._id)},{
         $set:{
             sequence: "0"
@@ -282,8 +279,6 @@ app.post('/unarchiveSpecial', (request,response)=>{
 })
 
 app.post('/editSpecial', (request, response) => {
-    console.log(request.body);
-    console.log(`ObjectId('${request.body._id}')`);
     db.collection('Specials').updateOne({_id: new ObjectId(request.body._id)},{
         $set:{
             category: request.body.category,
