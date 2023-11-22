@@ -164,10 +164,10 @@ app.get('/archive', (request, response) =>{
         response.render('archive.ejs', {info: data})
     })
 })
-app.get('/print', (request, response) =>{
+app.get('/printSpecials', (request, response) =>{
     db.collection('Specials').find().toArray()
     .then(data => {
-        response.render('print.ejs', {info: data})
+        response.render('printSpecials.ejs', {info: data})
     })
 })
 

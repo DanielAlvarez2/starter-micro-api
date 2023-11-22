@@ -234,14 +234,16 @@
         <% } %>    
         <ul>
         <% for(let i=0; i<info.length;i++){ %>
-            <% if (info[i].category == "SPECIALS: Appetizer"){ %>
+            <% if (info[i].category == "SPECIALS: Appetizer"){ 
+                if (info[i].sequence != "0"){ %>
             <li class="special">
                 <span class="name"><%= info[i].name %></span>
                 <span><%= info[i].description %></span>
                 <span class="price"><%= info[i].price %></span>
             </li>
-            <% } %>
-        <% } %>
+            <% } 
+             } 
+         } %>
         </ul>
     
         <% if (entreeCount == 1) { %>
@@ -252,14 +254,16 @@
         <% } %>
         <ul>
             <% for(let i=0; i<info.length;i++){ %>
-                <% if (info[i].category == "SPECIALS: Entrée"){ %>
+                <% if (info[i].category == "SPECIALS: Entrée"){ 
+                    if (info[i].sequence != "0"){ %>
                 <li class="special">
                     <span class="name"><%= info[i].name %></span>
                     <span><%= info[i].description %></span>
                     <span class="price"><%= info[i].price %></span>
                 </li>
-                <% } %>
-            <% } %>
+                <% } 
+                }
+            } %>
         </ul>
      
         <% if (dessertCount == 1) { %>
@@ -271,14 +275,16 @@
     
         <ul>
             <% for(let i=0; i<info.length;i++){ %>
-                <% if (info[i].category == "SPECIALS: Dessert"){ %>
+                <% if (info[i].category == "SPECIALS: Dessert"){ 
+                    if (info[i].sequence != "0"){ %>
                 <li class="special">
                     <span class="name"><%= info[i].name %></span>
                     <span><%= info[i].description %></span>
                     <span class="price"><%= info[i].price %></span>
                 </li>
-                <% } %>
-            <% } %>
+                <% } 
+                }
+            } %>
         </ul>
     
         <script>let legalDisclaimerBoolean;</script>
@@ -327,14 +333,16 @@
         <% } %>    
         <ul>
         <% for(let i=0; i<info.length;i++){ %>
-            <% if (info[i].category == "SPECIALS: Appetizer"){ %>
+            <% if (info[i].category == "SPECIALS: Appetizer"){ 
+                if (info[i].sequence != "0"){ %>
             <li class="special">
                 <span class="name"><%= info[i].name %></span>
                 <span><%= info[i].description %></span>
                 <span class="price"><%= info[i].price %></span>
             </li>
-            <% } %>
-        <% } %>
+            <% } 
+             } 
+         } %>
         </ul>
     
         <% if (entreeCount == 1) { %>
@@ -345,14 +353,16 @@
         <% } %>
         <ul>
             <% for(let i=0; i<info.length;i++){ %>
-                <% if (info[i].category == "SPECIALS: Entrée"){ %>
+                <% if (info[i].category == "SPECIALS: Entrée"){ 
+                    if (info[i].sequence != "0"){ %>
                 <li class="special">
                     <span class="name"><%= info[i].name %></span>
                     <span><%= info[i].description %></span>
                     <span class="price"><%= info[i].price %></span>
                 </li>
-                <% } %>
-            <% } %>
+                <% } 
+                }
+            } %>
         </ul>
      
         <% if (dessertCount == 1) { %>
@@ -364,17 +374,19 @@
     
         <ul>
             <% for(let i=0; i<info.length;i++){ %>
-                <% if (info[i].category == "SPECIALS: Dessert"){ %>
+                <% if (info[i].category == "SPECIALS: Dessert"){ 
+                    if (info[i].sequence != "0"){ %>
                 <li class="special">
                     <span class="name"><%= info[i].name %></span>
                     <span><%= info[i].description %></span>
                     <span class="price"><%= info[i].price %></span>
                 </li>
-                <% } %>
-            <% } %>
+                <% } 
+                }
+            } %>
         </ul>
     
-        <script>let legalDisclaimerBoolean;</script>
+        
         <div id="legal-disclaimer"
     
         <% 
@@ -407,7 +419,6 @@
             alert your server if you have special dietary requirements.
         
         </div><!--#legal-disclaimer-->
-       
     </div><!--.quarter-->
     <div class="quarter">
         <h1 id="todays-specials">today's specials</h1>
@@ -420,14 +431,16 @@
         <% } %>    
         <ul>
         <% for(let i=0; i<info.length;i++){ %>
-            <% if (info[i].category == "SPECIALS: Appetizer"){ %>
+            <% if (info[i].category == "SPECIALS: Appetizer"){ 
+                if (info[i].sequence != "0"){ %>
             <li class="special">
                 <span class="name"><%= info[i].name %></span>
                 <span><%= info[i].description %></span>
                 <span class="price"><%= info[i].price %></span>
             </li>
-            <% } %>
-        <% } %>
+            <% } 
+             } 
+         } %>
         </ul>
     
         <% if (entreeCount == 1) { %>
@@ -438,14 +451,16 @@
         <% } %>
         <ul>
             <% for(let i=0; i<info.length;i++){ %>
-                <% if (info[i].category == "SPECIALS: Entrée"){ %>
+                <% if (info[i].category == "SPECIALS: Entrée"){ 
+                    if (info[i].sequence != "0"){ %>
                 <li class="special">
                     <span class="name"><%= info[i].name %></span>
                     <span><%= info[i].description %></span>
                     <span class="price"><%= info[i].price %></span>
                 </li>
-                <% } %>
-            <% } %>
+                <% } 
+                }
+            } %>
         </ul>
      
         <% if (dessertCount == 1) { %>
@@ -457,17 +472,19 @@
     
         <ul>
             <% for(let i=0; i<info.length;i++){ %>
-                <% if (info[i].category == "SPECIALS: Dessert"){ %>
+                <% if (info[i].category == "SPECIALS: Dessert"){ 
+                    if (info[i].sequence != "0"){ %>
                 <li class="special">
                     <span class="name"><%= info[i].name %></span>
                     <span><%= info[i].description %></span>
                     <span class="price"><%= info[i].price %></span>
                 </li>
-                <% } %>
-            <% } %>
+                <% } 
+                }
+            } %>
         </ul>
     
-        <script>let legalDisclaimerBoolean;</script>
+        
         <div id="legal-disclaimer"
     
         <% 
@@ -500,7 +517,6 @@
             alert your server if you have special dietary requirements.
         
         </div><!--#legal-disclaimer-->
-       
     </div><!--.quarter-->
 
     <div class="quarter">
@@ -514,14 +530,16 @@
         <% } %>    
         <ul>
         <% for(let i=0; i<info.length;i++){ %>
-            <% if (info[i].category == "SPECIALS: Appetizer"){ %>
+            <% if (info[i].category == "SPECIALS: Appetizer"){ 
+                if (info[i].sequence != "0"){ %>
             <li class="special">
                 <span class="name"><%= info[i].name %></span>
                 <span><%= info[i].description %></span>
                 <span class="price"><%= info[i].price %></span>
             </li>
-            <% } %>
-        <% } %>
+            <% } 
+             } 
+         } %>
         </ul>
     
         <% if (entreeCount == 1) { %>
@@ -532,14 +550,16 @@
         <% } %>
         <ul>
             <% for(let i=0; i<info.length;i++){ %>
-                <% if (info[i].category == "SPECIALS: Entrée"){ %>
+                <% if (info[i].category == "SPECIALS: Entrée"){ 
+                    if (info[i].sequence != "0"){ %>
                 <li class="special">
                     <span class="name"><%= info[i].name %></span>
                     <span><%= info[i].description %></span>
                     <span class="price"><%= info[i].price %></span>
                 </li>
-                <% } %>
-            <% } %>
+                <% } 
+                }
+            } %>
         </ul>
      
         <% if (dessertCount == 1) { %>
@@ -551,17 +571,19 @@
     
         <ul>
             <% for(let i=0; i<info.length;i++){ %>
-                <% if (info[i].category == "SPECIALS: Dessert"){ %>
+                <% if (info[i].category == "SPECIALS: Dessert"){ 
+                    if (info[i].sequence != "0"){ %>
                 <li class="special">
                     <span class="name"><%= info[i].name %></span>
                     <span><%= info[i].description %></span>
                     <span class="price"><%= info[i].price %></span>
                 </li>
-                <% } %>
-            <% } %>
+                <% } 
+                }
+            } %>
         </ul>
     
-        <script>let legalDisclaimerBoolean;</script>
+        
         <div id="legal-disclaimer"
     
         <% 
@@ -594,9 +616,9 @@
             alert your server if you have special dietary requirements.
         
         </div><!--#legal-disclaimer-->
-        
+ 
             
-    </div>
+    </div><!--.quarter-->
 
 
 </div><!--#specials-->
