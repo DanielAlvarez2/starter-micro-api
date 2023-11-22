@@ -117,37 +117,45 @@ app.post('/saveChanges', (request,response)=>{
                 }
         })
     }
-    
-    db.collection('Specials').updateOne({_id: new ObjectId("65529cf61d34afc4583f9717")},{
-        $set:{
-            display: `${request.body.legalDisclaimer}`
-        }
-    })
+    if (request.body.legalDisclaimer != ""){
+        db.collection('Specials').updateOne({_id: new ObjectId("65529cf61d34afc4583f9717")},{
+            $set:{
+                display: `${request.body.legalDisclaimer}`
+            }
+        })
+    }
 
-    db.collection('Specials').updateOne({_id: new ObjectId("6552da9842bc2235c2d5166a")},{
-        $set:{
-            pixels: `${request.body.legalDisclaimerFontSize}px`
-        }
-    })
+    if (request.body.legalDisclaimerFontSize != ""){
+        db.collection('Specials').updateOne({_id: new ObjectId("6552da9842bc2235c2d5166a")},{
+            $set:{
+                pixels: `${request.body.legalDisclaimerFontSize}px`
+            }
+        })
+    }
 
-    db.collection('Specials').updateOne({_id: new ObjectId("6552dcebc7561e1a7e641aaf")},{
-        $set:{
-            pixels: `${request.body.todaysSpecialsFontSize}px`
-        }
-    })
+    if (request.body.todaysSpecialsFontSize != ""){
+        db.collection('Specials').updateOne({_id: new ObjectId("6552dcebc7561e1a7e641aaf")},{
+            $set:{
+                pixels: `${request.body.todaysSpecialsFontSize}px`
+            }
+        })
+    }
 
-    db.collection('Specials').updateOne({_id: new ObjectId("6552deb4c7561e1a7e641ab0")},{
-        $set:{
-            pixels: `${request.body.headingsFontSize}px`
-        }
-    })
+    if (request.body.headingsFontSize != ""){
+        db.collection('Specials').updateOne({_id: new ObjectId("6552deb4c7561e1a7e641ab0")},{
+            $set:{
+                pixels: `${request.body.headingsFontSize}px`
+            }
+        })
+    }
 
-    db.collection('Specials').updateOne({_id: new ObjectId("6552e063c7561e1a7e641ab1")},{
-        $set:{
-            pixels: `${request.body.menuItemsFontSize}px`
-        }
-    })
-
+    if (request.body.menuItemsFontSize != ""){
+        db.collection('Specials').updateOne({_id: new ObjectId("6552e063c7561e1a7e641ab1")},{
+            $set:{
+                pixels: `${request.body.menuItemsFontSize}px`
+            }
+        })
+    }
     setTimeout(()=>response.redirect('/'),250)
     
     
