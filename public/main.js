@@ -104,17 +104,24 @@ async function unarchiveSpecial(){
 
 async function deleteSpecial(){
     const _id = this.parentNode.childNodes[1].innerText
+    const category = this.parentNode.childNodes[3].innerText
+    const sequence = this.parentNode.childNodes[5].innerText
     try{
         const response = await fetch('deleteSpecial',{
             method: 'DELETE',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
-                '_id': _id
+                '_id': _id,
+                category: category,
+                sequence: sequence,
+                appetizerCount: appetizerCount,
+                entreeCount: entreeCount,
+                dessertCount: dessertCount
             })
         })
         const data = await response.json()
         console.log(data)
-        location.reload()
+        setTimeout(()=>{location.reload()},250) 
     }catch(error){
         console.log(error)
     }

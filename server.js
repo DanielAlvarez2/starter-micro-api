@@ -181,10 +181,46 @@ app.post('/addSpecial', (request,response)=>{
     })
 })
 app.delete('/deleteSpecial', (request,response) => {
+    if (request.body.sequence != "0"){
+        if (request.body.category == "SPECIALS: Appetizer"){
+            if (!(request.body.sequence == "1" && request.body.appetizerCount == "1")){
+                for (let i=Number(request.body.sequence)+1;i<=request.body.appetizerCount;i++){
+                    console.log("i = "+i)
+                    console.log("request.body.category = " + request.body.category)
+                    console.log("i = "+i)
+            
+                    db.collection('Specials').updateOne({
+                        category: `${request.body.category}`,
+                        sequence: `${i}`
+                    },{
+                        $set:{
+                            sequence: `${new String(i-1)}`
+                        }
+                    })
+                    .then(result=>{
+                        console.log('looping...')
+                    })
+                
+            
+                }
+               
+            }
+        }
+        if (request.body.category == "SPECIALS: Entrée"){
+            if (!(request.body.sequence == "1" && request.body.entreeCount == "1")){
+
+            }
+        }
+        if (request.body.category == "SPECIALS: Dessert"){
+            if (!(request.body.sequence == "1" && request.body.dessertCount == "1")){
+                console.log('NOT solo entry')
+            }
+        }
+    }
     db.collection('Specials').deleteOne({_id: new ObjectId(request.body._id)})
     .then(result => {
-        console.log('Old Special Deleted')
-        response.json('Old Special Deleted')
+        console.log('Special Deleted')
+        response.json('Special Deleted')
     })
 })
 
