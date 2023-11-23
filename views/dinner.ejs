@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Olea Specials</title>
+    <title>Olea Dinner Menu</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/21ef82ed30.js" crossorigin="anonymous"></script>
     <style>
@@ -35,6 +35,13 @@
             padding: 0px 0px;
             display:inline-block;
             
+        }
+        #dinner{
+            width: 8.5in;
+            height: 14in;
+            position: relative;
+            border: 1px solid red;
+            transform: scale(0.75);
         }
         #specials{
             padding-top:
@@ -88,7 +95,7 @@
             font-size:
             <% 
                 for (let i=0; i<info.length; i++){
-                    if (info[i].category == 'controls' && info[i].name == 'todaysSpecialsFontSize'){ %>
+                    if (info[i].category == 'controlsDinner' && info[i].name == 'oleaLogoFontSize'){ %>
                         <%= info[i].pixels%>
             <%
                     } 
@@ -96,6 +103,7 @@
             %>;
         }
         h2{
+            font-family: FuturaLight;
             padding-bottom:
             <% 
                 for (let i=0; i<info.length; i++){
@@ -152,7 +160,7 @@
             line-height:
             <% 
                 for (let i=0; i<info.length; i++){
-                    if (info[i].category == 'controls' && info[i].name == 'lineHeight'){ %>
+                    if (info[i].category == 'controlsDinner' && info[i].name == 'dinnerMenuLineHeight'){ %>
                         <%= info[i].pixels%>
             <%
                     } 
@@ -161,7 +169,7 @@
             font-size:
             <% 
                 for (let i=0; i<info.length; i++){
-                    if (info[i].category == 'controls' && info[i].name == 'menuItemsFontSize'){ %>
+                    if (info[i].category == 'controlsDinner' && info[i].name == 'dinnerMenuFontSize'){ %>
                         <%= info[i].pixels%>
             <%
                     } 
@@ -259,7 +267,7 @@
     let appetizerCount = <%=appetizerCount%>
     let entreeCount = <%=entreeCount%>
     let dessertCount = <%=dessertCount%>
- 
+   
 </script>
 
 <body>
@@ -269,14 +277,14 @@
 <div id="flexbox">    
 
 <div id="controls">
-    <form method="POST" action="/saveChanges">
+    <form method="POST" action="/saveDinnerMenuChanges">
         FORMAT PAGE LAYOUT<br>
         Page Space Left & Right: <input name="paddingSides" id="padding-sides" type="text" size="2"> px <br>
         Page Space Top: <input name="paddingTop" id="padding-top" type="text" size="2"> px <br>
-        "today's specials" Space Bottom: <input name="h1paddingBottom" id="todays-specials-padding-bottom" type="text" size="2"> px <br>
+        olea Logo Space Bottom: <input name="h1paddingBottom" id="olea-padding-bottom" type="text" size="2"> px <br>
         Space between sections: <input name="headingsPadding" id="headings-padding" type="text" size="2"> px <br>
         Space between menu items: <input name="menuItemsPadding" id="menu-items-padding" type="text" size="2"> px <br>
-        Space between lines of menu items: <input name="lineHeight" id="menu-items-line-height" type="text" size="2"> px <br>
+        Space between lines of menu items: <input name="dinnerMenuLineHeight" id="dinner-menu-line-height" type="text" size="2"> px <br>
         Space below headings: <input name="headingsPaddingBottom" id="headings-padding-bottom" type="text" size="2"> px <br>
         Legal Disclaimer: SHOW 
         <span id="legal-toggle">
@@ -363,72 +371,112 @@
         >
         Legal Disclaimer Font Size: <input name="legalDisclaimerFontSize" id="legal-font-size" type="text" size="2"> px<br>
         </div>
-        "today's specials" Font Size: <input name="todaysSpecialsFontSize" id="todays-specials-font-size" type="text" size="2"> px<br>
+        olea Logo Font Size: <input name="oleaLogoFontSize" id="olea-logo-font-size" type="text" size="2"> px<br>
         Headings Font Size: <input name="headingsFontSize" id="headings-font-size" type="text" size="2"> px<br>
-        Menu Items Font Size: <input name="menuItemsFontSize" id="menu-items-font-size" type="text" size="2"> px<br>
+        Menu Items Font Size: <input name="dinnerMenuFontSize" id="dinner-menu-font-size" type="text" size="2"> px<br>
         <button id="clear-changes">Clear Changes</button> 
         <input type="submit" id="save-changes" value="Save Changes"> 
         <button id="print-preview">Print Preview</button>
     </form>
 </div><!--#controls-->
     
-<div id="specials">
-    <h1 id="todays-specials">today's specials</h1>
+<div id="dinner">
+    <h1 id="olea">olea</h1>
+    <hr>
+    <div id="top" style="display:flex">
 
-    <% if (appetizerCount == 1) { %>
-        <h2 id="appetizer-heading">appetizer</h2>
-    <% } %>
-    <% if (appetizerCount > 1) { %>
-        <h2 id="appetizer-heading">appetizers</h2>
-    <% } %>    
-    <ul>
-    <% for(let i=0; i<info.length;i++){ %>
-        <% if (info[i].category == "SPECIALS: Appetizer" && info[i].sequence != "0"){ %>
-        <li class="special">
-            <span class="name"><%= info[i].name %></span>
-            <span><%= info[i].description %></span>
-            <span class="price"><%= info[i].price %></span>
-        </li>
-        <% } %>
-    <% } %>
-    </ul>
+        <div id="left" style="width:50%">
 
-    <% if (entreeCount == 1) { %>
-        <h2 id="entree-heading">entrée</h2>
-    <% } %>
-    <% if (appetizerCount > 1) { %>
-        <h2 id="entree-heading">entrées</h2>
-    <% } %>
-    <ul>
-        <% for(let i=0; i<info.length;i++){ %>
-            <% if (info[i].category == "SPECIALS: Entrée" && info[i].sequence != "0"){ %>
-            <li class="special">
-                <span class="name"><%= info[i].name %></span>
-                <span><%= info[i].description %></span>
-                <span class="price"><%= info[i].price %></span>
-            </li>
-            <% } %>
-        <% } %>
-    </ul>
- 
-    <% if (dessertCount == 1) { %>
-        <h2 id="dessert-heading">dessert</h2>
-    <% } %>
-    <% if (dessertCount > 1) { %>
-        <h2 id="dessert-heading">desserts</h2>
-    <% } %>
+            <div id="cured-meats">
+                <ul>
+                    <% for(let i=0; i<info.length;i++){ %>
+                        <% if (info[i].category == "DINNER: Cured Meats" && info[i].sequence != "0"){ %>
+                        <li class="special">
+                            <span class="name"><%= info[i].name %></span><br>
+                            <span><%= info[i].description %></span>
+                            <span class="price"><%= info[i].price %></span>
+                        </li>
+                        <% } %>
+                    <% } %>
+                </ul>
+            </div><!--#cured-meats-->
+    
+            <ul>
+                <% for(let i=0; i<info.length;i++){ %>
+                    <% if (info[i].category == "DINNER: Appetizer" && info[i].sequence != "0"){ %>
+                    <li class="special">
+                        <span class="name"><%= info[i].name %></span><br>
+                        <span><%= info[i].description %></span>
+                        <span class="price"><%= info[i].price %></span>
+                    </li>
+                    <% } %>
+                <% } %>
+            </ul>
+            
+        </div><!--#left-->
 
-    <ul>
-        <% for(let i=0; i<info.length;i++){ %>
-            <% if (info[i].category == "SPECIALS: Dessert" && info[i].sequence != "0"){ %>
-            <li class="special">
-                <span class="name"><%= info[i].name %></span>
-                <span><%= info[i].description %></span>
-                <span class="price"><%= info[i].price %></span>
-            </li>
-            <% } %>
-        <% } %>
-    </ul>
+        
+        <div id="right" style="width:50%">
+            <ul>
+                <% for(let i=0; i<info.length;i++){ %>
+                    <% if (info[i].category == "DINNER: Entrée" && info[i].sequence != "0"){ %>
+                    <li class="special">
+                        <span class="name"><%= info[i].name %></span><br>
+                        <span><%= info[i].description %></span>
+                        <span class="price"><%= info[i].price %></span>
+                    </li>
+                    <% } %>
+                <% } %>
+            </ul>
+
+            <div id="tasting-menu">
+                <ul>
+                    <% for(let i=0; i<info.length;i++){ %>
+                        <% if (info[i].category == "Tasting Menu"){ %>
+                        <li class="special">
+                            <span class="name"><%= info[i].name %></span><br>
+                            <span><%= info[i].description %></span>
+                        </li>
+                        <% } %>
+                    <% } %>
+                </ul>
+        
+            </div><!--#tasting-menu-->
+        </div><!--#right-->
+    </div><!--#top-->
+<h2 id="sides">sides</h2>
+    <div id="sides" style="display:flex">
+        <div class="left" style="width:50%">
+            <ul>
+                <% for(let i=0; i<info.length;i++){ %>
+                    <% if (info[i].category == "DINNER: Sides Left" && info[i].sequence != "0"){ %>
+                    <li class="special">
+                        <span class="name"><%= info[i].name %></span><br>
+                        <span><%= info[i].description %></span>
+                        <span class="price"><%= info[i].price %></span>
+                    </li>
+                    <% } %>
+                <% } %>
+            </ul>
+            
+        </div><!--.left-->
+        
+        <div class="right" style="width:50%">
+            <ul>
+                <% for(let i=0; i<info.length;i++){ %>
+                    <% if (info[i].category == "DINNER: Sides Right" && info[i].sequence != "0"){ %>
+                    <li class="special">
+                        <span class="name"><%= info[i].name %></span><br>
+                        <span><%= info[i].description %></span>
+                        <span class="price"><%= info[i].price %></span>
+                    </li>
+                    <% } %>
+                <% } %>
+            </ul>
+        
+        </div><!--.right-->
+    </div><!--#sides-->
+
 
     <script>let legalDisclaimerBoolean;</script>
     <div id="legal-disclaimer"
@@ -464,7 +512,7 @@
     
     </div><!--#legal-disclaimer-->
     
-</div><!--#specials-->
+</div><!--#dinner-->
 
 
 </div><!--#flexbox-->
@@ -479,18 +527,13 @@
     let paddingBottom = document.querySelector('#padding-bottom')
     let headingsPadding = document.querySelector('#headings-padding')
     let menuItemsPadding = document.querySelector('#menu-items-padding')
-    let menuItemsLineHeight = document.querySelector('#menu-items-line-height')
     let headingsPaddingBottom = document.querySelector('#headings-padding-bottom')
-    let todaysSpecials = document.querySelector('#todays-specials')
-    let todaysSpecialsPaddingBottom = document.querySelector('#todays-specials-padding-bottom')
+    let oleaPaddingBottom = document.querySelector('#olea-padding-bottom')
     let paddingBottomControl = document.querySelector('#padding-bottom-control')
     let legalToggle = document.querySelector('#legal-toggle')
     let legalDisclaimer = document.querySelector('#legal-disclaimer')
     let legalFontSize = document.querySelector('#legal-font-size')
-    let todaysSpecialsFontSize = document.querySelector('#todays-specials-font-size')
     let headingsFontSize = document.querySelector('#headings-font-size')
-    let menuItemsFontSize = document.querySelector('#menu-items-font-size')
-    let p = document.querySelectorAll('.special')
     let appetizerHeading = document.querySelector('#appetizer-heading')
     let entreeHeading = document.querySelector('#entree-heading')
     let dessertHeading = document.querySelector('#dessert-heading')
@@ -498,6 +541,32 @@
     let clearChanges = document.querySelector('#clear-changes')
     let printPreview = document.querySelector('#print-preview')
     let legalDisclaimerSwitch = document.querySelector('#legal-disclaimer-switch')
+    
+    
+    
+    
+    let oleaLogoFontSize = document.querySelector('#olea-logo-font-size')
+    let olea = document.querySelector('#olea')
+    let dinnerMenuLineHeight = document.querySelector('#dinner-menu-line-height')
+    let p = document.querySelectorAll('.special')
+    let dinnerMenuFontSize = document.querySelector('#dinner-menu-font-size')
+    dinnerMenuFontSize.addEventListener('input', function(evt){
+        p.forEach((dinnerMenu,i)=>{
+            dinnerMenu.style.fontSize = `${Number(this.value)}px`
+        })
+    })
+    dinnerMenuLineHeight.addEventListener('input', function(evt){
+        p.forEach((dinnerMenu,i)=>{
+            dinnerMenu.style.lineHeight = `${Number(this.value)}px`
+        })
+    })
+    oleaLogoFontSize.addEventListener('input', function(evt){
+        olea.style.fontSize = `${Number(this.value)}px`
+    })
+
+
+
+
 
     printPreview.addEventListener('click',(event)=>{
         event.preventDefault()
@@ -515,8 +584,8 @@
         specialsPage.style.paddingLeft = `${Number(this.value)}px`
         specialsPage.style.paddingRight = `${Number(this.value)}px`
     })
-    todaysSpecialsPaddingBottom.addEventListener('input', function(evt){
-        todaysSpecials.style.paddingBottom = `${Number(this.value)}px`
+    oleaPaddingBottom.addEventListener('input', function(evt){
+        olea.style.paddingBottom = `${Number(this.value)}px`
     })
     paddingBottom.addEventListener('input', function(evt){
         legalDisclaimer.style.paddingBottom = `${Number(this.value)}px`
@@ -525,11 +594,6 @@
         p.forEach((special,i)=>{
             special.style.paddingTop = `${(Number(this.value))/2}px`
             special.style.paddingBottom = `${(Number(this.value))/2}px`
-        })
-    })
-    menuItemsLineHeight.addEventListener('input', function(evt){
-        p.forEach((special,i)=>{
-            special.style.lineHeight = `${Number(this.value)}px`
         })
     })
     headingsPadding.addEventListener('input', function(evt){
@@ -544,18 +608,10 @@
     legalFontSize.addEventListener('input', function(evt){
         legalDisclaimer.style.fontSize = `${Number(this.value)}px`
     })
-    todaysSpecialsFontSize.addEventListener('input', function(evt){
-        todaysSpecials.style.fontSize = `${Number(this.value)}px`
-    })
     headingsFontSize.addEventListener('input', function(evt){
         appetizerHeading.style.fontSize = `${Number(this.value)}px`
         entreeHeading.style.fontSize = `${Number(this.value)}px`
         dessertHeading.style.fontSize = `${Number(this.value)}px`
-    })
-    menuItemsFontSize.addEventListener('input', function(evt){
-        p.forEach((special,i)=>{
-            special.style.fontSize = `${Number(this.value)}px`
-        })
     })
     legalToggle.addEventListener('click', function(evt){
         if (legalDisclaimerBoolean){

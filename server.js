@@ -41,6 +41,12 @@ app.get('/', (request, response) =>{
         response.render('index.ejs', {info: data})
     })
 })
+app.get('/dinner', (request, response) =>{
+    db.collection('Specials').find().sort({sequence:1}).toArray()
+    .then(data => {
+        response.render('dinner.ejs', {info: data})
+    })
+})
 app.get('/debug', (request, response) =>{
     db.collection('Specials').find({
         category: "SPECIALS: Appetizer",
@@ -52,8 +58,6 @@ app.get('/debug', (request, response) =>{
     })
 })
 app.post('/saveChanges', (request,response)=>{
-  
-
     if (request.body.paddingSides != ""){
     db.collection('Specials').updateOne({_id: new ObjectId("6552683e620b78c09f6ad4ee")},{
         $set:{
@@ -61,7 +65,6 @@ app.post('/saveChanges', (request,response)=>{
         }
     })
     }
-
     if (request.body.paddingTop != ""){
     db.collection('Specials').updateOne({_id: new ObjectId("654e59526db7f75b37effb75")},{
         $set:{
@@ -69,7 +72,6 @@ app.post('/saveChanges', (request,response)=>{
         }
     })
     }
-
     if (request.body.h1paddingBottom != "") {
         db.collection('Specials').updateOne({_id: new ObjectId("65526e13458b31706ba327c6")},{
                 $set:{
@@ -77,7 +79,6 @@ app.post('/saveChanges', (request,response)=>{
                 }
         })
     }
-
     if (request.body.headingsPadding != "") {
         db.collection('Specials').updateOne({_id: new ObjectId("6552745d458b31706ba327c7")},{
                 $set:{
@@ -85,7 +86,6 @@ app.post('/saveChanges', (request,response)=>{
                 }
         })
     }
-
     if (request.body.menuItemsPadding != "") {
         db.collection('Specials').updateOne({_id: new ObjectId("655277f12695fb229cd2f8bb")},{
                 $set:{
@@ -93,7 +93,6 @@ app.post('/saveChanges', (request,response)=>{
                 }
         })
     }
-
     if (request.body.lineHeight != "") {
         db.collection('Specials').updateOne({_id: new ObjectId("6552843bc830309949e62da3")},{
                 $set:{
@@ -101,7 +100,6 @@ app.post('/saveChanges', (request,response)=>{
                 }
         })
     }
-
     if (request.body.paddingBottom != "") {
         db.collection('Specials').updateOne({_id: new ObjectId("6552b499c5ef1e93714ad81b")},{
                 $set:{
@@ -109,7 +107,6 @@ app.post('/saveChanges', (request,response)=>{
                 }
         })
     }
-
     if (request.body.headingsPaddingBottom != "") {
         db.collection('Specials').updateOne({_id: new ObjectId("65529aad1d34afc4583f9716")},{
                 $set:{
@@ -124,7 +121,6 @@ app.post('/saveChanges', (request,response)=>{
             }
         })
     }
-
     if (request.body.legalDisclaimerFontSize != ""){
         db.collection('Specials').updateOne({_id: new ObjectId("6552da9842bc2235c2d5166a")},{
             $set:{
@@ -132,7 +128,6 @@ app.post('/saveChanges', (request,response)=>{
             }
         })
     }
-
     if (request.body.todaysSpecialsFontSize != ""){
         db.collection('Specials').updateOne({_id: new ObjectId("6552dcebc7561e1a7e641aaf")},{
             $set:{
@@ -140,7 +135,6 @@ app.post('/saveChanges', (request,response)=>{
             }
         })
     }
-
     if (request.body.headingsFontSize != ""){
         db.collection('Specials').updateOne({_id: new ObjectId("6552deb4c7561e1a7e641ab0")},{
             $set:{
@@ -148,7 +142,6 @@ app.post('/saveChanges', (request,response)=>{
             }
         })
     }
-
     if (request.body.menuItemsFontSize != ""){
         db.collection('Specials').updateOne({_id: new ObjectId("6552e063c7561e1a7e641ab1")},{
             $set:{
@@ -156,14 +149,50 @@ app.post('/saveChanges', (request,response)=>{
             }
         })
     }
-    setTimeout(()=>response.redirect('/'),250)
-    
-    
+    setTimeout(()=>response.redirect('/'),250)    
 })
+
+app.post('/saveDinnerMenuChanges', (request,response)=>{
+    // console.log(request.body);
+    if (request.body.dinnerMenuFontSize != ""){
+    db.collection('Specials').updateOne({_id: new ObjectId("655f8c429408f905f197480a")},{
+        $set:{
+            pixels: `${request.body.dinnerMenuFontSize}px`
+        }
+    })
+    }
+    if (request.body.dinnerMenuLineHeight != ""){
+        db.collection('Specials').updateOne({_id: new ObjectId("655faeba8c4c6fb6765f2bad")},{
+            $set:{
+                pixels: `${request.body.dinnerMenuLineHeight}px`
+            }
+        })
+        }
+        if (request.body.oleaLogoFontSize != ""){
+            db.collection('Specials').updateOne({_id: new ObjectId("655ea242d37783c929bb3e17")},{
+                $set:{
+                    pixels: `${request.body.oleaLogoFontSize}px`
+                }
+            })
+            }
+        
+
+
+
+    setTimeout(()=>response.redirect('/dinner'),250)    
+})
+
+
 app.get('/edit', (request, response) =>{
     db.collection('Specials').find().sort({sequence:1}).toArray()
     .then(data => {
         response.render('edit.ejs', {info: data})
+    })
+})
+app.get('/editDinner', (request, response) =>{
+    db.collection('Specials').find().sort({sequence:1}).toArray()
+    .then(data => {
+        response.render('editDinner.ejs', {info: data})
     })
 })
 app.get('/archive', (request, response) =>{
