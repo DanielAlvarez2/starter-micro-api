@@ -153,7 +153,7 @@ app.post('/saveChanges', (request,response)=>{
 })
 
 app.post('/saveDinnerMenuChanges', (request,response)=>{
-    // console.log(request.body);
+    console.log(request.body);
     if (request.body.dinnerMenuFontSize != ""){
     db.collection('Specials').updateOne({_id: new ObjectId("655f8c429408f905f197480a")},{
         $set:{
@@ -168,13 +168,55 @@ app.post('/saveDinnerMenuChanges', (request,response)=>{
             }
         })
         }
-        if (request.body.oleaLogoFontSize != ""){
-            db.collection('Specials').updateOne({_id: new ObjectId("655ea242d37783c929bb3e17")},{
-                $set:{
-                    pixels: `${request.body.oleaLogoFontSize}px`
-                }
-            })
+    if (request.body.oleaLogoFontSize != ""){
+        db.collection('Specials').updateOne({_id: new ObjectId("655ea242d37783c929bb3e17")},{
+            $set:{
+                pixels: `${request.body.oleaLogoFontSize}px`
             }
+        })
+    }
+    if (request.body.legalDisclaimerFontSize != ""){
+        db.collection('Specials').updateOne({_id: new ObjectId("655fc5fe8c4c6fb6765f2bb2")},{
+            $set:{
+                pixels: `${request.body.legalDisclaimerFontSize}px`
+            }
+        })
+    }
+    if (request.body.sidesFontSize != ""){
+        db.collection('Specials').updateOne({_id: new ObjectId("655fcc818c4c6fb6765f2bb3")},{
+            $set:{
+                pixels: `${request.body.sidesFontSize}px`
+            }
+        })
+    }
+    if (request.body.dinnerPaddingSides != ""){
+        db.collection('Specials').updateOne({_id: new ObjectId("655fdfe58c4c6fb6765f2bb4")},{
+            $set:{
+                pixels: `${request.body.dinnerPaddingSides}px`
+            }
+        })
+    }
+    if (request.body.dinnerPaddingTop != ""){
+        db.collection('Specials').updateOne({_id: new ObjectId("655fe14a8c4c6fb6765f2bb5")},{
+            $set:{
+                pixels: `${request.body.dinnerPaddingTop}px`
+            }
+        })
+    }
+    if (request.body.dinnerCenterGap != ""){
+        db.collection('Specials').updateOne({_id: new ObjectId("655fe9d58c4c6fb6765f2bb6")},{
+            $set:{
+                pixels: `${request.body.dinnerCenterGap}px`
+            }
+        })
+    }
+    if (request.body.dinnerMenuItemsPadding != ""){
+        db.collection('Specials').updateOne({_id: new ObjectId("655fffce8c4c6fb6765f2bb7")},{
+            $set:{
+                pixels: `${request.body.dinnerMenuItemsPadding}px`
+            }
+        })
+    }
         
 
 
@@ -205,6 +247,12 @@ app.get('/printSpecials', (request, response) =>{
     db.collection('Specials').find().toArray()
     .then(data => {
         response.render('printSpecials.ejs', {info: data})
+    })
+})
+app.get('/printDinner', (request, response) =>{
+    db.collection('Specials').find().toArray()
+    .then(data => {
+        response.render('printDinner.ejs', {info: data})
     })
 })
 

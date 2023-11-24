@@ -8,7 +8,11 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/21ef82ed30.js" crossorigin="anonymous"></script>
     <style>
-        
+        @media print{
+            .no-print{
+                display: none !important;
+            }
+        }
         
         .special{
             margin-bottom: 0px;
@@ -16,6 +20,7 @@
         #wrapper{
             min-width:100%;
             min-height:100vh;
+
             /* background:grey; */
             display:grid;
             place-content:center;
@@ -40,8 +45,8 @@
             width: 8.5in;
             height: 14in;
             position: relative;
-            border: 1px solid red;
-            transform: scale(0.75);
+            /* border: 1px solid red; */
+            /* transform: scale(0.75); */
 
             padding-left:
             <% 
@@ -281,36 +286,12 @@
 </script>
 
 <body>
-<div id="wrapper">
+<div id="wrapper" class="no-print;" style="background-color:lightgray;place-content:center;">
 
 
-<div id="flexbox">    
 
-<div id="controls">
-    <form method="POST" action="/saveDinnerMenuChanges">
-        FORMAT PAGE LAYOUT<br>
-        Page Space Left & Right: <input name="dinnerPaddingSides" id="dinner-padding-sides" type="text" size="2"> px <br>
-        Page Space Top: <input name="dinnerPaddingTop" id="dinner-padding-top" type="text" size="2"> px <br>
-        "olea" Logo Space Bottom: <input name="h1paddingBottom" id="olea-padding-bottom" type="text" size="2"> px <br>
-        Space between menu items: <input name="dinnerMenuItemsPadding" id="dinner-menu-items-padding" type="text" size="2"> px <br>
-        Space between lines of menu items: <input name="dinnerMenuLineHeight" id="dinner-menu-line-height" type="text" size="2"> px <br>
-        Center Gap: <input name="dinnerCenterGap" id="dinner-center-gap" type="text" size="2"> px <br>
-        
-        <br><br>
-        FONT-SIZES<br>
-        "olea" Logo Font Size: <input name="oleaLogoFontSize" id="olea-logo-font-size" type="text" size="2"> px<br>
-        "sides" Font Size: <input name="sidesFontSize" id="sides-font-size" type="text" size="2"> px<br>
-        Menu Items Font Size: <input name="dinnerMenuFontSize" id="dinner-menu-font-size" type="text" size="2"> px<br>
-        Legal Disclaimer Font Size: <input name="legalDisclaimerFontSize" id="legal-disclaimer-font-size" type="text" size="2"> px<br>
-        
-        
-        <button id="clear-changes">Clear Changes</button> 
-        <input type="submit" id="save-changes" value="Save Changes"> 
-        <button id="print-preview">Print Preview</button>
-    </form>
-</div><!--#controls-->
     
-<div id="dinner-menu">
+<div id="dinner-menu" style="background-color: white;">
     <h1 id="olea">olea</h1>
     <hr>
     <div id="top" style="display:flex;">
@@ -426,98 +407,11 @@
 </div><!--#dinner-menu-->
 
 
-</div><!--#flexbox-->
 
 </div><!--#wrapper-->
 <script src="main.js"></script>
 
-<script>
-    let specialsPage = document.querySelector('#specials')
-    let paddingBottom = document.querySelector('#padding-bottom')
-    let oleaPaddingBottom = document.querySelector('#olea-padding-bottom')
-    let paddingBottomControl = document.querySelector('#padding-bottom-control')
-    
-    
-    let appetizerHeading = document.querySelector('#appetizer-heading')
-    let entreeHeading = document.querySelector('#entree-heading')
-    let dessertHeading = document.querySelector('#dessert-heading')
-    let clearChanges = document.querySelector('#clear-changes')
-    
-    
-    let printPreview = document.querySelector('#print-preview')
-    let dinnerMenuItemsPadding = document.querySelector('#dinner-menu-items-padding')
-    let footer = document.querySelector('#footer')
-    let sides = document.querySelector('#sides')
-    let dinnerTop = document.querySelector('#top')
-    let dinnerCenterGap = document.querySelector('#dinner-center-gap')   
-    let dinnerPaddingTop = document.querySelector('#dinner-padding-top')
-    let dinnerMenu = document.querySelector('#dinner-menu')
-    let dinnerPaddingSides = document.querySelector('#dinner-padding-sides')
-    let chef = document.querySelector('h3')
-    let sidesHeading = document.querySelector('h2')
-    let sidesFontSize = document.querySelector('#sides-font-size')
-    let legalDisclaimer = document.querySelector('#legal-disclaimer')
-    let legalDisclaimerFontSize = document.querySelector('#legal-disclaimer-font-size')
-    let oleaLogoFontSize = document.querySelector('#olea-logo-font-size')
-    let olea = document.querySelector('#olea')
-    let dinnerMenuLineHeight = document.querySelector('#dinner-menu-line-height')
-    let p = document.querySelectorAll('.special')
-    let dinnerMenuFontSize = document.querySelector('#dinner-menu-font-size')
-    dinnerMenuFontSize.addEventListener('input', function(evt){
-        p.forEach((dinnerMenu,i)=>{
-            dinnerMenu.style.fontSize = `${Number(this.value)}px`
-        })
-        chef.style.fontSize = `${Number(this.value)}px`
-    })
-    dinnerMenuLineHeight.addEventListener('input', function(evt){
-        p.forEach((dinnerMenu,i)=>{
-            dinnerMenu.style.lineHeight = `${Number(this.value)}px`
-        })
-    })
-    oleaLogoFontSize.addEventListener('input', function(evt){
-        olea.style.fontSize = `${Number(this.value)}px`
-    })
-    legalDisclaimerFontSize.addEventListener('input', function(evt){
-        legalDisclaimer.style.fontSize = `${Number(this.value)}px`
-    })
-    sidesFontSize.addEventListener('input', function(evt){
-        sidesHeading.style.fontSize = `${Number(this.value)}px`
-    })
-    dinnerPaddingSides.addEventListener('input', function(evt){
-        dinnerMenu.style.paddingLeft = `${Number(this.value)}px`
-        dinnerMenu.style.paddingRight = `${Number(this.value)}px`
-    })
-    dinnerPaddingTop.addEventListener('input', function(evt){
-        dinnerMenu.style.paddingTop = `${Number(this.value)}px`
-    })
-    dinnerCenterGap.addEventListener('input', function(evt){
-        dinnerTop.style.gap = `${Number(this.value)}px`
-        sides.style.gap = `${Number(this.value)}px`
-        footer.style.gap = `${Number(this.value)}px`
-    })
-    dinnerMenuItemsPadding.addEventListener('input', function(evt){
-        p.forEach((special,i)=>{
-            special.style.paddingTop = `${(Number(this.value))/2}px`
-            special.style.paddingBottom = `${(Number(this.value))/2}px`
-        })
-    })
-    printPreview.addEventListener('click',(event)=>{
-        event.preventDefault()
-        location.replace('/printDinner')
-    })
-    
-    
 
-
-    clearChanges.addEventListener('click',(event)=>{
-        event.preventDefault()
-        location.reload()
-    })
-    oleaPaddingBottom.addEventListener('input', function(evt){
-        olea.style.paddingBottom = `${Number(this.value)}px`
-    })
-
-</script>
 
 </body>
 </html>
