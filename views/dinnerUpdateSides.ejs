@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Olea Specials</title>
+    <script
+      src="https://kit.fontawesome.com/21ef82ed30.js"
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      .del,
+      .edit,
+      .archive,
+      .transfer,
+      .move-up,
+      .move-down {
+        cursor: pointer;
+        font-size: 20px;
+        transform:scaleX(3);
+      }
+      .move-up, .move-down{
+        color:green;
+        width:100%;
+        text-align: center;
+      }
+      .transfer {
+        color: blue;
+      }
+      .del {
+        color: red;
+      }
+      .edit {
+        color: rgb(183, 183, 0);
+      }
+      .archive {
+        color: #654321;
+      }
+      .special {
+        margin-bottom: 20px;
+      }
+      ul{
+        list-style-type: none;
+      }
+      li {
+        max-width: 50ch;
+      }
+    </style>
+  </head>
+
+  <% 
+  let appetizerCount=0
+  let entreeCount=0
+  let dessertCount=0
+  for (let i=0; i<info.length; i++){
+      if (info[i].category == "SPECIALS: Appetizer" && info[i].sequence != "0") appetizerCount++ 
+      if (info[i].category == "SPECIALS: Entrée" && info[i].sequence != "0") entreeCount++ 
+      if (info[i].category == "SPECIALS: Dessert" && info[i].sequence != "0") dessertCount++ 
+  }
+  
+%>
+<script>
+  let appetizerCount = <%=appetizerCount%>
+  let entreeCount = <%=entreeCount%>
+  let dessertCount = <%=dessertCount%>
+</script>
+
+
+  <body>
+    <h1>EDIT Olea Dinner Menu</h1>
+
+    <h2>DINNER: Sides</h2>
+    <div id="flexbox" style="display:flex;">
+        <ul class="specials-appetizers">
+            <% for(let i=0; i<info.length;i++){ 
+              if( info[i].sequence &&
+                  info[i].sequence != "" &&
+                  info[i].sequence != "0" && 
+                  info[i].category == "DINNER: Sides Left"){ %>
+            <li class="special">
+              <% if(info[i].sequence == "1"){ %>
+                  <div class="move-up" style="visibility:hidden"><i class="fa-solid fa-sort-up"></i></div>
+              <% }else{ %>
+                  <div class="move-up"><i class="fa-solid fa-sort-up"></i></div>
+              <% } %>
+              <div><%= info[i]._id %></div>
+              <div><%= info[i].category %></div>
+              <div><%= info[i].sequence %></div>
+              <div><%= info[i].name %></div>
+              <div><%= info[i].description %></div>
+              <div><%= info[i].price %></div>
+              <div><%= info[i].allergies %></div>
+              <span class="edit"><i class="fa-solid fa-pencil"></i> Edit</span
+              >&nbsp;&nbsp;
+              <span class="archive"
+                ><i class="fa-solid fa-box-archive"></i> Archive</span
+              >&nbsp;&nbsp;
+              <span class="del"><i class="fa-solid fa-trash-can"></i> Delete</span
+              >&nbsp;&nbsp;
+              <span class="transfer"
+                ><i class="fa-solid fa-arrow-right-arrow-left"></i> Transfer</span
+              >&nbsp;&nbsp;
+              <% if(info[i].sequence != appetizerCount){ %>
+                  <div class="move-down"><i class="fa-solid fa-sort-down"></i></div>
+              <% } %>
+             </li>
+            <% } } %>
+          </ul>
+
+          <ul class="specials-appetizers">
+            <% for(let i=0; i<info.length;i++){ 
+              if( info[i].sequence &&
+                  info[i].sequence != "" &&
+                  info[i].sequence != "0" && 
+                  info[i].category == "DINNER: Sides Right"){ %>
+            <li class="special">
+              <% if(info[i].sequence == "1"){ %>
+                  <div class="move-up" style="visibility:hidden"><i class="fa-solid fa-sort-up"></i></div>
+              <% }else{ %>
+                  <div class="move-up"><i class="fa-solid fa-sort-up"></i></div>
+              <% } %>
+              <div><%= info[i]._id %></div>
+              <div><%= info[i].category %></div>
+              <div><%= info[i].sequence %></div>
+              <div><%= info[i].name %></div>
+              <div><%= info[i].description %></div>
+              <div><%= info[i].price %></div>
+              <div><%= info[i].allergies %></div>
+              <span class="edit"><i class="fa-solid fa-pencil"></i> Edit</span
+              >&nbsp;&nbsp;
+              <span class="archive"
+                ><i class="fa-solid fa-box-archive"></i> Archive</span
+              >&nbsp;&nbsp;
+              <span class="del"><i class="fa-solid fa-trash-can"></i> Delete</span
+              >&nbsp;&nbsp;
+              <span class="transfer"
+                ><i class="fa-solid fa-arrow-right-arrow-left"></i> Transfer</span
+              >&nbsp;&nbsp;
+              <% if(info[i].sequence != appetizerCount){ %>
+                  <div class="move-down"><i class="fa-solid fa-sort-down"></i></div>
+              <% } %>
+             </li>
+            <% } } %>
+          </ul>
+
+
+    </div><!--#flexbox-->
+    
+
+
+
+    <h2>Add New Special:</h2>
+
+    <form action="/addSpecial" method="POST">
+      <input type="text" placeholder="Category" name="category" /><br />
+      <input type="text" placeholder="Sequence" name="sequence" /><br />
+      <input type="text" placeholder="Name" name="name" /><br />
+      <textarea
+        rows="5"
+        cols="40"
+        placeholder="Description"
+        name="description"
+      ></textarea
+      ><br />
+      <input type="text" placeholder="Price" name="price" /><br />
+      <input type="text" placeholder="Allergies" name="allergies" /><br />
+      <input type="submit" id="update-button" value="Create" />
+    </form>
+
+    <h2>Edit Exisiting Special:</h2>
+
+    <form action="/editSpecial" method="POST">
+      <div name="_id" id="display-ID"></div>
+      <input type="text" id="edit-id" placeholder="ID#" name="_id" /><br />
+      <input
+        type="text"
+        id="edit-category"
+        placeholder="Category"
+        name="category"
+      /><br />
+      <input
+        type="text"
+        id="edit-sequence"
+        placeholder="Sequence"
+        name="sequence"
+      /><br />
+      <input type="text" id="edit-name" placeholder="Name" name="name" /><br />
+      <textarea
+        rows="5"
+        cols="40"
+        placeholder="Description"
+        id="edit-description"
+        name="description"
+      ></textarea
+      ><br />
+      <input
+        type="text"
+        id="edit-price"
+        placeholder="Price"
+        name="price"
+      /><br />
+      <input
+        type="text"
+        id="edit-allergies"
+        placeholder="Allergies"
+        name="allergies"
+      /><br />
+      <input type="submit" value="Update" />
+    </form>
+
+    
+
+    <script src="main.js"></script>
+  </body>
+</html>

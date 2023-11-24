@@ -70,46 +70,10 @@
   <body>
     <h1>EDIT Olea Dinner Menu</h1>
 
-    <h2>DINNER: Appetizers</h2>
-    <ul class="specials-appetizers">
-      <% for(let i=0; i<info.length;i++){ 
-        if( info[i].sequence &&
-            info[i].sequence != "" &&
-            info[i].sequence != "0" && 
-            info[i].category == "DINNER: Appetizer"){ %>
-      <li class="special">
-        <% if(info[i].sequence == "1"){ %>
-            <div class="move-up" style="visibility:hidden"><i class="fa-solid fa-sort-up"></i></div>
-        <% }else{ %>
-            <div class="move-up"><i class="fa-solid fa-sort-up"></i></div>
-        <% } %>
-        <div><%= info[i]._id %></div>
-        <div><%= info[i].category %></div>
-        <div><%= info[i].sequence %></div>
-        <div><%= info[i].name %></div>
-        <div><%= info[i].description %></div>
-        <div><%= info[i].price %></div>
-        <div><%= info[i].allergies %></div>
-        <span class="edit"><i class="fa-solid fa-pencil"></i> Edit</span
-        >&nbsp;&nbsp;
-        <span class="archive"
-          ><i class="fa-solid fa-box-archive"></i> Archive</span
-        >&nbsp;&nbsp;
-        <span class="del"><i class="fa-solid fa-trash-can"></i> Delete</span
-        >&nbsp;&nbsp;
-        <span class="transfer"
-          ><i class="fa-solid fa-arrow-right-arrow-left"></i> Transfer</span
-        >&nbsp;&nbsp;
-        <% if(info[i].sequence != appetizerCount){ %>
-            <div class="move-down"><i class="fa-solid fa-sort-down"></i></div>
-        <% } %>
-       </li>
-      <% } } %>
-    </ul>
 
 
 
-    <h2>Dinner: Entrees</h2>
+    <h2>DINNER: Entrees</h2>
     <ul class="specials-entrees">
       <% for(let i=0; i<info.length;i++){ 
         if( info[i].sequence &&
@@ -140,45 +104,6 @@
           ><i class="fa-solid fa-arrow-right-arrow-left"></i> Transfer</span
         >&nbsp;&nbsp;
         <% if(info[i].sequence != entreeCount){ %>
-            <div class="move-down"><i class="fa-solid fa-sort-down"></i></div>
-        <% } %>
-
-      </li>
-      <% } } %>
-    </ul>
-
-    <h2>SPECIALS: Desserts</h2>
-    <ul class="specials-desserts">
-      <% for(let i=0; i<info.length;i++){ 
-        if( info[i].sequence &&
-            info[i].sequence != "" && 
-            info[i].sequence != "0" &&
-            info[i].category == "SPECIALS: Dessert"){ %>
-      <li class="special">
-        <% if(info[i].sequence == "1"){ %>
-            <div class="move-up" style="visibility:hidden"><i class="fa-solid fa-sort-up"></i></div>
-        <% }else{ %>
-            <div class="move-up"><i class="fa-solid fa-sort-up"></i></div>
-        <% } %>
- 
-        <div><%= info[i]._id %></div>
-        <div><%= info[i].category %></div>
-        <div><%= info[i].sequence %></div>
-        <div><%= info[i].name %></div>
-        <div><%= info[i].description %></div>
-        <div><%= info[i].price %></div>
-        <div><%= info[i].allergies %></div>
-        <span class="edit"><i class="fa-solid fa-pencil"></i> Edit</span
-        >&nbsp;&nbsp;
-        <span class="archive"
-          ><i class="fa-solid fa-box-archive"></i> Archive</span
-        >&nbsp;&nbsp;
-        <span class="del"><i class="fa-solid fa-trash-can"></i> Delete</span
-        >&nbsp;&nbsp;
-        <span class="transfer"
-          ><i class="fa-solid fa-arrow-right-arrow-left"></i> Transfer</span
-        >&nbsp;&nbsp;
-        <% if(info[i].sequence != dessertCount){ %>
             <div class="move-down"><i class="fa-solid fa-sort-down"></i></div>
         <% } %>
 

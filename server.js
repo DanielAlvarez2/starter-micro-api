@@ -41,10 +41,10 @@ app.get('/', (request, response) =>{
         response.render('index.ejs', {info: data})
     })
 })
-app.get('/dinner', (request, response) =>{
+app.get('/dinnerLayout', (request, response) =>{
     db.collection('Specials').find().sort({sequence:1}).toArray()
     .then(data => {
-        response.render('dinner.ejs', {info: data})
+        response.render('dinnerLayout.ejs', {info: data})
     })
 })
 app.get('/debug', (request, response) =>{
@@ -231,10 +231,28 @@ app.get('/edit', (request, response) =>{
         response.render('edit.ejs', {info: data})
     })
 })
-app.get('/editDinner', (request, response) =>{
+app.get('/dinnerUpdateCuredMeats', (request, response) =>{
     db.collection('Specials').find().sort({sequence:1}).toArray()
     .then(data => {
-        response.render('editDinner.ejs', {info: data})
+        response.render('dinnerUpdateCuredMeats.ejs', {info: data})
+    })
+})
+app.get('/dinnerUpdateAppetizers', (request, response) =>{
+    db.collection('Specials').find().sort({sequence:1}).toArray()
+    .then(data => {
+        response.render('dinnerUpdateAppetizers.ejs', {info: data})
+    })
+})
+app.get('/dinnerUpdateEntrees', (request, response) =>{
+    db.collection('Specials').find().sort({sequence:1}).toArray()
+    .then(data => {
+        response.render('dinnerUpdateEntrees.ejs', {info: data})
+    })
+})
+app.get('/dinnerUpdateSides', (request, response) =>{
+    db.collection('Specials').find().sort({sequence:1}).toArray()
+    .then(data => {
+        response.render('dinnerUpdateSides.ejs', {info: data})
     })
 })
 app.get('/archive', (request, response) =>{
@@ -249,10 +267,10 @@ app.get('/printSpecials', (request, response) =>{
         response.render('printSpecials.ejs', {info: data})
     })
 })
-app.get('/printDinner', (request, response) =>{
+app.get('/dinnerPrintPreview', (request, response) =>{
     db.collection('Specials').find().toArray()
     .then(data => {
-        response.render('printDinner.ejs', {info: data})
+        response.render('dinnerPrintPreview.ejs', {info: data})
     })
 })
 
