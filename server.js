@@ -226,7 +226,7 @@ app.post('/saveDinnerMenuChanges', (request,response)=>{
 app.get('/clone', (request, response) =>{
     db.collection('Specials').find().sort({sequence:1}).toArray()
     .then(data => {
-        response.render('cloneMenus.ejs', {info: data})
+        response.render('clone.ejs', {info: data})
     })
 })
 
