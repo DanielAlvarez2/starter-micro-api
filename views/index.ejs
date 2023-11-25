@@ -249,9 +249,9 @@
     let entreeCount=0
     let dessertCount=0
     for (let i=0; i<info.length; i++){
-        if (info[i].category == "SPECIALS: Appetizer") appetizerCount++ 
-        if (info[i].category == "SPECIALS: Entrée") entreeCount++ 
-        if (info[i].category == "SPECIALS: Dessert") dessertCount++ 
+        if (info[i].category == "SPECIALS: Appetizer" && info[i].sequence != "0") appetizerCount++ 
+        if (info[i].category == "SPECIALS: Entrée" && info[i].sequence != "0") entreeCount++ 
+        if (info[i].category == "SPECIALS: Dessert" && info[i].sequence != "0") dessertCount++ 
     }
     
 %>
