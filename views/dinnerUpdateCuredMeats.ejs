@@ -42,6 +42,7 @@
       }
       ul{
         list-style-type: none;
+        padding-left: 0;
       }
       li {
         max-width: 50ch;
@@ -50,20 +51,14 @@
   </head>
 
   <% 
-  let appetizerCount=0
-  let entreeCount=0
-  let dessertCount=0
+  let dinnerCuredMeatsCount=0
   for (let i=0; i<info.length; i++){
-      if (info[i].category == "SPECIALS: Appetizer" && info[i].sequence != "0") appetizerCount++ 
-      if (info[i].category == "SPECIALS: Entrée" && info[i].sequence != "0") entreeCount++ 
-      if (info[i].category == "SPECIALS: Dessert" && info[i].sequence != "0") dessertCount++ 
+      if (info[i].category == "DINNER: Cured Meats" && info[i].sequence != "0") dinnerCuredMeatsCount++ 
   }
   
 %>
 <script>
-  let appetizerCount = <%=appetizerCount%>
-  let entreeCount = <%=entreeCount%>
-  let dessertCount = <%=dessertCount%>
+  let dinnerCuredMeatsCount = <%=dinnerCuredMeatsCount%>
 </script>
 
 
@@ -100,7 +95,7 @@
         <span class="transfer"
           ><i class="fa-solid fa-arrow-right-arrow-left"></i> Transfer</span
         >&nbsp;&nbsp;
-        <% if(info[i].sequence != appetizerCount){ %>
+        <% if(info[i].sequence != dinnerCuredMeatsCount){ %>
             <div class="move-down"><i class="fa-solid fa-sort-down"></i></div>
         <% } %>
        </li>
@@ -110,7 +105,7 @@
 
 
 
-    <h2>Add New Special:</h2>
+    <h2>Add New DINNER MENU Cured Meat:</h2>
 
     <form action="/addSpecial" method="POST">
       <input type="text" placeholder="Category" name="category" /><br />
@@ -128,7 +123,7 @@
       <input type="submit" id="update-button" value="Create" />
     </form>
 
-    <h2>Edit Exisiting Special:</h2>
+    <h2>Edit Exisiting DINNER MENU Cured Meat:</h2>
 
     <form action="/editSpecial" method="POST">
       <div name="_id" id="display-ID"></div>

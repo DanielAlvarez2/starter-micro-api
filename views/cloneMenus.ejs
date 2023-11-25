@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clone Dinner Menu</title>
+    <script
+      src="https://kit.fontawesome.com/21ef82ed30.js"
+      crossorigin="anonymous"
+    ></script>
+</head>
+<style>
+    @font-face{
+    font-family: FuturaLight;
+    src: url("assets/FuturaLight.otf");
+    }
+    @font-face{
+        font-family: FuturaHeavy;
+        src: url("assets/FuturaHeavy.otf");
+    }
+    h2{
+        font-family: FuturaHeavy;
+    }
+    *{
+        margin:0;
+        padding:0;
+        box-sizing: border-box;
+    }
+    .name{
+        font-family: FuturaHeavy;
+    }
+    body{
+        font-family: FuturaLight;
+        background-color: #262626;
+        color: #C1BEBE;
+        line-height:2;
+    }
+    #nav span{
+        line-height:0;
+    }
+    #nav span{
+        padding: 0 15px;
+    }
+    #socials span, #footer span{
+        padding: 0 5px;
+    }
+    #nav-bar, #main, #footer{
+        padding-left:1.5cm
+    }
+    h3{
+        text-align: center;
+        font-weight: 100;
+        font-size: 25px;
+        margin-top:100px;
+    }
+    ul{
+        list-style-type: none;
+    }
+    li{
+        display:flex;
+        width:100%;
+        justify-content: space-between;
+        padding: 20px 0;
+    }
+</style>
+<body>
+
+<div id="wrapper" style="width:100%;display:grid;place-content:center;">
+
+<div id="content" style="width:11in;">
+
+    <div id="nav-bar">
+    <span id="logo" style="font-size:75px;">olea</span>
+    <span id="nav" style="padding-left:50px;">
+        <span>home</span>
+        <span>info</span>
+        <span>menus</span>
+        <span>press</span>
+        <span>gift cards</span>
+        <span>newsletter</span>
+        <span>reservations</span>
+    </span>
+    <span id="socials" style="padding-left:100px;">
+        <span><i class="fa-brands fa-facebook-f"></i></span>
+        <span><i class="fa-brands fa-twitter"></i></span>
+        <span><i class="fa-brands fa-instagram"></i></span>
+    </span>
+    </div><!--#nav-bar-->
+    
+    <hr>
+<div id="main">
+    <br><br>
+    <h2>dinner hours</h2>
+    Tuesday - Saturday, 5 - 10 pm<br>
+    last reservation is at 8:30 pm<br>
+    closed Sunday and Monday<br>
+
+    <h2>takeout and curbside pickup</h2>
+    Our dinner menu below is available for takeout and curbside<br>
+    pickup. Please preorder if possible by phone (203.780.8925).<br>
+    During special days we can only take a limited amount of takeout<br>
+    orders due to volume.<br>
+
+    <h2>CHEF'S TASTING MENU <span>$89 / person</span><br>
+        no substitutions or modifications<br>
+        A minimum of 24 hours notice is required
+    </h2>
+    six courses / reservations and full table participation required<br>
+    optional wine pairing available $47 / person<br>
+    available Tuesday through Thursday<br>
+    Please let us know in advance about any food restrictions or<br>
+    allergies.<br>
+    Tax and gratuity not included.
+
+    <h2>DINNER MENU</h2>
+
+    <div style="width:12cm;">
+
+    <h3>appetizers</h3>
+    <ul>
+        <% for(let i=0; i<info.length;i++){ %>
+            <% if (info[i].category == "DINNER: Cured Meats" && info[i].sequence != "0"){ %>
+            <li class="special">
+                <div>
+                <span class="name"><%= info[i].name %></span><br>
+                <span><%= info[i].description %></span>
+                </div>
+
+                <span class="price"><%= info[i].price %></span>
+            </li>
+            <% } %>
+        <% } %>
+    </ul>
+    <ul>
+        <% for(let i=0; i<info.length;i++){ %>
+            <% if (info[i].category == "DINNER: Appetizer" && info[i].sequence != "0"){ %>
+            <li class="special">
+                <div>
+                <span class="name"><%= info[i].name %></span><br>
+                <span><%= info[i].description %></span>
+            </div>
+                <span class="price"><%= info[i].price %></span>
+            </li>
+            <% } %>
+        <% } %>
+    </ul>
+    
+
+    <h3>main courses</h3>
+    <ul>
+        <% for(let i=0; i<info.length;i++){ %>
+            <% if (info[i].category == "DINNER: Entrée" && info[i].sequence != "0"){ %>
+            <li class="special">
+                <div>
+                <span class="name"><%= info[i].name %></span><br>
+                <span><%= info[i].description %></span>
+            </div>
+                <span class="price"><%= info[i].price %></span>
+            </li>
+            <% } %>
+        <% } %>
+    </ul>
+
+    <h3>sides</h3>
+    <ul>
+        <% for(let i=0; i<info.length;i++){ %>
+            <% if (info[i].category == "DINNER: Sides Left" && info[i].sequence != "0"){ %>
+            <li class="special">
+                <div>
+                <span class="name"><%= info[i].name %></span><br>
+                <span><%= info[i].description %></span>
+            </div>
+                <span class="price"><%= info[i].price %></span>
+            </li>
+            <% } %>
+        <% } %>
+    </ul>
+    <ul>
+        <% for(let i=0; i<info.length;i++){ %>
+            <% if (info[i].category == "DINNER: Sides Right" && info[i].sequence != "0"){ %>
+            <li class="special">
+                <div>
+                <span class="name"><%= info[i].name %></span><br>
+                <span><%= info[i].description %></span>
+            </div>
+                <span class="price"><%= info[i].price %></span>
+            </li>
+            <% } %>
+        <% } %>
+    </ul>
+
+    </div><!--#div w:12cm-->
+    
+    we do our best to keep this information accurate and up to date, <br>
+    but because we make frequent adjustments, based on season and<br>
+    availability, our menus are subject to change.
+
+</div><!--#main-->
+
+    <hr>
+
+<div id="footer">
+    <span id="socials-footer">
+        <span><i class="fa-brands fa-facebook-f"></i></span>
+        <span><i class="fa-brands fa-twitter"></i></span>
+        <span><i class="fa-brands fa-instagram"></i></span>
+    </span>
+    <br>
+    39 high street, new haven, connecticut | 203.780.8925<br>
+    Tuesday-Saturday, 5-10 pm (last seating at 8:30)<br>
+    In the heart of downtown New Haven, Olea offers an innovative<br>
+    interpretation of Spanish and Mediterranean cuisine. Chef Manuel<br>
+    Romero and his team explore these flavors in their food, wine, and<br>
+    cocktails, locally sourcing many products and importing specialty<br>
+    items from the Mediterranean region.<br>
+
+    copyright 2014-2023 by olea. graphic design by Rebecca<br>
+    Martz
+
+</div><!--#footer-->
+
+</div><!--#main-->
+
+</div><!--#wrapper-->
+
+</body>
+</html>

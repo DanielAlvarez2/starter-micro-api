@@ -223,7 +223,12 @@ app.post('/saveDinnerMenuChanges', (request,response)=>{
 
     setTimeout(()=>response.redirect('/dinner'),250)    
 })
-
+app.get('/cloneMenus', (request, response) =>{
+    db.collection('Specials').find().sort({sequence:1}).toArray()
+    .then(data => {
+        response.render('cloneMenus.ejs', {info: data})
+    })
+})
 
 app.get('/edit', (request, response) =>{
     db.collection('Specials').find().sort({sequence:1}).toArray()

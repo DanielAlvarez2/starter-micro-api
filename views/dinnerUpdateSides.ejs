@@ -42,6 +42,7 @@
       }
       ul{
         list-style-type: none;
+        padding-left: 0;
       }
       li {
         max-width: 50ch;
@@ -50,20 +51,16 @@
   </head>
 
   <% 
-  let appetizerCount=0
-  let entreeCount=0
-  let dessertCount=0
+  let dinnerSidesLeftCount=0
+  let dinnerSidesRightCount=0
   for (let i=0; i<info.length; i++){
-      if (info[i].category == "SPECIALS: Appetizer" && info[i].sequence != "0") appetizerCount++ 
-      if (info[i].category == "SPECIALS: Entrée" && info[i].sequence != "0") entreeCount++ 
-      if (info[i].category == "SPECIALS: Dessert" && info[i].sequence != "0") dessertCount++ 
-  }
-  
-%>
+      if (info[i].category == "DINNER: Sides Left" && info[i].sequence != "0") dinnerSidesLeftCount++ 
+      if (info[i].category == "DINNER: Sides Right" && info[i].sequence != "0") dinnerSidesRightCount++ 
+    }
+    %>
 <script>
-  let appetizerCount = <%=appetizerCount%>
-  let entreeCount = <%=entreeCount%>
-  let dessertCount = <%=dessertCount%>
+  let dinnerSidesLeftCount = <%=dinnerSidesLeftCount%>
+  let dinnerSidesRightCount = <%=dinnerSidesRightCount%>
 </script>
 
 
@@ -72,6 +69,9 @@
 
     <h2>DINNER: Sides</h2>
     <div id="flexbox" style="display:flex;">
+        <div id="left">
+
+        
         <ul class="specials-appetizers">
             <% for(let i=0; i<info.length;i++){ 
               if( info[i].sequence &&
@@ -101,48 +101,172 @@
               <span class="transfer"
                 ><i class="fa-solid fa-arrow-right-arrow-left"></i> Transfer</span
               >&nbsp;&nbsp;
-              <% if(info[i].sequence != appetizerCount){ %>
+              <% if(info[i].sequence != dinnerSidesLeftCount){ %>
                   <div class="move-down"><i class="fa-solid fa-sort-down"></i></div>
               <% } %>
              </li>
             <% } } %>
           </ul>
 
-          <ul class="specials-appetizers">
-            <% for(let i=0; i<info.length;i++){ 
-              if( info[i].sequence &&
-                  info[i].sequence != "" &&
-                  info[i].sequence != "0" && 
-                  info[i].category == "DINNER: Sides Right"){ %>
-            <li class="special">
-              <% if(info[i].sequence == "1"){ %>
-                  <div class="move-up" style="visibility:hidden"><i class="fa-solid fa-sort-up"></i></div>
-              <% }else{ %>
-                  <div class="move-up"><i class="fa-solid fa-sort-up"></i></div>
-              <% } %>
-              <div><%= info[i]._id %></div>
-              <div><%= info[i].category %></div>
-              <div><%= info[i].sequence %></div>
-              <div><%= info[i].name %></div>
-              <div><%= info[i].description %></div>
-              <div><%= info[i].price %></div>
-              <div><%= info[i].allergies %></div>
-              <span class="edit"><i class="fa-solid fa-pencil"></i> Edit</span
-              >&nbsp;&nbsp;
-              <span class="archive"
-                ><i class="fa-solid fa-box-archive"></i> Archive</span
-              >&nbsp;&nbsp;
-              <span class="del"><i class="fa-solid fa-trash-can"></i> Delete</span
-              >&nbsp;&nbsp;
-              <span class="transfer"
-                ><i class="fa-solid fa-arrow-right-arrow-left"></i> Transfer</span
-              >&nbsp;&nbsp;
-              <% if(info[i].sequence != appetizerCount){ %>
-                  <div class="move-down"><i class="fa-solid fa-sort-down"></i></div>
-              <% } %>
-             </li>
-            <% } } %>
-          </ul>
+          <h2>Add New<br>DINNER MENU Side Left:</h2>
+
+          <form action="/addSpecial" method="POST">
+            <input type="text" placeholder="Category" name="category" /><br />
+            <input type="text" placeholder="Sequence" name="sequence" /><br />
+            <input type="text" placeholder="Name" name="name" /><br />
+            <textarea
+              rows="5"
+              cols="40"
+              placeholder="Description"
+              name="description"
+            ></textarea
+            ><br />
+            <input type="text" placeholder="Price" name="price" /><br />
+            <input type="text" placeholder="Allergies" name="allergies" /><br />
+            <input type="submit" id="update-button" value="Create" />
+          </form>
+      
+          <h2>Edit Exisiting<br>DINNER MENU Side Left:</h2>
+      
+          <form action="/editSpecial" method="POST">
+            <div name="_id" id="display-ID"></div>
+            <input type="text" id="edit-id" placeholder="ID#" name="_id" /><br />
+            <input
+              type="text"
+              id="edit-category"
+              placeholder="Category"
+              name="category"
+            /><br />
+            <input
+              type="text"
+              id="edit-sequence"
+              placeholder="Sequence"
+              name="sequence"
+            /><br />
+            <input type="text" id="edit-name" placeholder="Name" name="name" /><br />
+            <textarea
+              rows="5"
+              cols="40"
+              placeholder="Description"
+              id="edit-description"
+              name="description"
+            ></textarea
+            ><br />
+            <input
+              type="text"
+              id="edit-price"
+              placeholder="Price"
+              name="price"
+            /><br />
+            <input
+              type="text"
+              id="edit-allergies"
+              placeholder="Allergies"
+              name="allergies"
+            /><br />
+            <input type="submit" value="Update" />
+          </form>
+        </div><!--#left-->
+          
+
+        <div id="right">
+            <ul class="specials-appetizers">
+                <% for(let i=0; i<info.length;i++){ 
+                  if( info[i].sequence &&
+                      info[i].sequence != "" &&
+                      info[i].sequence != "0" && 
+                      info[i].category == "DINNER: Sides Right"){ %>
+                <li class="special">
+                  <% if(info[i].sequence == "1"){ %>
+                      <div class="move-up" style="visibility:hidden"><i class="fa-solid fa-sort-up"></i></div>
+                  <% }else{ %>
+                      <div class="move-up"><i class="fa-solid fa-sort-up"></i></div>
+                  <% } %>
+                  <div><%= info[i]._id %></div>
+                  <div><%= info[i].category %></div>
+                  <div><%= info[i].sequence %></div>
+                  <div><%= info[i].name %></div>
+                  <div><%= info[i].description %></div>
+                  <div><%= info[i].price %></div>
+                  <div><%= info[i].allergies %></div>
+                  <span class="edit"><i class="fa-solid fa-pencil"></i> Edit</span
+                  >&nbsp;&nbsp;
+                  <span class="archive"
+                    ><i class="fa-solid fa-box-archive"></i> Archive</span
+                  >&nbsp;&nbsp;
+                  <span class="del"><i class="fa-solid fa-trash-can"></i> Delete</span
+                  >&nbsp;&nbsp;
+                  <span class="transfer"
+                    ><i class="fa-solid fa-arrow-right-arrow-left"></i> Transfer</span
+                  >&nbsp;&nbsp;
+                  <% if(info[i].sequence != dinnerSidesRightCount){ %>
+                      <div class="move-down"><i class="fa-solid fa-sort-down"></i></div>
+                  <% } %>
+                 </li>
+                <% } } %>
+              </ul>
+    
+              
+          <h2>Add New<br>DINNER MENU Side Right:</h2>
+
+          <form action="/addSpecial" method="POST">
+            <input type="text" placeholder="Category" name="category" /><br />
+            <input type="text" placeholder="Sequence" name="sequence" /><br />
+            <input type="text" placeholder="Name" name="name" /><br />
+            <textarea
+              rows="5"
+              cols="40"
+              placeholder="Description"
+              name="description"
+            ></textarea
+            ><br />
+            <input type="text" placeholder="Price" name="price" /><br />
+            <input type="text" placeholder="Allergies" name="allergies" /><br />
+            <input type="submit" id="update-button" value="Create" />
+          </form>
+      
+          <h2>Edit Exisiting<br>DINNER MENU Side Right:</h2>
+      
+          <form action="/editSpecial" method="POST">
+            <div name="_id" id="display-ID"></div>
+            <input type="text" id="edit-id" placeholder="ID#" name="_id" /><br />
+            <input
+              type="text"
+              id="edit-category"
+              placeholder="Category"
+              name="category"
+            /><br />
+            <input
+              type="text"
+              id="edit-sequence"
+              placeholder="Sequence"
+              name="sequence"
+            /><br />
+            <input type="text" id="edit-name" placeholder="Name" name="name" /><br />
+            <textarea
+              rows="5"
+              cols="40"
+              placeholder="Description"
+              id="edit-description"
+              name="description"
+            ></textarea
+            ><br />
+            <input
+              type="text"
+              id="edit-price"
+              placeholder="Price"
+              name="price"
+            /><br />
+            <input
+              type="text"
+              id="edit-allergies"
+              placeholder="Allergies"
+              name="allergies"
+            /><br />
+            <input type="submit" value="Update" />
+          </form>
+        </div><!--#right-->
+
 
 
     </div><!--#flexbox-->
@@ -150,64 +274,6 @@
 
 
 
-    <h2>Add New Special:</h2>
-
-    <form action="/addSpecial" method="POST">
-      <input type="text" placeholder="Category" name="category" /><br />
-      <input type="text" placeholder="Sequence" name="sequence" /><br />
-      <input type="text" placeholder="Name" name="name" /><br />
-      <textarea
-        rows="5"
-        cols="40"
-        placeholder="Description"
-        name="description"
-      ></textarea
-      ><br />
-      <input type="text" placeholder="Price" name="price" /><br />
-      <input type="text" placeholder="Allergies" name="allergies" /><br />
-      <input type="submit" id="update-button" value="Create" />
-    </form>
-
-    <h2>Edit Exisiting Special:</h2>
-
-    <form action="/editSpecial" method="POST">
-      <div name="_id" id="display-ID"></div>
-      <input type="text" id="edit-id" placeholder="ID#" name="_id" /><br />
-      <input
-        type="text"
-        id="edit-category"
-        placeholder="Category"
-        name="category"
-      /><br />
-      <input
-        type="text"
-        id="edit-sequence"
-        placeholder="Sequence"
-        name="sequence"
-      /><br />
-      <input type="text" id="edit-name" placeholder="Name" name="name" /><br />
-      <textarea
-        rows="5"
-        cols="40"
-        placeholder="Description"
-        id="edit-description"
-        name="description"
-      ></textarea
-      ><br />
-      <input
-        type="text"
-        id="edit-price"
-        placeholder="Price"
-        name="price"
-      /><br />
-      <input
-        type="text"
-        id="edit-allergies"
-        placeholder="Allergies"
-        name="allergies"
-      /><br />
-      <input type="submit" value="Update" />
-    </form>
 
     
 

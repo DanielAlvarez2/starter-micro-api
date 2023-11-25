@@ -219,6 +219,7 @@
         }
         #flexbox{
             display:flex;
+            /* border:1px solid blue; */
         }
         button, #save-changes{
             padding:10px 20px;
@@ -241,6 +242,7 @@
             #flexbox{
                 flex-direction: row;
             }
+            
             @media (max-width: 8.5in){
                 #wrapper{
                     width:8.5in;
@@ -250,6 +252,12 @@
         @media (orientation: portrait){
             #flexbox{
                 flex-direction: column;
+                align-items: center;
+                
+            }
+            #dinner-menu{
+                position: relative;
+                margin-top:-150px;
             }
             @media (max-width: 4.25in){
                 #wrapper{
@@ -365,7 +373,7 @@
                         <% if (info[i].category == "Tasting Menu"){ %>
                         <li class="special">
                             <span class="name"><%= info[i].name %></span><br>
-                            <span><%= info[i].description %></span>
+                            <span><%- info[i].description %></span>
                         </li>
                         <% } %>
                     <% } %>
