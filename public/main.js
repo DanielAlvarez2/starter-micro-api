@@ -113,7 +113,6 @@ async function unarchiveSpecial(){
     if (this.parentNode.childNodes[3].innerText == "SPECIALS: Dessert"){count=dessertCount}
     count++
     count = new String(count)
-    alert('pause')
 
     try{
         const response = await fetch('unarchiveSpecial',{

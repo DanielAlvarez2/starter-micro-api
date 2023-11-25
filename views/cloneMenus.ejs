@@ -198,8 +198,54 @@
         <% } %>
     </ul>
 
+    <h3>specials</h3>
+
+    <ul>
+        <% for(let i=0; i<info.length;i++){ %>
+            <% if (info[i].category == "SPECIALS: Appetizer" && info[i].sequence != "0"){ %>
+            <li class="special">
+                <div>
+                <span class="name"><%= info[i].name %></span><br>
+                <span><%= info[i].description %></span>
+            </div>
+                <span class="price"><%= info[i].price %></span>
+            </li>
+            <% } %>
+        <% } %>
+    </ul>
+    <ul>
+        <% for(let i=0; i<info.length;i++){ %>
+            <% if (info[i].category == "SPECIALS: Entrée" && info[i].sequence != "0"){ %>
+            <li class="special">
+                <div>
+                <span class="name"><%= info[i].name %></span><br>
+                <span><%= info[i].description %></span>
+            </div>
+                <span class="price"><%= info[i].price %></span>
+            </li>
+            <% } %>
+        <% } %>
+    </ul>
+    <ul>
+        <% for(let i=0; i<info.length;i++){ %>
+            <% if (info[i].category == "SPECIALS: Dessert" && info[i].sequence != "0"){ %>
+            <li class="special">
+                <div>
+                <span class="name"><%= info[i].name %></span><br>
+                <span><%= info[i].description %></span>
+            </div>
+                <span class="price"><%= info[i].price %></span>
+            </li>
+            <% } %>
+        <% } %>
+    </ul>
+
+
     </div><!--#div w:12cm-->
     
+
+
+    <br><br><br>
     we do our best to keep this information accurate and up to date, <br>
     but because we make frequent adjustments, based on season and<br>
     availability, our menus are subject to change.
