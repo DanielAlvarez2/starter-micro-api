@@ -108,16 +108,21 @@ async function archiveSpecial(){
 async function unarchiveSpecial(){
     const _id = this.parentNode.childNodes[1].innerText
     let count;
-    if (this.parentNode.childNodes[5].innerText == "SPECIALS: Appetizer"){count=appetizerCount}
-    if (this.parentNode.childNodes[5].innerText == "SPECIALS: Entrée"){count=entreeCount}
-    if (this.parentNode.childNodes[5].innerText == "SPECIALS: Dessert"){count=dessertCount}
+    if (this.parentNode.childNodes[3].innerText == "SPECIALS: Appetizer"){count=appetizerCount}
+    if (this.parentNode.childNodes[3].innerText == "SPECIALS: Entrée"){count=entreeCount}
+    if (this.parentNode.childNodes[3].innerText == "SPECIALS: Dessert"){count=dessertCount}
+    count++
+    count = new String(count)
+    alert('pause')
+
     try{
         const response = await fetch('unarchiveSpecial',{
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
                 '_id': _id,
-                'sequence': new String(count+1)
+                // 'sequence': new String(`${count+1}`)
+                sequence: count
             })
         })
         const data = await response.json()

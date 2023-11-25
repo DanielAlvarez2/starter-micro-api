@@ -375,6 +375,7 @@ app.post('/archiveSpecial', (request,response)=>{
 
 app.post('/unarchiveSpecial', (request,response)=>{
     console.log('unarchiveSpecial()');
+    console.log(request.body);
     db.collection('Specials').updateOne({_id: new ObjectId(request.body._id)},{
         $set:{
             sequence: request.body.sequence
