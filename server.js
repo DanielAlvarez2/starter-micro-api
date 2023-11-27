@@ -57,161 +57,162 @@ app.get('/debug', (request, response) =>{
         response.render('debug.ejs', {info: data})
     })
 })
-app.post('/saveChanges', (request,response)=>{
+app.post('/saveChanges', async (request,response)=>{
     if (request.body.paddingSides != ""){
-    db.collection('Specials').updateOne({_id: new ObjectId("6552683e620b78c09f6ad4ee")},{
+    await db.collection('Specials').updateOne({_id: new ObjectId("6552683e620b78c09f6ad4ee")},{
         $set:{
             pixels: `${request.body.paddingSides}px`
         }
     })
     }
     if (request.body.paddingTop != ""){
-    db.collection('Specials').updateOne({_id: new ObjectId("654e59526db7f75b37effb75")},{
+    await db.collection('Specials').updateOne({_id: new ObjectId("654e59526db7f75b37effb75")},{
         $set:{
             pixels: `${request.body.paddingTop}px`
         }
     })
     }
     if (request.body.h1paddingBottom != "") {
-        db.collection('Specials').updateOne({_id: new ObjectId("65526e13458b31706ba327c6")},{
+        await db.collection('Specials').updateOne({_id: new ObjectId("65526e13458b31706ba327c6")},{
                 $set:{
                     pixels: `${request.body.h1paddingBottom}px`
                 }
         })
     }
     if (request.body.headingsPadding != "") {
-        db.collection('Specials').updateOne({_id: new ObjectId("6552745d458b31706ba327c7")},{
+        await db.collection('Specials').updateOne({_id: new ObjectId("6552745d458b31706ba327c7")},{
                 $set:{
                     pixels: `${request.body.headingsPadding}px`
                 }
         })
     }
     if (request.body.menuItemsPadding != "") {
-        db.collection('Specials').updateOne({_id: new ObjectId("655277f12695fb229cd2f8bb")},{
+        await db.collection('Specials').updateOne({_id: new ObjectId("655277f12695fb229cd2f8bb")},{
                 $set:{
                     pixels: `${request.body.menuItemsPadding}px`
                 }
         })
     }
     if (request.body.lineHeight != "") {
-        db.collection('Specials').updateOne({_id: new ObjectId("6552843bc830309949e62da3")},{
+        await db.collection('Specials').updateOne({_id: new ObjectId("6552843bc830309949e62da3")},{
                 $set:{
                     pixels: `${request.body.lineHeight}px`
                 }
         })
     }
     if (request.body.paddingBottom != "") {
-        db.collection('Specials').updateOne({_id: new ObjectId("6552b499c5ef1e93714ad81b")},{
+        await db.collection('Specials').updateOne({_id: new ObjectId("6552b499c5ef1e93714ad81b")},{
                 $set:{
                     pixels: `${request.body.paddingBottom}px`
                 }
         })
     }
     if (request.body.headingsPaddingBottom != "") {
-        db.collection('Specials').updateOne({_id: new ObjectId("65529aad1d34afc4583f9716")},{
+        await db.collection('Specials').updateOne({_id: new ObjectId("65529aad1d34afc4583f9716")},{
                 $set:{
                     pixels: `${request.body.headingsPaddingBottom}px`
                 }
         })
     }
     if (request.body.legalDisclaimer != ""){
-        db.collection('Specials').updateOne({_id: new ObjectId("65529cf61d34afc4583f9717")},{
+        await db.collection('Specials').updateOne({_id: new ObjectId("65529cf61d34afc4583f9717")},{
             $set:{
                 display: `${request.body.legalDisclaimer}`
             }
         })
     }
     if (request.body.legalDisclaimerFontSize != ""){
-        db.collection('Specials').updateOne({_id: new ObjectId("6552da9842bc2235c2d5166a")},{
+        await db.collection('Specials').updateOne({_id: new ObjectId("6552da9842bc2235c2d5166a")},{
             $set:{
                 pixels: `${request.body.legalDisclaimerFontSize}px`
             }
         })
     }
     if (request.body.todaysSpecialsFontSize != ""){
-        db.collection('Specials').updateOne({_id: new ObjectId("6552dcebc7561e1a7e641aaf")},{
+        await db.collection('Specials').updateOne({_id: new ObjectId("6552dcebc7561e1a7e641aaf")},{
             $set:{
                 pixels: `${request.body.todaysSpecialsFontSize}px`
             }
         })
     }
     if (request.body.headingsFontSize != ""){
-        db.collection('Specials').updateOne({_id: new ObjectId("6552deb4c7561e1a7e641ab0")},{
+        await db.collection('Specials').updateOne({_id: new ObjectId("6552deb4c7561e1a7e641ab0")},{
             $set:{
                 pixels: `${request.body.headingsFontSize}px`
             }
         })
     }
     if (request.body.menuItemsFontSize != ""){
-        db.collection('Specials').updateOne({_id: new ObjectId("6552e063c7561e1a7e641ab1")},{
+        await db.collection('Specials').updateOne({_id: new ObjectId("6552e063c7561e1a7e641ab1")},{
             $set:{
                 pixels: `${request.body.menuItemsFontSize}px`
             }
         })
     }
-    setTimeout(()=>response.redirect('/'),250)    
+    // setTimeout(()=>response.redirect('/'),250)
+    response.redirect('/')    
 })
 
-app.post('/saveDinnerMenuChanges', (request,response)=>{
-    console.log(request.body);
+app.post('/saveDinnerMenuChanges', async (request,response)=>{
+    
     if (request.body.dinnerMenuFontSize != ""){
-    db.collection('Specials').updateOne({_id: new ObjectId("655f8c429408f905f197480a")},{
+    await db.collection('Specials').updateOne({_id: new ObjectId("655f8c429408f905f197480a")},{
         $set:{
             pixels: `${request.body.dinnerMenuFontSize}px`
         }
     })
     }
     if (request.body.dinnerMenuLineHeight != ""){
-        db.collection('Specials').updateOne({_id: new ObjectId("655faeba8c4c6fb6765f2bad")},{
+        await db.collection('Specials').updateOne({_id: new ObjectId("655faeba8c4c6fb6765f2bad")},{
             $set:{
                 pixels: `${request.body.dinnerMenuLineHeight}px`
             }
         })
         }
     if (request.body.oleaLogoFontSize != ""){
-        db.collection('Specials').updateOne({_id: new ObjectId("655ea242d37783c929bb3e17")},{
+        await db.collection('Specials').updateOne({_id: new ObjectId("655ea242d37783c929bb3e17")},{
             $set:{
                 pixels: `${request.body.oleaLogoFontSize}px`
             }
         })
     }
     if (request.body.legalDisclaimerFontSize != ""){
-        db.collection('Specials').updateOne({_id: new ObjectId("655fc5fe8c4c6fb6765f2bb2")},{
+        await db.collection('Specials').updateOne({_id: new ObjectId("655fc5fe8c4c6fb6765f2bb2")},{
             $set:{
                 pixels: `${request.body.legalDisclaimerFontSize}px`
             }
         })
     }
     if (request.body.sidesFontSize != ""){
-        db.collection('Specials').updateOne({_id: new ObjectId("655fcc818c4c6fb6765f2bb3")},{
+        await db.collection('Specials').updateOne({_id: new ObjectId("655fcc818c4c6fb6765f2bb3")},{
             $set:{
                 pixels: `${request.body.sidesFontSize}px`
             }
         })
     }
     if (request.body.dinnerPaddingSides != ""){
-        db.collection('Specials').updateOne({_id: new ObjectId("655fdfe58c4c6fb6765f2bb4")},{
+        await db.collection('Specials').updateOne({_id: new ObjectId("655fdfe58c4c6fb6765f2bb4")},{
             $set:{
                 pixels: `${request.body.dinnerPaddingSides}px`
             }
         })
     }
     if (request.body.dinnerPaddingTop != ""){
-        db.collection('Specials').updateOne({_id: new ObjectId("655fe14a8c4c6fb6765f2bb5")},{
+        await db.collection('Specials').updateOne({_id: new ObjectId("655fe14a8c4c6fb6765f2bb5")},{
             $set:{
                 pixels: `${request.body.dinnerPaddingTop}px`
             }
         })
     }
     if (request.body.dinnerCenterGap != ""){
-        db.collection('Specials').updateOne({_id: new ObjectId("655fe9d58c4c6fb6765f2bb6")},{
+        await db.collection('Specials').updateOne({_id: new ObjectId("655fe9d58c4c6fb6765f2bb6")},{
             $set:{
                 pixels: `${request.body.dinnerCenterGap}px`
             }
         })
     }
     if (request.body.dinnerMenuItemsPadding != ""){
-        db.collection('Specials').updateOne({_id: new ObjectId("655fffce8c4c6fb6765f2bb7")},{
+        await db.collection('Specials').updateOne({_id: new ObjectId("655fffce8c4c6fb6765f2bb7")},{
             $set:{
                 pixels: `${request.body.dinnerMenuItemsPadding}px`
             }
@@ -221,7 +222,8 @@ app.post('/saveDinnerMenuChanges', (request,response)=>{
 
 
 
-    setTimeout(()=>response.redirect('/dinner'),250)    
+    // setTimeout(()=>response.redirect('/dinner'),250)
+    response.redirect('/dinner')    
 })
 app.get('/clone', (request, response) =>{
     db.collection('Specials').find().sort({sequence:1}).toArray()
@@ -339,14 +341,14 @@ app.delete('/deleteSpecial', (request,response) => {
     })
 })
 
-app.post('/archiveSpecial', (request,response)=>{
+app.post('/archiveSpecial', async (request,response)=>{
     let totalCount;
     if (request.body.category == "SPECIALS: Appetizer"){totalCount=request.body.appetizerCount}
     if (request.body.category == "SPECIALS: Entrée"){totalCount=request.body.entreeCount}
     if (request.body.category == "SPECIALS: Dessert"){totalCount=request.body.dessertCount}
 
     for (let i=Number(request.body.sequence)+1;i<=totalCount;i++){
-        db.collection('Specials').updateOne({
+        await db.collection('Specials').updateOne({
             category: `${request.body.category}`,
             sequence: `${i}`
         },{
@@ -354,28 +356,21 @@ app.post('/archiveSpecial', (request,response)=>{
                 sequence: `${new String(i-1)}`
             }
         })
-        .then(result=>{
-            console.log('looping...')
-        })
-    
-
     }
-    db.collection('Specials').updateOne({_id: new ObjectId(request.body._id)},{
+    await db.collection('Specials').updateOne({_id: new ObjectId(request.body._id)},{
         $set:{
             sequence: "0"
         }
     })
     .then(result => {
         console.log('Special Archived')
-        setTimeout(()=>{
-            response.json('Special Archived')
-        },250)
+        // setTimeout(()=>{response.json('Special Archived')},250)
+        response.json('Special Archived')
     })
 })
 
 app.post('/unarchiveSpecial', (request,response)=>{
-    console.log('unarchiveSpecial()');
-    console.log(request.body);
+    
     db.collection('Specials').updateOne({_id: new ObjectId(request.body._id)},{
         $set:{
             sequence: request.body.sequence

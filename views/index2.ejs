@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Olea Specials</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/21ef82ed30.js" crossorigin="anonymous"></script>
+    <style>
+        
+        
+        .special{
+            margin-bottom: 0px;
+        }
+        #wrapper{
+            min-width:100%;
+            min-height:100vh;
+            /* background:grey; */
+            display:grid;
+            place-content:center;
+        }
+        #specials{
+            position: relative;
+        }
+        #controls{
+            line-height:30px;
+            font-size:19px;
+        }
+        #specials, #controls{
+            width:4.25in;
+            height:5.5in;
+            background:white;
+            border:solid 1px black;
+            padding: 0px 0px;
+            display:inline-block;
+            
+        }
+        #specials{
+            padding-top:
+            <% 
+                for (let i=0; i<info.length; i++){
+                    if (info[i].category == 'controls' && info[i].name == 'padding-top'){ 
+                        
+                        %>
+                        <%= info[i].pixels %>
+            <%
+                    } 
+                } 
+            %>;
+
+            padding-left:
+            <% 
+                for (let i=0; i<info.length; i++){
+                    if (info[i].category == 'controls' && info[i].name == 'padding-sides'){ %>
+                        <%= info[i].pixels%>
+            <%
+                    } 
+                } 
+            %>;
+            
+            padding-right:
+            <% 
+                for (let i=0; i<info.length; i++){
+                    if (info[i].category == 'controls' && info[i].name == 'padding-sides'){ %>
+                        <%= info[i].pixels%>
+            <%
+                    } 
+                } 
+            %>;
+            
+        }
+        
+        ul{
+            font-family:serif;
+        }
+        
+        h1{
+            padding-bottom:
+            <% 
+                for (let i=0; i<info.length; i++){
+                    if (info[i].category == 'controls' && info[i].name == 'h1paddingBottom'){ %>
+                        <%= info[i].pixels%>
+            <%
+                    } 
+                } 
+            %>;
+            font-size:
+            <% 
+                for (let i=0; i<info.length; i++){
+                    if (info[i].category == 'controls' && info[i].name == 'todaysSpecialsFontSize'){ %>
+                        <%= info[i].pixels%>
+            <%
+                    } 
+                } 
+            %>;
+        }
+        h2{
+            padding-bottom:
+            <% 
+                for (let i=0; i<info.length; i++){
+                    if (info[i].category == 'controls' && info[i].name == 'headingsPaddingBottom'){ %>
+                        <%= info[i].pixels%>
+            <%
+                    } 
+                } 
+            %>;
+            font-size:
+            <% 
+                for (let i=0; i<info.length; i++){
+                    if (info[i].category == 'controls' && info[i].name == 'headingsFontSize'){ %>
+                        <%= info[i].pixels%>
+            <%
+                    } 
+                } 
+            %>;
+        }
+        #entree-heading, #dessert-heading{
+            padding-top: 
+            <% 
+                for (let i=0; i<info.length; i++){
+                    if (info[i].category == 'controls' && info[i].name == 'headingsPadding'){ %>
+                        <%= info[i].pixels%>
+            <%
+                    } 
+                } 
+            %>;
+        }
+        li{
+            padding-top:            
+            <% 
+                for (let i=0; i<info.length; i++){
+                    if (info[i].category == 'controls' && info[i].name == 'menuItemsPadding'){ 
+                        let half=(info[i].pixels).substring(0,info[i].pixels.length-2)/2
+                        %>
+                        <%= half%>px
+            <%
+                    } 
+                } 
+            %>;
+            padding-bottom:
+            <% 
+                for (let i=0; i<info.length; i++){
+                    if (info[i].category == 'controls' && info[i].name == 'menuItemsPadding'){ 
+                        let half=(info[i].pixels).substring(0,info[i].pixels.length-2)/2
+                        %>
+                        <%= half%>px
+            <%
+                    } 
+                } 
+            %>;
+            line-height:
+            <% 
+                for (let i=0; i<info.length; i++){
+                    if (info[i].category == 'controls' && info[i].name == 'lineHeight'){ %>
+                        <%= info[i].pixels%>
+            <%
+                    } 
+                } 
+            %>;
+            font-size:
+            <% 
+                for (let i=0; i<info.length; i++){
+                    if (info[i].category == 'controls' && info[i].name == 'menuItemsFontSize'){ %>
+                        <%= info[i].pixels%>
+            <%
+                    } 
+                } 
+            %>;
+        }
+        input{
+            text-align: center;
+        }
+        #legal-disclaimer{
+            position:absolute;
+            bottom:0;
+            padding-bottom:
+            <% 
+                for (let i=0; i<info.length; i++){
+                    if (info[i].category == 'controls' && info[i].name == 'legalBottomPadding'){ 
+                        
+                        %>
+                        <%= info[i].pixels %>
+            <%
+                    } 
+                } 
+            %>;
+
+            left:0px;
+            padding-left: inherit;
+            padding-right: inherit;
+            font-size:
+            <% 
+                for (let i=0; i<info.length; i++){
+                    if (info[i].category == 'controls' && info[i].name == 'legalDisclaimerFontSize'){ 
+                        
+                        %>
+                        <%= info[i].pixels %>
+            <%
+                    } 
+                } 
+            %>;
+
+        }
+        #legal-toggle{
+            cursor:pointer;
+            font-size:25px;
+        }
+        .hidden{
+            visibility:hidden;
+        }
+        .remove{
+            display:none;
+        }
+        #flexbox{
+            display:flex;
+        }
+        button, #save-changes{
+            padding:10px 20px;
+            cursor:pointer;
+        }
+        @media (orientation: landscape){
+            #flexbox{
+                flex-direction: row;
+            }
+            @media (max-width: 8.5in){
+                #wrapper{
+                    width:8.5in;
+                }
+            }
+        }
+        @media (orientation: portrait){
+            #flexbox{
+                flex-direction: column;
+            }
+            @media (max-width: 4.25in){
+                #wrapper{
+                    width:4.25in;
+                }
+            }
+
+        }
+
+    </style>
+</head>
+
+<% 
+    let appetizerCount=0
+    let entreeCount=0
+    let dessertCount=0
+    for (let i=0; i<info.length; i++){
+        if (info[i].category == "SPECIALS: Appetizer" && info[i].sequence != "0") appetizerCount++ 
+        if (info[i].category == "SPECIALS: Entrée" && info[i].sequence != "0") entreeCount++ 
+        if (info[i].category == "SPECIALS: Dessert" && info[i].sequence != "0") dessertCount++ 
+    }
+    
+%>
+<script>
+    let appetizerCount = <%=appetizerCount%>
+    let entreeCount = <%=entreeCount%>
+    let dessertCount = <%=dessertCount%>
+ 
+</script>
+
+<body>
+<div id="wrapper">
+
+
+<div id="flexbox">    
+
+<div id="controls">
+    <form method="POST" action="/saveChanges">
+        FORMAT PAGE LAYOUT<br>
+        Page Space Left & Right: <input name="paddingSides" id="padding-sides" type="text" size="2"> px <br>
+        Page Space Top: <input name="paddingTop" id="padding-top" type="text" size="2"> px <br>
+        "today's specials" Space Bottom: <input name="h1paddingBottom" id="todays-specials-padding-bottom" type="text" size="2"> px <br>
+        Space between sections: <input name="headingsPadding" id="headings-padding" type="text" size="2"> px <br>
+        Space between menu items: <input name="menuItemsPadding" id="menu-items-padding" type="text" size="2"> px <br>
+        Space between lines of menu items: <input name="lineHeight" id="menu-items-line-height" type="text" size="2"> px <br>
+        Space below headings: <input name="headingsPaddingBottom" id="headings-padding-bottom" type="text" size="2"> px <br>
+        Legal Disclaimer: SHOW 
+        <span id="legal-toggle">
+            <i id="on" class="fa-solid fa-toggle-on 
+            <%             
+            for (let i=0; i<info.length; i++){
+                if (info[i].category == 'controls' && info[i].name == 'legalDisclaimer'){ 
+                    if (info[i].display == 'true'){ %>
+                        remove
+                    <%
+                    }    
+                } 
+            } 
+            %>                
+            "></i>
+            <i id="off" class="fa-solid fa-toggle-off
+            <% 
+            for (let i=0; i<info.length; i++){
+                if (info[i].category == 'controls' && info[i].name == 'legalDisclaimer'){ 
+                    if (info[i].display == 'false'){ 
+                        %>
+                        remove
+                    <%
+                    }    
+                } 
+            } 
+            %>
+            "></i>
+        </span> 
+        HIDE<br>
+        <% 
+        for (let i=0; i<info.length; i++){
+            if (info[i].category == 'controls' && info[i].name == 'legalDisclaimer'){ 
+                if (info[i].display == 'true'){ 
+                    %>
+                    <input type="hidden" name="legalDisclaimer" id="legal-disclaimer-switch" value="true">
+                <%
+                }    
+            } 
+        } 
+        %>
+        <% 
+        for (let i=0; i<info.length; i++){
+            if (info[i].category == 'controls' && info[i].name == 'legalDisclaimer'){ 
+                if (info[i].display == 'false'){ 
+                    %>
+                    <input type="hidden" name="legalDisclaimer" id="legal-disclaimer-switch" value="false">
+                <%
+                }    
+            } 
+        } 
+        %>
+
+        
+        
+        <div id="padding-bottom-control"
+        <% 
+        for (let i=0; i<info.length; i++){
+            if (info[i].category == 'controls' && info[i].name == 'legalDisclaimer'){ 
+                if (info[i].display == 'false' ){ %>
+                    class="hidden"
+                <%
+                }    
+            } 
+        } 
+        %>    
+        >
+        Legal Disclaimer Space Bottom: <input name="paddingBottom" id="padding-bottom" type="text" size="2"> px<br> 
+        </div>
+        <hr>
+
+        FONT-SIZES<br>
+        <div id="legal-font-size-control"
+        <% 
+        for (let i=0; i<info.length; i++){
+            if (info[i].category == 'controls' && info[i].name == 'legalDisclaimer'){ 
+                if (info[i].display == 'false' ){ %>
+                    class="hidden"
+                <%
+                }    
+            } 
+        } 
+        %>
+        >
+        Legal Disclaimer Font Size: <input name="legalDisclaimerFontSize" id="legal-font-size" type="text" size="2"> px<br>
+        </div>
+        "today's specials" Font Size: <input name="todaysSpecialsFontSize" id="todays-specials-font-size" type="text" size="2"> px<br>
+        Headings Font Size: <input name="headingsFontSize" id="headings-font-size" type="text" size="2"> px<br>
+        Menu Items Font Size: <input name="menuItemsFontSize" id="menu-items-font-size" type="text" size="2"> px<br>
+        <button id="clear-changes">Clear Changes</button> 
+        <input type="submit" id="save-changes" value="Save Changes"> 
+        <button id="print-preview">Print Preview</button>
+    </form>
+</div><!--#controls-->
+    
+<div id="specials">
+    <h1 id="todays-specials">today's specials</h1>
+
+    <% if (appetizerCount == 1) { %>
+        <h2 id="appetizer-heading">appetizer</h2>
+    <% } %>
+    <% if (appetizerCount > 1) { %>
+        <h2 id="appetizer-heading">appetizers</h2>
+    <% } %>    
+    <ul>
+    <% for(let i=0; i<info.length;i++){ %>
+        <% if (info[i].category == "SPECIALS: Appetizer" && info[i].sequence != "0"){ %>
+        <li class="special">
+            <span class="name"><%= info[i].name %></span>
+            <span><%= info[i].description %></span>
+            <span class="price"><%= info[i].price %></span>
+        </li>
+        <% } %>
+    <% } %>
+    </ul>
+
+    <% if (entreeCount == 1) { %>
+        <h2 id="entree-heading">entrée</h2>
+    <% } %>
+    <% if (appetizerCount > 1) { %>
+        <h2 id="entree-heading">entrées</h2>
+    <% } %>
+    <ul>
+        <% for(let i=0; i<info.length;i++){ %>
+            <% if (info[i].category == "SPECIALS: Entrée" && info[i].sequence != "0"){ %>
+            <li class="special">
+                <span class="name"><%= info[i].name %></span>
+                <span><%= info[i].description %></span>
+                <span class="price"><%= info[i].price %></span>
+            </li>
+            <% } %>
+        <% } %>
+    </ul>
+ 
+    <% if (dessertCount == 1) { %>
+        <h2 id="dessert-heading">dessert</h2>
+    <% } %>
+    <% if (dessertCount > 1) { %>
+        <h2 id="dessert-heading">desserts</h2>
+    <% } %>
+
+    <ul>
+        <% for(let i=0; i<info.length;i++){ %>
+            <% if (info[i].category == "SPECIALS: Dessert" && info[i].sequence != "0"){ %>
+            <li class="special">
+                <span class="name"><%= info[i].name %></span>
+                <span><%= info[i].description %></span>
+                <span class="price"><%= info[i].price %></span>
+            </li>
+            <% } %>
+        <% } %>
+    </ul>
+
+    <script>let legalDisclaimerBoolean;</script>
+    <div id="legal-disclaimer"
+
+    <% 
+    for (let i=0; i<info.length; i++){
+        if (info[i].category == 'controls' && info[i].name == 'legalDisclaimer'){ 
+            if (info[i].display == 'false' ){ %>
+                class="hidden"
+            <%
+            }    
+        } 
+    } 
+    %>
+    >
+    <% 
+    for (let i=0; i<info.length; i++){
+        if (info[i].category == 'controls' && info[i].name == 'legalDisclaimer'){ 
+            if (info[i].display == 'false' ){ %>
+                <script>legalDisclaimerBoolean = false;</script>
+            <%
+            }else{ %>
+                <script>legalDisclaimerBoolean = true;</script>
+            <%
+            }    
+        } 
+    } 
+    %>
+        
+        Consumer advisory: consumption of undercooked meat, poultry, eggs, 
+        or seafood may increase the risk of food-borne illnesses. Please 
+        alert your server if you have special dietary requirements.
+    
+    </div><!--#legal-disclaimer-->
+    
+</div><!--#specials-->
+
+
+</div><!--#flexbox-->
+
+</div><!--#wrapper-->
+<script src="main.js"></script>
+
+<script>
+    let specialsPage = document.querySelector('#specials')
+    let paddingTop = document.querySelector('#padding-top')
+    let paddingSides = document.querySelector('#padding-sides')
+    let paddingBottom = document.querySelector('#padding-bottom')
+    let headingsPadding = document.querySelector('#headings-padding')
+    let menuItemsPadding = document.querySelector('#menu-items-padding')
+    let menuItemsLineHeight = document.querySelector('#menu-items-line-height')
+    let headingsPaddingBottom = document.querySelector('#headings-padding-bottom')
+    let todaysSpecials = document.querySelector('#todays-specials')
+    let todaysSpecialsPaddingBottom = document.querySelector('#todays-specials-padding-bottom')
+    let paddingBottomControl = document.querySelector('#padding-bottom-control')
+    let legalToggle = document.querySelector('#legal-toggle')
+    let legalDisclaimer = document.querySelector('#legal-disclaimer')
+    let legalFontSize = document.querySelector('#legal-font-size')
+    let todaysSpecialsFontSize = document.querySelector('#todays-specials-font-size')
+    let headingsFontSize = document.querySelector('#headings-font-size')
+    let menuItemsFontSize = document.querySelector('#menu-items-font-size')
+    let p = document.querySelectorAll('.special')
+    let appetizerHeading = document.querySelector('#appetizer-heading')
+    let entreeHeading = document.querySelector('#entree-heading')
+    let dessertHeading = document.querySelector('#dessert-heading')
+    let legalFontSizeControl = document.querySelector('#legal-font-size-control')
+    let clearChanges = document.querySelector('#clear-changes')
+    let printPreview = document.querySelector('#print-preview')
+    let legalDisclaimerSwitch = document.querySelector('#legal-disclaimer-switch')
+
+    printPreview.addEventListener('click',(event)=>{
+        event.preventDefault()
+        location.replace('/printSpecials')
+    })
+    clearChanges.addEventListener('click',(event)=>{
+        event.preventDefault()
+        location.reload()
+    })
+    paddingTop.addEventListener('input', function(evt){
+        specialsPage.style.paddingTop = `${Number(this.value)}px`
+        
+    })
+    paddingSides.addEventListener('input', function(evt){
+        specialsPage.style.paddingLeft = `${Number(this.value)}px`
+        specialsPage.style.paddingRight = `${Number(this.value)}px`
+    })
+    todaysSpecialsPaddingBottom.addEventListener('input', function(evt){
+        todaysSpecials.style.paddingBottom = `${Number(this.value)}px`
+    })
+    paddingBottom.addEventListener('input', function(evt){
+        legalDisclaimer.style.paddingBottom = `${Number(this.value)}px`
+    })
+    menuItemsPadding.addEventListener('input', function(evt){
+        p.forEach((special,i)=>{
+            special.style.paddingTop = `${(Number(this.value))/2}px`
+            special.style.paddingBottom = `${(Number(this.value))/2}px`
+        })
+    })
+    menuItemsLineHeight.addEventListener('input', function(evt){
+        p.forEach((special,i)=>{
+            special.style.lineHeight = `${Number(this.value)}px`
+        })
+    })
+    headingsPadding.addEventListener('input', function(evt){
+        entreeHeading.style.paddingTop = `${Number(this.value)}px`
+        dessertHeading.style.paddingTop = `${Number(this.value)}px`
+    })
+    headingsPaddingBottom.addEventListener('input', function(evt){
+        appetizerHeading.style.paddingBottom = `${Number(this.value)}px`
+        entreeHeading.style.paddingBottom = `${Number(this.value)}px`
+        dessertHeading.style.paddingBottom = `${Number(this.value)}px`
+    })
+    legalFontSize.addEventListener('input', function(evt){
+        legalDisclaimer.style.fontSize = `${Number(this.value)}px`
+    })
+    todaysSpecialsFontSize.addEventListener('input', function(evt){
+        todaysSpecials.style.fontSize = `${Number(this.value)}px`
+    })
+    headingsFontSize.addEventListener('input', function(evt){
+        appetizerHeading.style.fontSize = `${Number(this.value)}px`
+        entreeHeading.style.fontSize = `${Number(this.value)}px`
+        dessertHeading.style.fontSize = `${Number(this.value)}px`
+    })
+    menuItemsFontSize.addEventListener('input', function(evt){
+        p.forEach((special,i)=>{
+            special.style.fontSize = `${Number(this.value)}px`
+        })
+    })
+    legalToggle.addEventListener('click', function(evt){
+        if (legalDisclaimerBoolean){
+            legalDisclaimerSwitch.value = 'false';
+        }else{
+            legalDisclaimerSwitch.value = 'true';
+        }
+        legalDisclaimer.classList.toggle('hidden')
+        paddingBottomControl.classList.toggle('hidden')
+        legalFontSizeControl.classList.toggle('hidden')
+        on.classList.toggle('remove')
+        off.classList.toggle('remove')
+    })
+
+</script>
+
+</body>
+</html>
