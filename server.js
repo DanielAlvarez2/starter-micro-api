@@ -150,7 +150,7 @@ app.post('/saveChanges', async (request,response)=>{
         })
     }
     // setTimeout(()=>response.redirect('/'),250)
-    response.redirect('/manager')    
+    response.redirect('/specialsFormatLayout')    
 })
 
 app.post('/saveDinnerMenuChanges', async (request,response)=>{
