@@ -68,6 +68,25 @@
 
 
   <body>
+
+    <div id="wrapper" style="position: relative;">
+
+      <div id="print-preview" 
+           style="
+           position:fixed;
+           top:0;
+           right:0;
+           border:1px solid black;
+           background:lightgrey;
+           padding: 10px 20px;
+           margin: 5px;
+           border-radius: 10px;
+           cursor:pointer;
+           ">
+        <i class="fa-solid fa-print"></i>
+        Print Preview
+      </div>
+
     <h1>EDIT Olea Specials</h1>
 
     <h2>SPECIALS: Appetizers</h2>
@@ -201,6 +220,10 @@
       ><br />
       <input type="text" placeholder="Price" name="price" /><br />
       <input type="text" placeholder="Allergies" name="allergies" /><br />
+      <!-- <input type="hidden" name="timestamp" id="timestamp-add-special">
+      <script>
+        document.querySelector('#timestamp-add-special').value = new Date()
+      </script> -->
       <input type="submit" id="update-button" value="Create" />
     </form>
 
@@ -242,11 +265,23 @@
         placeholder="Allergies"
         name="allergies"
       /><br />
+
+      <!-- <input type="hidden" name="timestamp" id="timestamp-edit-special">
+      <script>
+        document.querySelector('#timestamp-edit-special').value = new Date()
+      </script> -->
+
       <input type="submit" value="Update" />
     </form>
 
-    
+  </div><!--#wrapper-->
 
     <script src="main.js"></script>
+    <script>
+      document.querySelector('#print-preview').addEventListener('click',()=>{
+        location.replace('/specialsLayout')
+      })
+
+    </script>
   </body>
 </html>

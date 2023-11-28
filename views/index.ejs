@@ -71,12 +71,23 @@
         font-family: FuturaLight;
         font-weight: 100;
     }
+    #wrapper{
+        width:100%;
+        display:grid;
+        place-content:center;
+        width:11in;
+    }
+    @media (max-width:11in ){
+        #wrapper{
+            width:100%;
+        }
+    }
 </style>
 <body>
 
-<div id="wrapper" style="width:100%;display:grid;place-content:center;">
+<div id="wrapper">
 
-<div id="content" style="width:11in;">
+<div id="content" style="">
 
     <div id="nav-bar">
     <span id="logo" style="font-size:75px;">olea</span>

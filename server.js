@@ -225,17 +225,17 @@ app.post('/saveDinnerMenuChanges', async (request,response)=>{
     // setTimeout(()=>response.redirect('/dinner'),250)
     response.redirect('/dinner')    
 })
-app.get('/clone', (request, response) =>{
+app.get('/specialsLayout', (request, response) =>{
     db.collection('Specials').find().sort({sequence:1}).toArray()
     .then(data => {
-        response.render('clone.ejs', {info: data})
+        response.render('specialsLayout.ejs', {info: data})
     })
 })
 
-app.get('/edit', (request, response) =>{
+app.get('/specialsUpdate', (request, response) =>{
     db.collection('Specials').find().sort({sequence:1}).toArray()
     .then(data => {
-        response.render('edit.ejs', {info: data})
+        response.render('specialsUpdate.ejs', {info: data})
     })
 })
 app.get('/dinnerUpdateCuredMeats', (request, response) =>{
@@ -263,15 +263,15 @@ app.get('/dinnerUpdateSides', (request, response) =>{
     })
 })
 app.get('/archive', (request, response) =>{
-    db.collection('Specials').find().sort({sequence:1}).toArray()
+    db.collection('Specials').find().sort({timestamp:-1}).toArray()
     .then(data => {
         response.render('archive.ejs', {info: data})
     })
 })
-app.get('/printSpecials', (request, response) =>{
+app.get('/specialsPrintPreview', (request, response) =>{
     db.collection('Specials').find().toArray()
     .then(data => {
-        response.render('printSpecials.ejs', {info: data})
+        response.render('specialsPrintPreview.ejs', {info: data})
     })
 })
 app.get('/dinnerPrintPreview', (request, response) =>{
@@ -281,12 +281,24 @@ app.get('/dinnerPrintPreview', (request, response) =>{
     })
 })
 
-app.post('/addSpecial', (request,response)=>{
-    db.collection('Specials').insertOne(request.body)
+app.post('/addSpecial', async(request,response)=>{
+    await db.collection('Specials').insertOne(request.body)
     .then(result =>{
         console.log('New Special Added')
-        response.redirect('/edit')
+        console.log(request.body)
     })
+    await db.collection('Specials').updateOne({
+        category: `${request.body.category}`,
+        name: `${request.body.name}`,
+        description: `${request.body.description}`,
+        price: `${request.body.price}`,
+        allergies: `${request.body.allergies}`
+    },{
+        $set:{
+            timestamp: `${new Date()}`
+        }
+    })
+    response.redirect('/specialsUpdate')
 })
 app.delete('/deleteSpecial', (request,response) => {
     if (request.body.sequence != "0"){
@@ -390,15 +402,27 @@ app.post('/editSpecial', (request, response) => {
             name: request.body.name,
             description: request.body.description,
             price: request.body.price,
-            allergies: request.body.allergies
+            allergies: request.body.allergies,
+            timestamp: `${new Date()}`
         }
     })
     .then(result =>{
         console.log('Existing Special Modified')
-        response.redirect('/edit')
+        response.redirect('/specialsUpdate')
     })
 })
-
+app.get('/manager', (req,res)=>{
+    db.collection('Specials').find().sort({sequence:1}).toArray()
+    .then(data => {
+        res.render('manager.ejs', {info: data})
+    })
+})
+app.get('/specialsFormatLayout', (req,res)=>{
+    db.collection('Specials').find().sort({sequence:1}).toArray()
+    .then(data=>{
+        res.render('specialsFormatLayout.ejs', {info: data})
+    })
+})
 app.post('/moveUp', (request,response)=>{
     
     db.collection('Specials').updateOne({
