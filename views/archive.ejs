@@ -1,71 +1,148 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Olea Specials</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manager</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="manager.css">
     <script
       src="https://kit.fontawesome.com/21ef82ed30.js"
       crossorigin="anonymous"
     ></script>
     <style>
-      .del,
+        *{
+            padding:0;
+            margin:0;
+            box-sizing:border-box
+        }
+        #wrapper{
+            max-width:100%;
+            min-height:100vh;
+            display:grid;
+            place-content: center;
+        }
+        h1{
+            text-align: center;
+            font-size: 40px;
+            font-weight: 100;
+        }
+        h2{
+            /* margin-bottom: 10px; */
+            /* text-align: center; */
+        }
+        button{
+            width:150px;
+            margin: 0 auto;
+            cursor:pointer;
+            margin-bottom:20px;
+        }
+        nav li{
+            width:25%;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+        nav ul{
+            width:100%;
+        }
+        ul{
+            width:60ch;
+        }
+        .del,
+        .delete-archive,
       .edit,
+      .archive,
       .unarchive,
-      .move {
+      .transfer,
+      .move-up,
+      .move-down {
         cursor: pointer;
         font-size: 20px;
+        transform:scaleX(3);
       }
-      .move {
+      .move-up, .move-down{
+        color:green;
+        width:100%;
+        text-align: center;
+      }
+      .transfer {
         color: blue;
       }
-      .del {
+      .delete-archive {
         color: red;
       }
       .edit {
         color: rgb(183, 183, 0);
       }
-      .unarchive {
+      .archive, .unarchive {
         color: #654321;
       }
       .special {
         margin-bottom: 20px;
       }
-      li {
-        max-width: 50ch;
-      }
       ul{
         list-style-type: none;
       }
-
+      li {
+        max-width: 50ch;
+      }
+      .active-page{
+        background: black;
+        color:white;
+        cursor: none;
+      }
     </style>
-  </head>
+</head>
 
-  <% 
-    let appetizerCount=0
-    let entreeCount=0
-    let dessertCount=0
-    for (let i=0; i<info.length; i++){
-        if (info[i].category == "SPECIALS: Appetizer" && info[i].sequence != "0") appetizerCount++ 
-        if (info[i].category == "SPECIALS: Entrée" && info[i].sequence != "0") entreeCount++ 
-        if (info[i].category == "SPECIALS: Dessert" && info[i].sequence != "0") dessertCount++ 
-    }
-    console.log(appetizerCount)
-    console.log(entreeCount)
-    console.log(dessertCount)
-    
+
+
+
+<% 
+let appetizerCount=0
+let entreeCount=0
+let dessertCount=0
+for (let i=0; i<info.length; i++){
+    if (info[i].category == "SPECIALS: Appetizer" && info[i].sequence != "0") appetizerCount++ 
+    if (info[i].category == "SPECIALS: Entrée" && info[i].sequence != "0") entreeCount++ 
+    if (info[i].category == "SPECIALS: Dessert" && info[i].sequence != "0") dessertCount++ 
+}
+
 %>
 <script>
-    let appetizerCount = <%=appetizerCount%>
-    let entreeCount = <%=entreeCount%>
-    let dessertCount = <%=dessertCount%>
-    console.log(appetizerCount);
-    console.log(entreeCount);
-    console.log(dessertCount);
+let appetizerCount = <%=appetizerCount%>
+let entreeCount = <%=entreeCount%>
+let dessertCount = <%=dessertCount%>
 </script>
 
-  <body>
+
+
+
+
+<body style="overflow-x:hidden;min-height:100vh;">
+    
+    <nav style="max-width:60ch;margin:0 auto;margin-bottom:50px;">
+        <h1 style="padding:0 20px;
+                        display:flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        ">
+                olea
+                <span style="font-size:20px;">Content Manager</span></h1>
+                
+                
+                <ul style="display:flex;list-style-type: none;">
+                    <li id="specials">Specials</li>
+                    <li id="dinner">Dinner</li>
+                    <li id="dessert">Dessert</li>
+                    <li id="wine">Wine/Drinks</li>
+                <li class="active-page">Archive</li>
+            </ul>
+        </nav>
+        
+        <div id="wrapper" style="position: relative;min-height:100vh;">
+        
     <h1>ARCHIVES: Olea Specials</h1>
 
     <h2>SPECIALS: Appetizers</h2>
@@ -86,7 +163,7 @@
         <span class="unarchive"
           ><i class="fa-solid fa-box-archive"></i> UNarchive/Restore</span
         >&nbsp;&nbsp;
-        <span class="del"><i class="fa-solid fa-trash-can"></i> Delete</span
+        <span class="delete-archive"><i class="fa-solid fa-trash-can"></i> Delete</span
         >&nbsp;&nbsp;
       </li>
       <% } } %>
@@ -110,7 +187,7 @@
         <span class="unarchive"
           ><i class="fa-solid fa-box-archive"></i> UNarchive/Restore</span
         >&nbsp;&nbsp;
-        <span class="del"><i class="fa-solid fa-trash-can"></i> Delete</span
+        <span class="delete-archive"><i class="fa-solid fa-trash-can"></i> Delete</span
         >&nbsp;&nbsp;
       </li>
       <% } } %>
@@ -134,13 +211,22 @@
         <span class="unarchive"
           ><i class="fa-solid fa-box-archive"></i> UNarchive/Restore</span
         >&nbsp;&nbsp;
-        <span class="del"><i class="fa-solid fa-trash-can"></i> Delete</span
+        <span class="delete-archive"><i class="fa-solid fa-trash-can"></i> Delete</span
         >&nbsp;&nbsp;
       </li>
       <% } } %>
     </ul>
 
 
-    <script src="main.js"></script>
-  </body>
+
+      </div><!--#wrapper-->
+    
+        <script src="main.js"></script>
+        <script>
+          document.querySelector('#specials').addEventListener('click',()=>{
+            location.replace('/manager')
+          })    
+
+        </script>
+</body>
 </html>

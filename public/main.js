@@ -1,10 +1,14 @@
 const deleteText = document.querySelectorAll('.del')
+const deleteArchiveText = document.querySelectorAll('.delete-archive')
 const editText = document.querySelectorAll('.edit')
 const archiveText = document.querySelectorAll('.archive')
 const unarchiveText = document.querySelectorAll('.unarchive')
 const moveUpText = document.querySelectorAll('.move-up')
 const moveDownText = document.querySelectorAll('.move-down')
 
+Array.from(deleteArchiveText).forEach((element)=>{
+    element.addEventListener('click',deleteArchive)
+})
 Array.from(moveUpText).forEach((element)=>{
     element.addEventListener('click',moveUp)
 })
@@ -70,7 +74,7 @@ async function moveDown(){
 }
 
 function populateEditForm(){
-    const editID = this.parentNode.childNodes[3].innerText
+    const editID = this.parentNode.childNodes[1].innerText
     document.querySelector('#display-ID').innerText = editID;
     document.querySelector('#edit-id').value = editID;
     document.querySelector('#edit-category').value = this.parentNode.childNodes[5].innerText;
@@ -149,8 +153,27 @@ async function deleteSpecial(){
             })
         })
         const data = await response.json()
-        setTimeout(()=>{location.reload()},250) 
+        // setTimeout(()=>{location.reload()},250)
+        location.reload() 
     }catch(error){
         console.log(error)
     }
+}
+async function deleteArchive(){
+    console.log('1'+this.parentNode.childNodes[1].innerText);
+    console.log('2'+this.parentNode.childNodes[2].innerText);
+    console.log('3'+this.parentNode.childNodes[3].innerText);
+    console.log('4'+this.parentNode.childNodes[4].innerText);
+    console.log('5'+this.parentNode.childNodes[5].innerText);
+    const _id = this.parentNode.childNodes[1].innerText
+
+    const response = await fetch('deleteArchive',{
+        method: 'DELETE',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+            '_id': _id
+        })
+    })
+    const data = await response.json()
+    location.reload()
 }

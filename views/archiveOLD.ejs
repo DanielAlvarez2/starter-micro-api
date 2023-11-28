@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Olea Specials</title>
+    <script
+      src="https://kit.fontawesome.com/21ef82ed30.js"
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      .del,
+      .edit,
+      .unarchive,
+      .move {
+        cursor: pointer;
+        font-size: 20px;
+      }
+      .move {
+        color: blue;
+      }
+      .del {
+        color: red;
+      }
+      .edit {
+        color: rgb(183, 183, 0);
+      }
+      .unarchive {
+        color: #654321;
+      }
+      .special {
+        margin-bottom: 20px;
+      }
+      li {
+        max-width: 50ch;
+      }
+      ul{
+        list-style-type: none;
+      }
+
+    </style>
+  </head>
+
+  <% 
+    let appetizerCount=0
+    let entreeCount=0
+    let dessertCount=0
+    for (let i=0; i<info.length; i++){
+        if (info[i].category == "SPECIALS: Appetizer" && info[i].sequence != "0") appetizerCount++ 
+        if (info[i].category == "SPECIALS: Entrée" && info[i].sequence != "0") entreeCount++ 
+        if (info[i].category == "SPECIALS: Dessert" && info[i].sequence != "0") dessertCount++ 
+    }
+    console.log(appetizerCount)
+    console.log(entreeCount)
+    console.log(dessertCount)
+    
+%>
+<script>
+    let appetizerCount = <%=appetizerCount%>
+    let entreeCount = <%=entreeCount%>
+    let dessertCount = <%=dessertCount%>
+    console.log(appetizerCount);
+    console.log(entreeCount);
+    console.log(dessertCount);
+</script>
+
+  <body>
+
+    
+    <h1>ARCHIVES: Olea Specials</h1>
+
+    <h2>SPECIALS: Appetizers</h2>
+    <ul class="specials-appetizers">
+      <% for(let i=0; i<info.length;i++){ 
+        if( info[i].sequence &&
+            info[i].sequence != "" && 
+            info[i].sequence == "0" &&
+            info[i].category == "SPECIALS: Appetizer"){ %>
+      <li class="special">
+        <div><%= info[i]._id %></div>
+        <div><%= info[i].category %></div>
+        <div><%= info[i].sequence %></div>
+        <div><%= info[i].name %></div>
+        <div><%= info[i].description %></div>
+        <div><%= info[i].price %></div>
+        <div><%= info[i].allergies %></div>
+        <span class="unarchive"
+          ><i class="fa-solid fa-box-archive"></i> UNarchive/Restore</span
+        >&nbsp;&nbsp;
+        <span class="del"><i class="fa-solid fa-trash-can"></i> Delete</span
+        >&nbsp;&nbsp;
+      </li>
+      <% } } %>
+    </ul>
+
+    <h2>SPECIALS: Entrees</h2>
+    <ul class="specials-entrees">
+      <% for(let i=0; i<info.length;i++){ 
+        if( info[i].sequence &&
+            info[i].sequence != "" &&
+            info[i].sequence == "0" &&
+            info[i].category == "SPECIALS: Entrée"){ %>
+      <li class="special">
+        <div><%= info[i]._id %></div>
+        <div><%= info[i].category %></div>
+        <div><%= info[i].sequence %></div>
+        <div><%= info[i].name %></div>
+        <div><%= info[i].description %></div>
+        <div><%= info[i].price %></div>
+        <div><%= info[i].allergies %></div>
+        <span class="unarchive"
+          ><i class="fa-solid fa-box-archive"></i> UNarchive/Restore</span
+        >&nbsp;&nbsp;
+        <span class="del"><i class="fa-solid fa-trash-can"></i> Delete</span
+        >&nbsp;&nbsp;
+      </li>
+      <% } } %>
+    </ul>
+
+    <h2>SPECIALS: Desserts</h2>
+    <ul class="specials-desserts">
+      <% for(let i=0; i<info.length;i++){ 
+        if( info[i].sequence &&
+            info[i].sequence != "" &&
+            info[i].sequence == "0" && 
+            info[i].category == "SPECIALS: Dessert"){ %>
+      <li class="special">
+        <div><%= info[i]._id %></div>
+        <div><%= info[i].category %></div>
+        <div><%= info[i].sequence %></div>
+        <div><%= info[i].name %></div>
+        <div><%= info[i].description %></div>
+        <div><%= info[i].price %></div>
+        <div><%= info[i].allergies %></div>
+        <span class="unarchive"
+          ><i class="fa-solid fa-box-archive"></i> UNarchive/Restore</span
+        >&nbsp;&nbsp;
+        <span class="del"><i class="fa-solid fa-trash-can"></i> Delete</span
+        >&nbsp;&nbsp;
+      </li>
+      <% } } %>
+    </ul>
+
+
+    <script src="main.js"></script>
+  </body>
+</html>

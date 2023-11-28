@@ -43,6 +43,7 @@
             padding: 5px 0;
             border-radius: 20px;
             cursor: pointer;
+            line-height:18px;
         }
         nav ul{
             width:100%;
@@ -298,7 +299,8 @@
             display:flex;
         }
         button, #save-changes{
-            padding:10px 20px;
+            padding:5px 10px;
+            width:120px;
             cursor:pointer;
         }
         @media (orientation: landscape){
@@ -367,7 +369,7 @@ let dessertCount = <%=dessertCount%>
             <li>Dinner</li>
             <li>Dessert</li>
             <li>Wine/Drinks</li>
-            <li>Archive</li>
+            <li id="archive">Archive</li>
         </ul>
         <ul style="display:flex;list-style-type: none;margin-top:10px;">
             <li id="specials-edit" style="width:33%;">Edit Menu Items</li>
@@ -693,6 +695,10 @@ let dessertCount = <%=dessertCount%>
           document.querySelector('#specials-print-preview').addEventListener('click',()=>{
             location.replace('/specialsPrintPreview')
           })    
+          document.querySelector('#archive').addEventListener('click',()=>{
+                location.replace('/archive')
+            })
+
 
         </script>
 </body>

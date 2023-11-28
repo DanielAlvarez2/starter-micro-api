@@ -47,6 +47,10 @@
         nav ul{
             width:100%;
         }
+        nav li{
+            line-height:18px;
+
+        }
         ul{
             /* width:60ch; */
         }
@@ -264,30 +268,31 @@ let dessertCount = <%=dessertCount%>
 
 
 <body style="overflow-x:hidden;">
+
+    <nav class="no-print" style="width:60ch;margin:0 auto;margin-bottom:50px;">
+        <h1 style="padding:0 20px;
+                    display:flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    ">
+            olea
+            <span style="font-size:20px;">Content Manager</span></h1>
+        
+
+        <ul style="display:flex;list-style-type: none;">
+            <li class="active-page">Specials</li>
+            <li>Dinner</li>
+            <li>Dessert</li>
+            <li>Wine/Drinks</li>
+            <li id="archive">Archive</li>
+        </ul>
+        <ul style="display:flex;list-style-type: none;margin-top:10px;">
+            <li id="specials-edit" style="width:33%;">Edit Menu Items</li>
+            <li id="specials-format-layout" style="width:33%;">Format Layout</li>
+            <li class="active-page" style="width:33%;">Print Preview</li>
+        </ul>
+    </nav>
     <div id="wrapper" style="position: relative;">
-        <nav class="no-print" style="width:60ch;margin:0 auto;margin-bottom:50px;">
-            <h1 style="padding:0 20px;
-                        display:flex;
-                        justify-content: space-between;
-                        align-items: center;
-                        ">
-                olea
-                <span style="font-size:20px;">Content Manager</span></h1>
-            
-    
-            <ul style="display:flex;list-style-type: none;">
-                <li class="active-page">Specials</li>
-                <li>Dinner</li>
-                <li>Dessert</li>
-                <li>Wine/Drinks</li>
-                <li>Archive</li>
-            </ul>
-            <ul style="display:flex;list-style-type: none;margin-top:10px;">
-                <li id="specials-edit" style="width:33%;">Edit Menu Items</li>
-                <li id="specials-format-layout" style="width:33%;">Format Layout</li>
-                <li class="active-page" style="width:33%;">Print Preview</li>
-            </ul>
-        </nav>
 
         <div id="specials" style="width:8.5in;height:11in;
                                      display:flex;
@@ -701,6 +706,9 @@ let dessertCount = <%=dessertCount%>
             })
             document.querySelector('#specials-format-layout').addEventListener('click',()=>{
                 location.replace('/specialsFormatLayout')
+            })
+            document.querySelector('#archive').addEventListener('click',()=>{
+                location.replace('/archive')
             })
 
         </script>
