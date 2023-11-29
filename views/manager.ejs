@@ -146,8 +146,13 @@ let dessertCount = <%=dessertCount%>
             
             
             <div id="wrapper" style="position: relative;">
-
-        <h2>SPECIALS: Appetizers</h2>
+        <% if(appetizerCount == "1"){ %>
+            <h2>SPECIAL: Appetizer</h2>
+        <%}%>
+        <% if(appetizerCount > "1"){ %>
+            <h2>SPECIALS: Appetizers</h2>
+        <%}%>
+        
         <ul class="specials-appetizers">
           <% for(let i=0; i<info.length;i++){ 
             if( info[i].sequence &&
@@ -186,7 +191,12 @@ let dessertCount = <%=dessertCount%>
     
     
     
-        <h2>SPECIALS: Entrees</h2>
+        <% if(entreeCount == "1"){ %>
+            <h2>SPECIAL: Entrée</h2>
+        <%}%>
+        <% if(entreeCount > "1"){ %>
+            <h2>SPECIALS: Entrées</h2>
+        <%}%>
         <ul class="specials-entrees">
           <% for(let i=0; i<info.length;i++){ 
             if( info[i].sequence &&
@@ -224,7 +234,12 @@ let dessertCount = <%=dessertCount%>
           <% } } %>
         </ul>
     
-        <h2>SPECIALS: Desserts</h2>
+        <% if(dessertCount == "1"){ %>
+            <h2>SPECIAL: Dessert</h2>
+        <%}%>
+        <% if(dessertCount > "1"){ %>
+            <h2>SPECIALS: Desserts</h2>
+        <%}%>
         <ul class="specials-desserts">
           <% for(let i=0; i<info.length;i++){ 
             if( info[i].sequence &&

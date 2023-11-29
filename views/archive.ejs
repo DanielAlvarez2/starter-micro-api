@@ -143,15 +143,13 @@ let dessertCount = <%=dessertCount%>
         
         <div id="wrapper" style="position: relative;min-height:100vh;">
         
-    <h1>ARCHIVES: Olea Specials</h1>
+    <h1>ARCHIVES:</h1>
 
-    <h2>SPECIALS: Appetizers</h2>
     <ul class="specials-appetizers">
       <% for(let i=0; i<info.length;i++){ 
         if( info[i].sequence &&
             info[i].sequence != "" && 
-            info[i].sequence == "0" &&
-            info[i].category == "SPECIALS: Appetizer"){ %>
+            info[i].sequence == "0" ){ %>
       <li class="special">
         <div><%= info[i]._id %></div>
         <div><%= info[i].category %></div>
@@ -169,53 +167,6 @@ let dessertCount = <%=dessertCount%>
       <% } } %>
     </ul>
 
-    <h2>SPECIALS: Entrees</h2>
-    <ul class="specials-entrees">
-      <% for(let i=0; i<info.length;i++){ 
-        if( info[i].sequence &&
-            info[i].sequence != "" &&
-            info[i].sequence == "0" &&
-            info[i].category == "SPECIALS: Entrée"){ %>
-      <li class="special">
-        <div><%= info[i]._id %></div>
-        <div><%= info[i].category %></div>
-        <div><%= info[i].sequence %></div>
-        <div><%= info[i].name %></div>
-        <div><%= info[i].description %></div>
-        <div><%= info[i].price %></div>
-        <div><%= info[i].allergies %></div>
-        <span class="unarchive"
-          ><i class="fa-solid fa-box-archive"></i> UNarchive/Restore</span
-        >&nbsp;&nbsp;
-        <span class="delete-archive"><i class="fa-solid fa-trash-can"></i> Delete</span
-        >&nbsp;&nbsp;
-      </li>
-      <% } } %>
-    </ul>
-
-    <h2>SPECIALS: Desserts</h2>
-    <ul class="specials-desserts">
-      <% for(let i=0; i<info.length;i++){ 
-        if( info[i].sequence &&
-            info[i].sequence != "" &&
-            info[i].sequence == "0" && 
-            info[i].category == "SPECIALS: Dessert"){ %>
-      <li class="special">
-        <div><%= info[i]._id %></div>
-        <div><%= info[i].category %></div>
-        <div><%= info[i].sequence %></div>
-        <div><%= info[i].name %></div>
-        <div><%= info[i].description %></div>
-        <div><%= info[i].price %></div>
-        <div><%= info[i].allergies %></div>
-        <span class="unarchive"
-          ><i class="fa-solid fa-box-archive"></i> UNarchive/Restore</span
-        >&nbsp;&nbsp;
-        <span class="delete-archive"><i class="fa-solid fa-trash-can"></i> Delete</span
-        >&nbsp;&nbsp;
-      </li>
-      <% } } %>
-    </ul>
 
 
 

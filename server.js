@@ -378,7 +378,8 @@ app.post('/archiveSpecial', async (request,response)=>{
     }
     await db.collection('Specials').updateOne({_id: new ObjectId(request.body._id)},{
         $set:{
-            sequence: "0"
+            sequence: "0",
+            timestamp: `${new Date()}`
         }
     })
     .then(result => {
