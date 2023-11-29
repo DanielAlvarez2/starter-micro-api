@@ -393,7 +393,8 @@ app.post('/unarchiveSpecial', (request,response)=>{
     console.log(request);
     db.collection('Specials').updateOne({_id: new ObjectId(request.body._id)},{
         $set:{
-            sequence: request.body.sequence
+            sequence: request.body.sequence,
+            timestamp: `${new Date()}`
         }
     })
     .then(result => {
@@ -403,6 +404,7 @@ app.post('/unarchiveSpecial', (request,response)=>{
 })
 
 app.post('/editSpecial', (request, response) => {
+    console.log(request.body);
     db.collection('Specials').updateOne({_id: new ObjectId(request.body._id)},{
         $set:{
             category: request.body.category,
@@ -416,7 +418,7 @@ app.post('/editSpecial', (request, response) => {
     })
     .then(result =>{
         console.log('Existing Special Modified')
-        response.redirect('/specialsUpdate')
+        response.redirect('/manager')
     })
 })
 app.get('/manager', (req,res)=>{

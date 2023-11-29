@@ -74,7 +74,7 @@ async function moveDown(){
 }
 
 function populateEditForm(){
-    const editID = this.parentNode.childNodes[1].innerText
+    const editID = this.parentNode.childNodes[3].innerText
     document.querySelector('#display-ID').innerText = editID;
     document.querySelector('#edit-id').value = editID;
     document.querySelector('#edit-category').value = this.parentNode.childNodes[5].innerText;

@@ -172,16 +172,17 @@ let dessertCount = <%=dessertCount%>
             <div><%= info[i].description %></div>
             <div><%= info[i].price %></div>
             <div><%= info[i].allergies %></div>
+            <div><%= info[i].timestamp.substring(0,21) %></div>
             <span class="edit"><i class="fa-solid fa-pencil"></i> Edit</span
-            >&nbsp;&nbsp;
-            <span class="archive"
-              ><i class="fa-solid fa-box-archive"></i> Archive</span
-            >&nbsp;&nbsp;
-            <span class="del"><i class="fa-solid fa-trash-can"></i> Delete</span
-            >&nbsp;&nbsp;
-            <span class="transfer"
-              ><i class="fa-solid fa-arrow-right-arrow-left"></i> Transfer</span
-            >&nbsp;&nbsp;
+                >&nbsp;&nbsp;
+                <span class="archive"
+                ><i class="fa-solid fa-box-archive"></i> Archive</span
+                >&nbsp;&nbsp;
+                <span class="del"><i class="fa-solid fa-trash-can"></i> Delete</span
+                    >&nbsp;&nbsp;
+                    <span class="transfer"
+                    ><i class="fa-solid fa-arrow-right-arrow-left"></i> Transfer</span
+                    >&nbsp;&nbsp;
             <% if(info[i].sequence != appetizerCount){ %>
                 <div class="move-down"><i class="fa-solid fa-sort-down"></i></div>
             <% } %>
@@ -216,6 +217,7 @@ let dessertCount = <%=dessertCount%>
             <div><%= info[i].description %></div>
             <div><%= info[i].price %></div>
             <div><%= info[i].allergies %></div>
+            <div><%= info[i].timestamp.substring(0,21) %></div>
             <span class="edit"><i class="fa-solid fa-pencil"></i> Edit</span
             >&nbsp;&nbsp;
             <span class="archive"
@@ -260,6 +262,7 @@ let dessertCount = <%=dessertCount%>
             <div><%= info[i].description %></div>
             <div><%= info[i].price %></div>
             <div><%= info[i].allergies %></div>
+            <div><%= info[i].timestamp.substring(0,21) %></div>
             <span class="edit"><i class="fa-solid fa-pencil"></i> Edit</span
             >&nbsp;&nbsp;
             <span class="archive"
