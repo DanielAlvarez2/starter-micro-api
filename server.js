@@ -299,13 +299,19 @@ app.post('/addSpecial', async(request,response)=>{
             
         }
     })
-    response.redirect('/manager')
+    response.redirect(request.get('referer'))
 })
+
 app.delete('/deleteSpecial', async (request,response) => {
-    if (request.body.sequence != "0"){
-        if (request.body.category == "SPECIALS: Appetizer"){
-            if (!(request.body.sequence == "1" && request.body.appetizerCount == "1")){
-                for (let i=Number(request.body.sequence)+1;i<=request.body.appetizerCount;i++){
+    let count = 0;
+    await db.collection('Specials').find().toArray()
+    .then(data=>{
+        data.forEach(element=>{
+            if(element.category == request.body.category &&
+                element.sequence != "0") count++
+        })
+    })
+                for (let i=Number(request.body.sequence)+1;i<=count;i++){
                     await db.collection('Specials').updateOne({
                         category: `${request.body.category}`,
                         sequence: `${i}`
@@ -316,37 +322,8 @@ app.delete('/deleteSpecial', async (request,response) => {
                     })                
                 }
                
-            }
-        }
-        if (request.body.category == "SPECIALS: Entrée"){
-            if (!(request.body.sequence == "1" && request.body.entreeCount == "1")){
-                for (let i=Number(request.body.sequence)+1;i<=request.body.entreeCount;i++){
-                    await db.collection('Specials').updateOne({
-                        category: `${request.body.category}`,
-                        sequence: `${i}`
-                    },{
-                        $set:{
-                            sequence: `${new String(i-1)}`
-                        }
-                    })                
-                }
-            }
-        }
-        if (request.body.category == "SPECIALS: Dessert"){
-            if (!(request.body.sequence == "1" && request.body.dessertCount == "1")){
-                for (let i=Number(request.body.sequence)+1;i<=request.body.dessertCount;i++){
-                    await db.collection('Specials').updateOne({
-                        category: `${request.body.category}`,
-                        sequence: `${i}`
-                    },{
-                        $set:{
-                            sequence: `${new String(i-1)}`
-                        }
-                    })                
-                }
-            }
-        }
-    }
+            
+        
     db.collection('Specials').deleteOne({_id: new ObjectId(request.body._id)})
     .then(result => {
         console.log('Special Deleted')
@@ -399,11 +376,20 @@ app.post('/archiveSpecial', async (request,response)=>{
     })
 })
 
-app.post('/unarchiveSpecial', (request,response)=>{
+app.post('/unarchiveSpecial', async (request,response)=>{
+    let count=0;
+    await db.collection('Specials').find().toArray()
+    .then(data=>{
+        data.forEach(element=>{
+            if (element.category == request.body.category &&
+                element.sequence &&
+                element.sequence != "0") count++
+        })
+    })
     // console.log(request);
     db.collection('Specials').updateOne({_id: new ObjectId(request.body._id)},{
         $set:{
-            sequence: request.body.sequence,
+            sequence: `${count+1}`,
             timestamp: new Date()
         }
     })

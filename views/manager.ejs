@@ -132,7 +132,7 @@ let dessertCount = <%=dessertCount%>
                 
                 <ul style="display:flex;list-style-type: none;">
                     <li class="active-page">Specials</li>
-                    <li>Dinner</li>
+                    <li id="dinner">Dinner</li>
                     <li>Dessert</li>
                     <li>Wine/Drinks</li>
                     <li id="archive">Archive</li>
@@ -172,7 +172,7 @@ let dessertCount = <%=dessertCount%>
             <div><%= info[i].description %></div>
             <div><%= info[i].price %></div>
             <div><%= info[i].allergies %></div>
-            <div><%= info[i].timestamp %></div>
+            <div><%- `${info[i].timestamp}`.substring(0,24) %></div>
             <span class="edit"><i class="fa-solid fa-pencil"></i> Edit</span
                 >&nbsp;&nbsp;
                 <span class="archive"
@@ -217,7 +217,7 @@ let dessertCount = <%=dessertCount%>
             <div><%= info[i].description %></div>
             <div><%= info[i].price %></div>
             <div><%= info[i].allergies %></div>
-            <div><%= info[i].timestamp %></div>
+            <div><%- `${info[i].timestamp}`.substring(0,24) %></div>
             <span class="edit"><i class="fa-solid fa-pencil"></i> Edit</span
             >&nbsp;&nbsp;
             <span class="archive"
@@ -262,7 +262,7 @@ let dessertCount = <%=dessertCount%>
             <div><%= info[i].description %></div>
             <div><%= info[i].price %></div>
             <div><%= info[i].allergies %></div>
-            <div><%= info[i].timestamp %></div>
+            <div><%- `${info[i].timestamp}`.substring(0,24) %></div>
             <span class="edit"><i class="fa-solid fa-pencil"></i> Edit</span
             >&nbsp;&nbsp;
             <span class="archive"
@@ -362,6 +362,9 @@ let dessertCount = <%=dessertCount%>
             })
             document.querySelector('#archive').addEventListener('click',()=>{
                 location.replace('/archive')
+            })
+            document.querySelector('#dinner').addEventListener('click',()=>{
+                location.replace('/dinnerUpdateCuredMeats')
             })
 
         </script>

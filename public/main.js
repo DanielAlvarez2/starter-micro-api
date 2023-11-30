@@ -43,10 +43,10 @@ async function moveUp(){
         body: JSON.stringify({
             '_id': _id,
             sequence: sequence,
-            category: category,
-            appetizerCount: appetizerCount,
-            entreeCount: entreeCount,
-            dessertCount: dessertCount
+            category: category
+            // appetizerCount: appetizerCount,
+            // entreeCount: entreeCount,
+            // dessertCount: dessertCount
         })
     })
     const data = await response.json()
@@ -63,10 +63,10 @@ async function moveDown(){
         body: JSON.stringify({
             '_id': _id,
             sequence: sequence,
-            category: category,
-            appetizerCount: appetizerCount,
-            entreeCount: entreeCount,
-            dessertCount:dessertCount
+            category: category
+            // appetizerCount: appetizerCount,
+            // entreeCount: entreeCount,
+            // dessertCount:dessertCount
         })
     })
     const data = await response.json()
@@ -112,12 +112,13 @@ async function archiveSpecial(){
 
 async function unarchiveSpecial(){
     const _id = this.parentNode.childNodes[1].innerText
-    let count;
-    if (this.parentNode.childNodes[3].innerText == "SPECIALS: Appetizer"){count=appetizerCount}
-    if (this.parentNode.childNodes[3].innerText == "SPECIALS: Entrée"){count=entreeCount}
-    if (this.parentNode.childNodes[3].innerText == "SPECIALS: Dessert"){count=dessertCount}
-    count++
-    count = new String(count)
+    const category = this.parentNode.childNodes[3].innerText
+    // let count;
+    // if (this.parentNode.childNodes[3].innerText == "SPECIALS: Appetizer"){count=appetizerCount}
+    // if (this.parentNode.childNodes[3].innerText == "SPECIALS: Entrée"){count=entreeCount}
+    // if (this.parentNode.childNodes[3].innerText == "SPECIALS: Dessert"){count=dessertCount}
+    // count++
+    // count = new String(count)
 
     try{
         const response = await fetch('unarchiveSpecial',{
@@ -125,8 +126,9 @@ async function unarchiveSpecial(){
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
                 '_id': _id,
+                category: category
                 // 'sequence': new String(`${count+1}`)
-                sequence: count
+                // sequence: count
             })
         })
         const data = await response.json()
@@ -147,10 +149,10 @@ async function deleteSpecial(){
             body: JSON.stringify({
                 '_id': _id,
                 category: category,
-                sequence: sequence,
-                appetizerCount: appetizerCount,
-                entreeCount: entreeCount,
-                dessertCount: dessertCount
+                sequence: sequence
+                // appetizerCount: appetizerCount,
+                // entreeCount: entreeCount,
+                // dessertCount: dessertCount
             })
         })
         const data = await response.json()

@@ -125,7 +125,7 @@ let dinnerCuredMeatsCount = <%=dinnerCuredMeatsCount%>
                 
                 
                 <ul style="display:flex;list-style-type: none;">
-                    <li>Specials</li>
+                    <li id="specials">Specials</li>
                     <li class="active-page">Dinner</li>
                     <li>Dessert</li>
                     <li>Wine/Drinks</li>
@@ -137,10 +137,10 @@ let dinnerCuredMeatsCount = <%=dinnerCuredMeatsCount%>
                     <li id="specials-print-preview" style="width:33%;">Print Preview</li>
                 </ul>
                 <ul style="display:flex;list-style-type: none;margin-top:10px;">
-                    <li class="active-page" style="width:25%;">Cured Meats</li>
-                    <li id="specials-format-layout" style="width:25%;">Appetizers</li>
-                    <li id="specials-print-preview" style="width:25%;">Entrées</li>
-                    <li id="specials-print-preview" style="width:25%;">Sides</li>
+                    <li id="dinner-cured-meats" class="active-page" style="width:25%;">Cured Meats</li>
+                    <li id="dinner-appetizers" style="width:25%;">Appetizers</li>
+                    <li id="dinner-entrees" style="width:25%;">Entrées</li>
+                    <li id="dinner-sides" style="width:25%;">Sides</li>
                 </ul>
 
             </nav>
@@ -173,7 +173,8 @@ let dinnerCuredMeatsCount = <%=dinnerCuredMeatsCount%>
             <div><%= info[i].description %></div>
             <div><%= info[i].price %></div>
             <div><%= info[i].allergies %></div>
-            
+            <div><%- `${info[i].timestamp}`.substring(0,24) %></div>
+
             <span class="edit"><i class="fa-solid fa-pencil"></i> Edit</span
                 >&nbsp;&nbsp;
                 <span class="archive"
@@ -262,14 +263,24 @@ let dinnerCuredMeatsCount = <%=dinnerCuredMeatsCount%>
     
         <script src="main.js"></script>
         <script>
-          document.querySelector('#specials-format-layout').addEventListener('click',()=>{
-            location.replace('/specialsFormatLayout')
+          document.querySelector('#dinner-cured-meats').addEventListener('click',()=>{
+            location.replace('/dinnerUpdateCuredMeats')
           })    
-          document.querySelector('#specials-print-preview').addEventListener('click',()=>{
-                location.replace('/specialsPrintPreview')
+          document.querySelector('#dinner-appetizers').addEventListener('click',()=>{
+                location.replace('/dinnerUpdateAppetizers')
             })
+            document.querySelector('#dinner-entrees').addEventListener('click',()=>{
+                location.replace('/dinnerUpdateEntrees')
+            })
+            document.querySelector('#dinner-sides').addEventListener('click',()=>{
+                location.replace('/dinnerUpdateSides')
+            })
+
             document.querySelector('#archive').addEventListener('click',()=>{
                 location.replace('/archive')
+            })
+            document.querySelector('#specials').addEventListener('click',()=>{
+                location.replace('/manager')
             })
 
         </script>
