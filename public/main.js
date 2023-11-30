@@ -86,6 +86,7 @@ function populateEditForm(){
 }
 
 async function archiveSpecial(){
+    // alert('archive()')
     const _id = this.parentNode.childNodes[3].innerText
     const category = this.parentNode.childNodes[5].innerText
     const sequence = this.parentNode.childNodes[7].innerText
@@ -96,10 +97,10 @@ async function archiveSpecial(){
             body: JSON.stringify({
                 '_id': _id,
                 sequence: sequence,
-                category: category,
-                appetizerCount: appetizerCount,
-                entreeCount: entreeCount,
-                dessertCount: dessertCount
+                category: category
+                // appetizerCount: appetizerCount,
+                // entreeCount: entreeCount,
+                // dessertCount: dessertCount
             })
         })
         const data = await response.json()

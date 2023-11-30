@@ -1,5 +1,5 @@
 const express = require('express');
-const { MongoClient } = require('mongodb');
+const { MongoClient, Timestamp } = require('mongodb');
 const {ObjectId} = require('mongodb');
 const dotenv = require('dotenv');
 const saslprep = require('saslprep');
@@ -295,7 +295,8 @@ app.post('/addSpecial', async(request,response)=>{
         allergies: `${request.body.allergies}`
     },{
         $set:{
-            timestamp: `${new Date()}`
+            timestamp: new Date()
+            
         }
     })
     response.redirect('/manager')
@@ -353,7 +354,7 @@ app.delete('/deleteSpecial', async (request,response) => {
     })
 })
 app.delete('/deleteArchive', async(req, res)=>{
-    console.log(req.body);
+    // console.log(req.body);
     await db.collection('Specials').deleteOne({_id: new ObjectId(req.body._id)})
     .then(result=>{
         console.log('Archive Deleted')
@@ -361,10 +362,19 @@ app.delete('/deleteArchive', async(req, res)=>{
     })
 })
 app.post('/archiveSpecial', async (request,response)=>{
-    let totalCount;
-    if (request.body.category == "SPECIALS: Appetizer"){totalCount=request.body.appetizerCount}
-    if (request.body.category == "SPECIALS: Entrée"){totalCount=request.body.entreeCount}
-    if (request.body.category == "SPECIALS: Dessert"){totalCount=request.body.dessertCount}
+    console.log('archive()');
+    let totalCount = 0;
+    await db.collection('Specials').find().toArray()
+    .then(data =>{
+        data.forEach(element => { 
+            if (element.category == request.body.category &&
+                element.sequence != "0") totalCount++
+            
+        });
+    })
+    // if (request.body.category == "SPECIALS: Appetizer"){totalCount=request.body.appetizerCount}
+    // if (request.body.category == "SPECIALS: Entrée"){totalCount=request.body.entreeCount}
+    // if (request.body.category == "SPECIALS: Dessert"){totalCount=request.body.dessertCount}
 
     for (let i=Number(request.body.sequence)+1;i<=totalCount;i++){
         await db.collection('Specials').updateOne({
@@ -379,7 +389,7 @@ app.post('/archiveSpecial', async (request,response)=>{
     await db.collection('Specials').updateOne({_id: new ObjectId(request.body._id)},{
         $set:{
             sequence: "0",
-            timestamp: `${new Date()}`
+            timestamp: new Date()
         }
     })
     .then(result => {
@@ -390,11 +400,11 @@ app.post('/archiveSpecial', async (request,response)=>{
 })
 
 app.post('/unarchiveSpecial', (request,response)=>{
-    console.log(request);
+    // console.log(request);
     db.collection('Specials').updateOne({_id: new ObjectId(request.body._id)},{
         $set:{
             sequence: request.body.sequence,
-            timestamp: `${new Date()}`
+            timestamp: new Date()
         }
     })
     .then(result => {
@@ -404,7 +414,7 @@ app.post('/unarchiveSpecial', (request,response)=>{
 })
 
 app.post('/editSpecial', (request, response) => {
-    console.log(request.body);
+    console.log(request);
     db.collection('Specials').updateOne({_id: new ObjectId(request.body._id)},{
         $set:{
             category: request.body.category,
@@ -413,12 +423,12 @@ app.post('/editSpecial', (request, response) => {
             description: request.body.description,
             price: request.body.price,
             allergies: request.body.allergies,
-            timestamp: `${new Date()}`
+            timestamp: new Date()
         }
     })
     .then(result =>{
         console.log('Existing Special Modified')
-        response.redirect('/manager')
+        response.redirect(request.get('referer'))
     })
 })
 app.get('/manager', (req,res)=>{
