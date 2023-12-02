@@ -142,7 +142,7 @@ let dessertCount = <%=dessertCount%>
                     <li id="specials-format-layout" style="width:33%;">Format Layout</li>
                     <li id="specials-print-preview" style="width:33%;">Print Preview</li>
                 </ul>
-            </nav>
+    </nav>
             
             
             <div id="wrapper" style="position: relative;">
@@ -281,7 +281,7 @@ let dessertCount = <%=dessertCount%>
           <% } } %>
         </ul>
     
-        <h2>Add New Special:</h2>
+        <h2>Add New Menu Item:</h2>
     
         <form action="/addSpecial" method="POST">
           <input type="text" placeholder="Category" name="category" /><br />
@@ -303,7 +303,7 @@ let dessertCount = <%=dessertCount%>
           <input type="submit" id="update-button" value="Create" />
         </form>
     
-        <h2>Edit Exisiting Special:</h2>
+        <h2>Edit Exisiting Menu Item:</h2>
     
         <form action="/editSpecial" method="POST">
           <div name="_id" id="display-ID"></div>

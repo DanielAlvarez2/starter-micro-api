@@ -27,7 +27,7 @@
             line-height:30px;
             font-size:19px;
         }
-        #specials, #controls{
+        #controls{
             width:4.25in;
             height:5.5in;
             background:white;
@@ -74,40 +74,6 @@
                 } 
             %>;
 
-        }
-        #specials{
-            padding-top:
-            <% 
-                for (let i=0; i<info.length; i++){
-                    if (info[i].category == 'controls' && info[i].name == 'padding-top'){ 
-                        
-                        %>
-                        <%= info[i].pixels %>
-            <%
-                    } 
-                } 
-            %>;
-
-            padding-left:
-            <% 
-                for (let i=0; i<info.length; i++){
-                    if (info[i].category == 'controls' && info[i].name == 'padding-sides'){ %>
-                        <%= info[i].pixels%>
-            <%
-                    } 
-                } 
-            %>;
-            
-            padding-right:
-            <% 
-                for (let i=0; i<info.length; i++){
-                    if (info[i].category == 'controls' && info[i].name == 'padding-sides'){ %>
-                        <%= info[i].pixels%>
-            <%
-                    } 
-                } 
-            %>;
-            
         }
         
         ul{
@@ -238,6 +204,23 @@
                 } 
             %>;
         }
+        nav li{
+            width:25%;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+        nav ul{
+            width:100%;
+        }
+      
+        .active-page{
+        background: black;
+        color:white;
+        cursor: none;
+      }
+
         @media (orientation: landscape){
             #flexbox{
                 flex-direction: row;
@@ -266,7 +249,19 @@
             }
 
         }
-
+        nav li{
+            font-size:16px;
+            width:25%;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+        nav h1{
+            text-align: center;
+            font-size: 40px;
+            font-weight: 100;
+        }
     </style>
 </head>
 
@@ -289,6 +284,33 @@
 </script>
 
 <body>
+
+    <nav style="width:60ch;margin:0 auto;margin-bottom:50px;">
+        <h1 style="padding:0 20px;
+                        display:flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        ">
+                olea
+                <span style="font-size:20px;">Content Manager</span></h1>
+                
+                
+                <ul style="display:flex;list-style-type: none;">
+                    <li id="specials">Specials</li>
+                    <li class="active-page">Dinner</li>
+                    <li>Dessert</li>
+                    <li>Wine/Drinks</li>
+                    <li id="archive">Archive</li>
+                </ul>
+                <ul style="display:flex;list-style-type: none;margin-top:10px;">
+                    <li id="dinner-update-cured-meats" style="width:33%;">Edit Menu Items</li>
+                    <li class="active-page" id="specials-format-layout" style="width:33%;">Format Layout</li>
+                    <li id="specials-print-preview" style="width:33%;">Print Preview</li>
+                </ul>
+
+            </nav>
+            
+            
 <div id="wrapper">
 
 
@@ -525,6 +547,18 @@
         olea.style.paddingBottom = `${Number(this.value)}px`
     })
 
+
+    document.querySelector('#dinner-update-cured-meats').addEventListener('click',()=>{
+                location.replace('/dinnerUpdateCuredMeats')
+            })
+
+    
+            document.querySelector('#archive').addEventListener('click',()=>{
+                location.replace('/archive')
+            })
+            document.querySelector('#specials').addEventListener('click',()=>{
+                location.replace('/manager')
+            })
 </script>
 
 </body>

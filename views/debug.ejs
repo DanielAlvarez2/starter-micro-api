@@ -2,627 +2,321 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Olea Specials</title>
+    <title>Manager</title>
     <link rel="stylesheet" href="style.css">
-    <script src="https://kit.fontawesome.com/21ef82ed30.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="manager.css">
+    <script
+      src="https://kit.fontawesome.com/21ef82ed30.js"
+      crossorigin="anonymous"
+    ></script>
     <style>
         *{
-            margin:0;
             padding:0;
-            box-sizing:border-box;
+            margin:0;
+            box-sizing:border-box
         }
         #wrapper{
-            min-width:100%;
+            max-width:100%;
             min-height:100vh;
-            background:grey;
             display:grid;
-            place-content:center;
-        }
-        #specials{
-            width:8.5in;
-            height:11in;
-            background:white;
-            
-            display:flex;
-            flex-wrap:wrap;
-            flex-direction: row;
-        }
-        ul{
-            list-style-type:none;
-            padding:0;
-            font-family: serif;
+            place-content: center;
         }
         h1{
-            
-            padding-bottom:
-            <% 
-                for (let i=0; i<info.length; i++){
-                    if (info[i].category == 'controls' && info[i].name == 'h1paddingBottom'){ %>
-                        <%= info[i].pixels%>
-            <%
-                    } 
-                } 
-            %>;
-            font-size:
-            <% 
-                for (let i=0; i<info.length; i++){
-                    if (info[i].category == 'controls' && info[i].name == 'todaysSpecialsFontSize'){ %>
-                        <%= info[i].pixels%>
-            <%
-                    } 
-                } 
-            %>;
+            text-align: center;
+            font-size: 40px;
+            font-weight: 100;
         }
         h2{
-            padding-bottom:
-            <% 
-                for (let i=0; i<info.length; i++){
-                    if (info[i].category == 'controls' && info[i].name == 'headingsPaddingBottom'){ %>
-                        <%= info[i].pixels%>
-            <%
-                    } 
-                } 
-            %>;
-            font-size:
-            <% 
-                for (let i=0; i<info.length; i++){
-                    if (info[i].category == 'controls' && info[i].name == 'headingsFontSize'){ %>
-                        <%= info[i].pixels%>
-            <%
-                    } 
-                } 
-            %>;
+            /* margin-bottom: 10px; */
+            /* text-align: center; */
         }
-        #entree-heading, #dessert-heading{
-            padding-top: 
-            <% 
-                for (let i=0; i<info.length; i++){
-                    if (info[i].category == 'controls' && info[i].name == 'headingsPadding'){ %>
-                        <%= info[i].pixels%>
-            <%
-                    } 
-                } 
-            %>;
+        button{
+            width:150px;
+            margin: 0 auto;
+            cursor:pointer;
+            margin-bottom:20px;
         }
-        li{
-            padding-top:            
-            <% 
-                for (let i=0; i<info.length; i++){
-                    if (info[i].category == 'controls' && info[i].name == 'menuItemsPadding'){ 
-                        let half=(info[i].pixels).substring(0,info[i].pixels.length-2)/2
-                        %>
-                        <%= half%>px
-            <%
-                    } 
-                } 
-            %>;
-            padding-bottom:
-            <% 
-                for (let i=0; i<info.length; i++){
-                    if (info[i].category == 'controls' && info[i].name == 'menuItemsPadding'){ 
-                        let half=(info[i].pixels).substring(0,info[i].pixels.length-2)/2
-                        %>
-                        <%= half%>px
-            <%
-                    } 
-                } 
-            %>;
-            line-height:
-            <% 
-                for (let i=0; i<info.length; i++){
-                    if (info[i].category == 'controls' && info[i].name == 'lineHeight'){ %>
-                        <%= info[i].pixels%>
-            <%
-                    } 
-                } 
-            %>;
-            font-size:
-            <% 
-                for (let i=0; i<info.length; i++){
-                    if (info[i].category == 'controls' && info[i].name == 'menuItemsFontSize'){ %>
-                        <%= info[i].pixels%>
-            <%
-                    } 
-                } 
-            %>;
+        nav li{
+            width:25%;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 20px;
+            cursor: pointer;
         }
-        #legal-disclaimer{
-            position:absolute;
-            bottom:0;
-            padding-bottom:
-            <% 
-                for (let i=0; i<info.length; i++){
-                    if (info[i].category == 'controls' && info[i].name == 'legalBottomPadding'){ 
-                        
-                        %>
-                        <%= info[i].pixels %>
-            <%
-                    } 
-                } 
-            %>;
-
-            left:0px;
-            padding-left: inherit;
-            padding-right: inherit;
-            font-size:
-            <% 
-                for (let i=0; i<info.length; i++){
-                    if (info[i].category == 'controls' && info[i].name == 'legalDisclaimerFontSize'){ 
-                        
-                        %>
-                        <%= info[i].pixels %>
-            <%
-                    } 
-                } 
-            %>;
-
+        nav ul{
+            width:100%;
         }
-        .hidden{
-            visibility:hidden;
+        ul{
+            width:60ch;
         }
-        .remove{
-            display:none;
-        }
-
-        .quarter{   
-            width:4.25in;
-            height:5.5in;
-            position: relative;
-            display:inline-block;
-            padding-top:
-            <% 
-                for (let i=0; i<info.length; i++){
-                    if (info[i].category == 'controls' && info[i].name == 'padding-top'){ 
-                        
-                        %>
-                        <%= info[i].pixels %>
-            <%
-                    } 
-                } 
-            %>;
-
-            padding-left:
-            <% 
-                for (let i=0; i<info.length; i++){
-                    if (info[i].category == 'controls' && info[i].name == 'padding-sides'){ %>
-                        <%= info[i].pixels%>
-            <%
-                    } 
-                } 
-            %>;
-            
-            padding-right:
-            <% 
-                for (let i=0; i<info.length; i++){
-                    if (info[i].category == 'controls' && info[i].name == 'padding-sides'){ %>
-                        <%= info[i].pixels%>
-            <%
-                    } 
-                } 
-            %>;
-            
-
-        }
+        .del,
+      .edit,
+      .archive,
+      .transfer,
+      .move-up,
+      .move-down {
+        cursor: pointer;
+        font-size: 20px;
+        transform:scaleX(3);
+      }
+      .move-up, .move-down{
+        color:green;
+        width:100%;
+        text-align: center;
+      }
+      .transfer {
+        color: blue;
+      }
+      .del {
+        color: red;
+      }
+      .edit {
+        color: rgb(183, 183, 0);
+      }
+      .archive {
+        color: #654321;
+      }
+      .special {
+        margin-bottom: 20px;
+      }
+      ul{
+        list-style-type: none;
+      }
+      li {
+        max-width: 50ch;
+      }
+      .active-page{
+        background: black;
+        color:white;
+        cursor: none;
+      }
     </style>
 </head>
 
+
+
 <% 
-    let appetizerCount=0
-    let entreeCount=0
-    let dessertCount=0
-    for (let i=0; i<info.length; i++){
-        if (info[i].category == "SPECIALS: Appetizer" && info[i].sequence != "0") appetizerCount++ 
-        if (info[i].category == "SPECIALS: Entrée" && info[i].sequence != "0") entreeCount++ 
-        if (info[i].category == "SPECIALS: Dessert" && info[i].sequence != "0") dessertCount++ 
-    }
-    
+let dinnerCuredMeatsCount=0
+for (let i=0; i<info.length; i++){
+    if (info[i].category == "DINNER: Cured Meats" && info[i].sequence != "0") dinnerCuredMeatsCount++ 
+}
+
 %>
+<script>
+let dinnerCuredMeatsCount = <%=dinnerCuredMeatsCount%>
+</script>
 
-<body>
-<div id="wrapper">
-<div id="specials">
-    <div class="quarter">
-        <h1 id="todays-specials">today's specials</h1>
 
-        <% if (appetizerCount == 1) { %>
-            <h2 id="appetizer-heading">appetizer</h2>
-        <% } %>
-        <% if (appetizerCount > 1) { %>
-            <h2 id="appetizer-heading">appetizers</h2>
-        <% } %>    
+
+
+
+
+<body style="overflow-x:hidden;min-height:100vh;">
+    
+    <nav style="width:60ch;margin:0 auto;margin-bottom:50px;">
+        <h1 style="padding:0 20px;
+                        display:flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        ">
+                olea
+                <span style="font-size:20px;">Content Manager</span></h1>
+                
+                
+                <ul style="display:flex;list-style-type: none;">
+                    <li id="specials">Specials</li>
+                    <li class="active-page">Dinner</li>
+                    <li>Dessert</li>
+                    <li>Wine/Drinks</li>
+                    <li id="archive">Archive</li>
+                </ul>
+                <ul style="display:flex;list-style-type: none;margin-top:10px;">
+                    <li class="active-page" style="width:33%;">Edit Menu Items</li>
+                    <li id="specials-format-layout" style="width:33%;">Format Layout</li>
+                    <li id="specials-print-preview" style="width:33%;">Print Preview</li>
+                </ul>
+                <ul style="display:flex;list-style-type: none;margin-top:10px;">
+                    <li id="dinner-cured-meats" style="width:25%;">Cured Meats</li>
+                    <li id="dinner-appetizers" style="width:25%;">Appetizers</li>
+                    <li id="dinner-entrees" style="width:25%;">Entrées</li>
+                    <li id="dinner-sides" class="active-page" style="width:25%;">Sides</li>
+                </ul>
+
+            </nav>
+            
+            
+            <div id="wrapper" style="position: relative;">
+        
+            <h2>DINNER: Sides Left</h2>
+            
+        
         <ul>
-        <% for(let i=0; i<info.length;i++){ %>
-            <% if (info[i].category == "SPECIALS: Appetizer"){ 
-                if (info[i].sequence != "0"){ %>
+          <% for(let i=0; i<info.length;i++){ 
+            if( info[i].sequence &&
+                info[i].sequence != "" &&
+                info[i].sequence != "0" && 
+                info[i].category == "DINNER: Sides Left"){ %>
+          <li class="special">
+            <% if(info[i].sequence == "1"){ %>
+                <div class="move-up" style="visibility:hidden"><i class="fa-solid fa-sort-up"></i></div>
+            <% }else{ %>
+                <div class="move-up"><i class="fa-solid fa-sort-up"></i></div>
+            <% } %>
+            <div><%= info[i]._id %></div>
+            <div><%= info[i].category %></div>
+            <div><%= info[i].sequence %></div>
+            <div><%= info[i].name %></div>
+            <div><%= info[i].description %></div>
+            <div><%= info[i].price %></div>
+            <div><%= info[i].allergies %></div>
+            <div><%- `${info[i].timestamp}`.substring(0,24) %></div>
+
+            <span class="edit"><i class="fa-solid fa-pencil"></i> Edit</span
+                >&nbsp;&nbsp;
+                <span class="archive"
+                ><i class="fa-solid fa-box-archive"></i> Archive</span
+                >&nbsp;&nbsp;
+                <span class="del"><i class="fa-solid fa-trash-can"></i> Delete</span
+                    >&nbsp;&nbsp;
+                    <span class="transfer"
+                    ><i class="fa-solid fa-arrow-right-arrow-left"></i> Transfer</span
+                    >&nbsp;&nbsp;
+            <% if(info[i].sequence != dinnerCuredMeatsCount){ %>
+                <div class="move-down"><i class="fa-solid fa-sort-down"></i></div>
+            <% } %>
+           </li>
+          <% } } %>
+        </ul>
+    
+        <h2>DINNER: Sides Right</h2>
+        <ul>
+            <% for(let i=0; i<info.length;i++){ 
+              if( info[i].sequence &&
+                  info[i].sequence != "" &&
+                  info[i].sequence != "0" && 
+                  info[i].category == "DINNER: Sides Right"){ %>
             <li class="special">
-                <span class="name"><%= info[i].name %></span>
-                <span><%= info[i].description %></span>
-                <span class="price"><%= info[i].price %></span>
-            </li>
-            <% } 
-             } 
-         } %>
-        </ul>
-    
-        <% if (entreeCount == 1) { %>
-            <h2 id="entree-heading">entrée</h2>
-        <% } %>
-        <% if (appetizerCount > 1) { %>
-            <h2 id="entree-heading">entrées</h2>
-        <% } %>
-        <ul>
-            <% for(let i=0; i<info.length;i++){ %>
-                <% if (info[i].category == "SPECIALS: Entrée"){ 
-                    if (info[i].sequence != "0"){ %>
-                <li class="special">
-                    <span class="name"><%= info[i].name %></span>
-                    <span><%= info[i].description %></span>
-                    <span class="price"><%= info[i].price %></span>
-                </li>
-                <% } 
-                }
-            } %>
-        </ul>
-     
-        <% if (dessertCount == 1) { %>
-            <h2 id="dessert-heading">dessert</h2>
-        <% } %>
-        <% if (dessertCount > 1) { %>
-            <h2 id="dessert-heading">desserts</h2>
-        <% } %>
-    
-        <ul>
-            <% for(let i=0; i<info.length;i++){ %>
-                <% if (info[i].category == "SPECIALS: Dessert"){ 
-                    if (info[i].sequence != "0"){ %>
-                <li class="special">
-                    <span class="name"><%= info[i].name %></span>
-                    <span><%= info[i].description %></span>
-                    <span class="price"><%= info[i].price %></span>
-                </li>
-                <% } 
-                }
-            } %>
-        </ul>
-    
-        <script>let legalDisclaimerBoolean;</script>
-        <div id="legal-disclaimer"
-    
-        <% 
-        for (let i=0; i<info.length; i++){
-            if (info[i].category == 'controls' && info[i].name == 'legalDisclaimer'){ 
-                if (info[i].display == 'false' ){ %>
-                    class="hidden"
-                <%
-                }    
-            } 
-        } 
-        %>
-        >
-        <% 
-        for (let i=0; i<info.length; i++){
-            if (info[i].category == 'controls' && info[i].name == 'legalDisclaimer'){ 
-                if (info[i].display == 'false' ){ %>
-                    <script>legalDisclaimerBoolean = false;</script>
-                <%
-                }else{ %>
-                    <script>legalDisclaimerBoolean = true;</script>
-                <%
-                }    
-            } 
-        } 
-        %>
-            
-            Consumer advisory: consumption of undercooked meat, poultry, eggs, 
-            or seafood may increase the risk of food-borne illnesses. Please 
-            alert your server if you have special dietary requirements.
-        
-        </div><!--#legal-disclaimer-->
-       
-    </div><!--.quarter-->
-    <div class="quarter">
-        <h1 id="todays-specials">today's specials</h1>
+              <% if(info[i].sequence == "1"){ %>
+                  <div class="move-up" style="visibility:hidden"><i class="fa-solid fa-sort-up"></i></div>
+              <% }else{ %>
+                  <div class="move-up"><i class="fa-solid fa-sort-up"></i></div>
+              <% } %>
+              <div><%= info[i]._id %></div>
+              <div><%= info[i].category %></div>
+              <div><%= info[i].sequence %></div>
+              <div><%= info[i].name %></div>
+              <div><%= info[i].description %></div>
+              <div><%= info[i].price %></div>
+              <div><%= info[i].allergies %></div>
+              <div><%- `${info[i].timestamp}`.substring(0,24) %></div>
 
-        <% if (appetizerCount == 1) { %>
-            <h2 id="appetizer-heading">appetizer</h2>
-        <% } %>
-        <% if (appetizerCount > 1) { %>
-            <h2 id="appetizer-heading">appetizers</h2>
-        <% } %>    
-        <ul>
-        <% for(let i=0; i<info.length;i++){ %>
-            <% if (info[i].category == "SPECIALS: Appetizer"){ 
-                if (info[i].sequence != "0"){ %>
-            <li class="special">
-                <span class="name"><%= info[i].name %></span>
-                <span><%= info[i].description %></span>
-                <span class="price"><%= info[i].price %></span>
-            </li>
-            <% } 
-             } 
-         } %>
-        </ul>
+              <span class="edit"><i class="fa-solid fa-pencil"></i> Edit</span
+                  >&nbsp;&nbsp;
+                  <span class="archive"
+                  ><i class="fa-solid fa-box-archive"></i> Archive</span
+                  >&nbsp;&nbsp;
+                  <span class="del"><i class="fa-solid fa-trash-can"></i> Delete</span
+                      >&nbsp;&nbsp;
+                      <span class="transfer"
+                      ><i class="fa-solid fa-arrow-right-arrow-left"></i> Transfer</span
+                      >&nbsp;&nbsp;
+              <% if(info[i].sequence != dinnerCuredMeatsCount){ %>
+                  <div class="move-down"><i class="fa-solid fa-sort-down"></i></div>
+              <% } %>
+             </li>
+            <% } } %>
+          </ul>
+      
+        <h2>Add New Menu Item:</h2>
     
-        <% if (entreeCount == 1) { %>
-            <h2 id="entree-heading">entrée</h2>
-        <% } %>
-        <% if (appetizerCount > 1) { %>
-            <h2 id="entree-heading">entrées</h2>
-        <% } %>
-        <ul>
-            <% for(let i=0; i<info.length;i++){ %>
-                <% if (info[i].category == "SPECIALS: Entrée"){ 
-                    if (info[i].sequence != "0"){ %>
-                <li class="special">
-                    <span class="name"><%= info[i].name %></span>
-                    <span><%= info[i].description %></span>
-                    <span class="price"><%= info[i].price %></span>
-                </li>
-                <% } 
-                }
-            } %>
-        </ul>
-     
-        <% if (dessertCount == 1) { %>
-            <h2 id="dessert-heading">dessert</h2>
-        <% } %>
-        <% if (dessertCount > 1) { %>
-            <h2 id="dessert-heading">desserts</h2>
-        <% } %>
+        <form action="/addSpecial" method="POST">
+          <input type="text" placeholder="Category" name="category" /><br />
+          <input type="text" placeholder="Sequence" name="sequence" /><br />
+          <input type="text" placeholder="Name" name="name" /><br />
+          <textarea
+            rows="5"
+            cols="40"
+            placeholder="Description"
+            name="description"
+          ></textarea
+          ><br />
+          <input type="text" placeholder="Price" name="price" /><br />
+          <input type="text" placeholder="Allergies" name="allergies" /><br />
+          <input type="submit" id="update-button" value="Create" />
+        </form>
     
-        <ul>
-            <% for(let i=0; i<info.length;i++){ %>
-                <% if (info[i].category == "SPECIALS: Dessert"){ 
-                    if (info[i].sequence != "0"){ %>
-                <li class="special">
-                    <span class="name"><%= info[i].name %></span>
-                    <span><%= info[i].description %></span>
-                    <span class="price"><%= info[i].price %></span>
-                </li>
-                <% } 
-                }
-            } %>
-        </ul>
+        <h2>Edit Exisiting Menu Item:</h2>
     
-        
-        <div id="legal-disclaimer"
+        <form action="/editSpecial" method="POST">
+          <div name="_id" id="display-ID"></div>
+          <input type="text" id="edit-id" placeholder="ID#" name="_id" /><br />
+          <input
+            type="text"
+            id="edit-category"
+            placeholder="Category"
+            name="category"
+          /><br />
+          <input
+            type="text"
+            id="edit-sequence"
+            placeholder="Sequence"
+            name="sequence"
+          /><br />
+          <input type="text" id="edit-name" placeholder="Name" name="name" /><br />
+          <textarea
+            rows="5"
+            cols="40"
+            placeholder="Description"
+            id="edit-description"
+            name="description"
+          ></textarea
+          ><br />
+          <input
+            type="text"
+            id="edit-price"
+            placeholder="Price"
+            name="price"
+          /><br />
+          <input
+            type="text"
+            id="edit-allergies"
+            placeholder="Allergies"
+            name="allergies"
+          /><br />
     
-        <% 
-        for (let i=0; i<info.length; i++){
-            if (info[i].category == 'controls' && info[i].name == 'legalDisclaimer'){ 
-                if (info[i].display == 'false' ){ %>
-                    class="hidden"
-                <%
-                }    
-            } 
-        } 
-        %>
-        >
-        <% 
-        for (let i=0; i<info.length; i++){
-            if (info[i].category == 'controls' && info[i].name == 'legalDisclaimer'){ 
-                if (info[i].display == 'false' ){ %>
-                    <script>legalDisclaimerBoolean = false;</script>
-                <%
-                }else{ %>
-                    <script>legalDisclaimerBoolean = true;</script>
-                <%
-                }    
-            } 
-        } 
-        %>
-            
-            Consumer advisory: consumption of undercooked meat, poultry, eggs, 
-            or seafood may increase the risk of food-borne illnesses. Please 
-            alert your server if you have special dietary requirements.
-        
-        </div><!--#legal-disclaimer-->
-    </div><!--.quarter-->
-    <div class="quarter">
-        <h1 id="todays-specials">today's specials</h1>
+          <!-- <input type="hidden" name="timestamp" id="timestamp-edit-special">
+          <script>
+            document.querySelector('#timestamp-edit-special').value = new Date()
+          </script> -->
+    
+          <input type="submit" value="Update" />
+        </form>
+    
+      </div><!--#wrapper-->
+    
+        <script src="main.js"></script>
+        <script>
+          document.querySelector('#dinner-cured-meats').addEventListener('click',()=>{
+            location.replace('/dinnerUpdateCuredMeats')
+          })    
+          document.querySelector('#dinner-appetizers').addEventListener('click',()=>{
+                location.replace('/dinnerUpdateAppetizers')
+            })
+            document.querySelector('#dinner-entrees').addEventListener('click',()=>{
+                location.replace('/dinnerUpdateEntrees')
+            })
+            document.querySelector('#dinner-sides').addEventListener('click',()=>{
+                location.replace('/dinnerUpdateSides')
+            })
 
-        <% if (appetizerCount == 1) { %>
-            <h2 id="appetizer-heading">appetizer</h2>
-        <% } %>
-        <% if (appetizerCount > 1) { %>
-            <h2 id="appetizer-heading">appetizers</h2>
-        <% } %>    
-        <ul>
-        <% for(let i=0; i<info.length;i++){ %>
-            <% if (info[i].category == "SPECIALS: Appetizer"){ 
-                if (info[i].sequence != "0"){ %>
-            <li class="special">
-                <span class="name"><%= info[i].name %></span>
-                <span><%= info[i].description %></span>
-                <span class="price"><%= info[i].price %></span>
-            </li>
-            <% } 
-             } 
-         } %>
-        </ul>
-    
-        <% if (entreeCount == 1) { %>
-            <h2 id="entree-heading">entrée</h2>
-        <% } %>
-        <% if (appetizerCount > 1) { %>
-            <h2 id="entree-heading">entrées</h2>
-        <% } %>
-        <ul>
-            <% for(let i=0; i<info.length;i++){ %>
-                <% if (info[i].category == "SPECIALS: Entrée"){ 
-                    if (info[i].sequence != "0"){ %>
-                <li class="special">
-                    <span class="name"><%= info[i].name %></span>
-                    <span><%= info[i].description %></span>
-                    <span class="price"><%= info[i].price %></span>
-                </li>
-                <% } 
-                }
-            } %>
-        </ul>
-     
-        <% if (dessertCount == 1) { %>
-            <h2 id="dessert-heading">dessert</h2>
-        <% } %>
-        <% if (dessertCount > 1) { %>
-            <h2 id="dessert-heading">desserts</h2>
-        <% } %>
-    
-        <ul>
-            <% for(let i=0; i<info.length;i++){ %>
-                <% if (info[i].category == "SPECIALS: Dessert"){ 
-                    if (info[i].sequence != "0"){ %>
-                <li class="special">
-                    <span class="name"><%= info[i].name %></span>
-                    <span><%= info[i].description %></span>
-                    <span class="price"><%= info[i].price %></span>
-                </li>
-                <% } 
-                }
-            } %>
-        </ul>
-    
-        
-        <div id="legal-disclaimer"
-    
-        <% 
-        for (let i=0; i<info.length; i++){
-            if (info[i].category == 'controls' && info[i].name == 'legalDisclaimer'){ 
-                if (info[i].display == 'false' ){ %>
-                    class="hidden"
-                <%
-                }    
-            } 
-        } 
-        %>
-        >
-        <% 
-        for (let i=0; i<info.length; i++){
-            if (info[i].category == 'controls' && info[i].name == 'legalDisclaimer'){ 
-                if (info[i].display == 'false' ){ %>
-                    <script>legalDisclaimerBoolean = false;</script>
-                <%
-                }else{ %>
-                    <script>legalDisclaimerBoolean = true;</script>
-                <%
-                }    
-            } 
-        } 
-        %>
-            
-            Consumer advisory: consumption of undercooked meat, poultry, eggs, 
-            or seafood may increase the risk of food-borne illnesses. Please 
-            alert your server if you have special dietary requirements.
-        
-        </div><!--#legal-disclaimer-->
-    </div><!--.quarter-->
+            document.querySelector('#archive').addEventListener('click',()=>{
+                location.replace('/archive')
+            })
+            document.querySelector('#specials').addEventListener('click',()=>{
+                location.replace('/manager')
+            })
 
-    <div class="quarter">
-        <h1 id="todays-specials">today's specials</h1>
-
-        <% if (appetizerCount == 1) { %>
-            <h2 id="appetizer-heading">appetizer</h2>
-        <% } %>
-        <% if (appetizerCount > 1) { %>
-            <h2 id="appetizer-heading">appetizers</h2>
-        <% } %>    
-        <ul>
-        <% for(let i=0; i<info.length;i++){ %>
-            <% if (info[i].category == "SPECIALS: Appetizer"){ 
-                if (info[i].sequence != "0"){ %>
-            <li class="special">
-                <span class="name"><%= info[i].name %></span>
-                <span><%= info[i].description %></span>
-                <span class="price"><%= info[i].price %></span>
-            </li>
-            <% } 
-             } 
-         } %>
-        </ul>
-    
-        <% if (entreeCount == 1) { %>
-            <h2 id="entree-heading">entrée</h2>
-        <% } %>
-        <% if (appetizerCount > 1) { %>
-            <h2 id="entree-heading">entrées</h2>
-        <% } %>
-        <ul>
-            <% for(let i=0; i<info.length;i++){ %>
-                <% if (info[i].category == "SPECIALS: Entrée"){ 
-                    if (info[i].sequence != "0"){ %>
-                <li class="special">
-                    <span class="name"><%= info[i].name %></span>
-                    <span><%= info[i].description %></span>
-                    <span class="price"><%= info[i].price %></span>
-                </li>
-                <% } 
-                }
-            } %>
-        </ul>
-     
-        <% if (dessertCount == 1) { %>
-            <h2 id="dessert-heading">dessert</h2>
-        <% } %>
-        <% if (dessertCount > 1) { %>
-            <h2 id="dessert-heading">desserts</h2>
-        <% } %>
-    
-        <ul>
-            <% for(let i=0; i<info.length;i++){ %>
-                <% if (info[i].category == "SPECIALS: Dessert"){ 
-                    if (info[i].sequence != "0"){ %>
-                <li class="special">
-                    <span class="name"><%= info[i].name %></span>
-                    <span><%= info[i].description %></span>
-                    <span class="price"><%= info[i].price %></span>
-                </li>
-                <% } 
-                }
-            } %>
-        </ul>
-    
-        
-        <div id="legal-disclaimer"
-    
-        <% 
-        for (let i=0; i<info.length; i++){
-            if (info[i].category == 'controls' && info[i].name == 'legalDisclaimer'){ 
-                if (info[i].display == 'false' ){ %>
-                    class="hidden"
-                <%
-                }    
-            } 
-        } 
-        %>
-        >
-        <% 
-        for (let i=0; i<info.length; i++){
-            if (info[i].category == 'controls' && info[i].name == 'legalDisclaimer'){ 
-                if (info[i].display == 'false' ){ %>
-                    <script>legalDisclaimerBoolean = false;</script>
-                <%
-                }else{ %>
-                    <script>legalDisclaimerBoolean = true;</script>
-                <%
-                }    
-            } 
-        } 
-        %>
-            
-            Consumer advisory: consumption of undercooked meat, poultry, eggs, 
-            or seafood may increase the risk of food-borne illnesses. Please 
-            alert your server if you have special dietary requirements.
-        
-        </div><!--#legal-disclaimer-->
- 
-            
-    </div><!--.quarter-->
-
-
-</div><!--#specials-->
-</div><!--#wrapper-->
-<script src="main.js"></script>
+        </script>
 </body>
 </html>
