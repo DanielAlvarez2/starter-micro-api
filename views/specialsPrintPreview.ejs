@@ -59,6 +59,10 @@
         width:4.25in;
         height:5.5in;
       }
+      #specials h1{
+            text-align: left;
+        }
+
         @media print{
             .no-print{
                 display: none !important;  
@@ -116,7 +120,7 @@
                 } 
             %>;
         }
-        li{
+        .quarter li{
             padding-top:            
             <% 
                 for (let i=0; i<info.length; i++){
@@ -270,7 +274,7 @@ let dessertCount = <%=dessertCount%>
     <nav class="no-print">
         <h1>
             olea
-            <span>Content Manager</span></h1>
+            <span id="content-manager">Content Manager</span></h1>
         
 
         <ul>

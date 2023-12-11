@@ -8,11 +8,18 @@
     src: url("assets/FuturaLight.otf");
 }
 @font-face{
+    font-family: FuturaMedium;
+    src: url("assets/FuturaMedium.otf");
+}
+@font-face{
     font-family: FuturaHeavy;
     src: url("assets/FuturaHeavy.otf");
 }
-.name, h1{
+h1{
     font-family: FuturaLight;
+}
+.name{
+    font-family: FuturaMedium;
 }
 h2{
     font-family: FuturaHeavy;
@@ -40,7 +47,7 @@ body{
     overflow-x:hidden;
     min-height:100vh;
 }
-.name, h1{
+h1{
     font-family: FuturaLight;
 }
 h2{
@@ -136,7 +143,7 @@ color: rgb(183, 183, 0);
 color: #654321;
 }
 .special {
-margin-bottom: 20px;
+/* margin-bottom: 20px; */
 }
 ul{
 list-style-type: none;
