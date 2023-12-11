@@ -1,0 +1,79 @@
+@font-face{
+    font-family: FuturaLight;
+    src: url("assets/FuturaLight.otf");
+    }
+    @font-face{
+        font-family: FuturaHeavy;
+        src: url("assets/FuturaHeavy.otf");
+    }
+    h2{
+        font-family: FuturaHeavy;
+    }
+    *{
+        margin:0;
+        padding:0;
+        box-sizing: border-box;
+    }
+    .name{
+        font-family: FuturaHeavy;
+    }
+    body{
+        font-family: FuturaLight;
+        background-color: #262626;
+        color: #C1BEBE;
+        line-height:2;
+    }
+    #nav span{
+        line-height:0;
+    }
+    #nav span{
+        padding: 0 15px;
+    }
+    #socials span, #footer span{
+        padding: 0 5px;
+    }
+    #nav-bar, #main, #footer{
+        padding-left:1.5cm
+    }
+    h3{
+        text-align: center;
+        font-weight: 100;
+        font-size: 25px;
+        margin-top:100px;
+    }
+    ul{
+        list-style-type: none;
+    }
+    li{
+        display:flex;
+        gap:20px;
+        width:100%;
+        justify-content: space-between;
+        padding: 20px 0;
+    }
+    h2{
+        font-size:20px;
+        padding-top:50px;
+    }
+    h2 span{
+        font-family: FuturaLight;
+        font-weight: 100;
+    }
+    #wrapper{
+        width:100%;
+        display:grid;
+        place-content:center;
+        width:11in;
+    }
+    nav li{
+            width:25%;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+    @media (max-width:11in ){
+        #wrapper{
+            width:100%;
+        }
+    }

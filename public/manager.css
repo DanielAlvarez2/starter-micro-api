@@ -37,5 +37,150 @@ ul{
     font-weight:900;
 }
 body{
+    overflow-x:hidden;
+    min-height:100vh;
+}
+.name, h1{
+    font-family: FuturaLight;
+}
+h2{
+    font-family: FuturaHeavy;
+}
+.del, .edit, .archive{
+    cursor:pointer;
+    font-size:20px;
+}
+.allergies{
+    color:red;
+}
+.edit{
+    color:rgb(183, 183, 0);
+}
+.archive{
+    color:blue;
+}
+ul{
+    list-style-type:none;
+}
+.name, .price{
+    font-weight:900;
+}
+*{
+    padding:0;
+    margin:0;
+    box-sizing:border-box
+}
+#wrapper{
+    position: relative;
+    max-width:100%;
+    min-height:100vh;
+    display:grid;
+    place-content: center;
+}
+h1{
+    text-align: center;
+    font-size: 40px;
+    font-weight: 100;
+}
+h2{
+    /* margin-bottom: 10px; */
+    /* text-align: center; */
+}
+button{
+    width:150px;
+    margin: 0 auto;
+    cursor:pointer;
+    margin-bottom:20px;
+}
+nav li{
+    flex:1;
+    text-align: center;
+    padding: 5px 0;
+    margin-bottom: 10px;
+    border-radius: 20px;
+    cursor: pointer;
+}
 
+nav ul{
+    width:100%;
+    list-style-type: none;
+    display:flex;
+    width:60ch;
+}
+
+.del,
+.edit,
+.archive,
+.transfer,
+.move-up,
+.move-down {
+cursor: pointer;
+font-size: 20px;
+transform:scaleX(3);
+}
+.move-up, .move-down{
+color:green;
+width:100%;
+text-align: center;
+}
+.transfer {
+color: blue;
+}
+.del {
+color: red;
+}
+.edit {
+color: rgb(183, 183, 0);
+}
+.archive {
+color: #654321;
+}
+.special {
+margin-bottom: 20px;
+}
+ul{
+list-style-type: none;
+}
+li {
+max-width: 50ch;
+}
+.active-page{
+background: black;
+color:white;
+cursor: none;
+}
+nav{
+    width:60ch;
+    margin:0 auto;
+    margin-bottom:50px;
+}
+nav h1{
+    padding:0 20px;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#content-manager{
+    font-size:20px;
+}
+#content{
+    min-height:100vh;
+    display:flex;
+    flex-direction: column;
+}
+footer ul{
+    display:flex;
+    width:100%;
+}
+footer li{
+    flex:1;
+    text-align: center;
+}
+footer{
+    margin-top: 20px;
+    width:60ch;
+    margin:0 auto;
+    margin-top:auto;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }

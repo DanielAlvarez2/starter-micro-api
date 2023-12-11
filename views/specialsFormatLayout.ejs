@@ -4,108 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manager</title>
-    <link rel="stylesheet" href="style.css">
+    
     <link rel="stylesheet" href="manager.css">
     <script
       src="https://kit.fontawesome.com/21ef82ed30.js"
       crossorigin="anonymous"
     ></script>
     <style>
-        *{
-            padding:0;
-            margin:0;
-            box-sizing:border-box
-        }
-        #wrapper{
-            max-width:100%;
-            min-height:100vh;
-            display:grid;
-            place-content: center;
-        }
-        h1{
-            text-align: center;
-            font-size: 40px;
-            font-weight: 100;
-        }
-        h2{
-            /* margin-bottom: 10px; */
-            /* text-align: center; */
-        }
-        button{
-            width:150px;
-            margin: 0 auto;
-            cursor:pointer;
-            margin-bottom:20px;
-        }
-        nav li{
-            width:25%;
-            text-align: center;
-            padding: 5px 0;
-            border-radius: 20px;
-            cursor: pointer;
-            line-height:18px;
-        }
-        nav ul{
-            width:100%;
-        }
-        ul{
-            /* width:60ch; */
-        }
-        .del,
-      .edit,
-      .archive,
-      .transfer,
-      .move-up,
-      .move-down {
-        cursor: pointer;
-        font-size: 20px;
-        transform:scaleX(3);
-      }
-      .move-up, .move-down{
-        color:green;
-        width:100%;
-        text-align: center;
-      }
-      .transfer {
-        color: blue;
-      }
-      .del {
-        color: red;
-      }
-      .edit {
-        color: rgb(183, 183, 0);
-      }
-      .archive {
-        color: #654321;
-      }
-      .special {
-        margin-bottom: 20px;
-      }
-      ul{
-        list-style-type: none;
-      }
-      li {
-        max-width: 50ch;
-      }
-      .active-page{
-        background: black;
-        color:white;
-        cursor: none;
-      }
-       
+      
       .special{
             margin-bottom: 0px;
         }
-        #wrapper{
-            min-width:100%;
-            min-height:100vh;
-            /* background:grey; */
-            display:grid;
-            place-content:center;
-        }
-        #specials{
-            position: relative;
-        }
+       
         #controls{
             line-height:30px;
             font-size:19px;
@@ -158,7 +68,7 @@
             font-family:serif;
         }
         
-        h1{
+        #specials h1{
             padding-bottom:
             <% 
                 for (let i=0; i<info.length; i++){
@@ -178,7 +88,7 @@
                 } 
             %>;
         }
-        h2{
+        #specials h2{
             padding-bottom:
             <% 
                 for (let i=0; i<info.length; i++){
@@ -209,7 +119,7 @@
                 } 
             %>;
         }
-        li{
+        #specials li{
             padding-top:            
             <% 
                 for (let i=0; i<info.length; i++){
@@ -297,6 +207,7 @@
         }
         #flexbox{
             display:flex;
+            margin: 0 auto;
         }
         button, #save-changes{
             padding:5px 10px;
@@ -307,21 +218,21 @@
             #flexbox{
                 flex-direction: row;
             }
-            @media (max-width: 8.5in){
+            /* @media (max-width: 8.5in){
                 #wrapper{
                     width:8.5in;
                 }
-            }
+            } */
         }
         @media (orientation: portrait){
             #flexbox{
                 flex-direction: column;
             }
-            @media (max-width: 4.25in){
+            /* @media (max-width: 4.25in){
                 #wrapper{
                     width:4.25in;
                 }
-            }
+            } */
 
         }
 
@@ -352,33 +263,31 @@ let dessertCount = <%=dessertCount%>
 
 
 
-<body style="overflow-x:hidden;">
+<body>
 
-    <nav style="width:60ch;margin:0 auto;max-width:100%;margin-bottom:50px;">
-        <h1 style="padding:0 20px;
-                    display:flex;
-                    justify-content: space-between;
-                    align-items: center;
-                    ">
+    <div id="wrapper">
+    <div id="content">
+
+    <nav>
+        <h1>
             olea
-            <span style="font-size:20px;">Content Manager</span></h1>
+            <span id="content-manager">Content Manager</span></h1>
         
 
-        <ul style="display:flex;list-style-type: none;">
+        <ul>
             <li class="active-page">Specials</li>
             <li>Dinner</li>
             <li>Dessert</li>
             <li>Wine/Drinks</li>
             <li id="archive">Archive</li>
         </ul>
-        <ul style="display:flex;list-style-type: none;margin-top:10px;">
-            <li id="specials-edit" style="width:33%;">Edit Menu Items</li>
-            <li class="active-page" id="specials-format-layout" style="width:33%;">Format Layout</li>
-            <li id="specials-print-preview" style="width:33%;">Print Preview</li>
+        <ul id="nav-ul-bottom">
+            <li id="specials-edit">Edit Menu Items</li>
+            <li class="active-page" id="specials-format-layout">Format Layout</li>
+            <li id="specials-print-preview">Print Preview</li>
         </ul>
     </nav>
     
-    <div id="wrapper" style="position: relative;">
         
     
         <div id="flexbox">    
@@ -583,7 +492,17 @@ let dessertCount = <%=dessertCount%>
             
             
             </div><!--#flexbox-->
-            
+
+            <footer>
+                <ul>
+                    <li>Specials</li>
+                    <li>Dinner</li>
+                    <li>Dessert</li>
+                    <li>Wine/Drinks</li>
+                    <li>Archive</li>
+                </ul>
+            </footer>
+            </div><!--#content-->
             </div><!--#wrapper-->
             <script src="main.js"></script>
             
