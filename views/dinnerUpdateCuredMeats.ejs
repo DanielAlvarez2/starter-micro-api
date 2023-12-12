@@ -4,93 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manager</title>
-    <link rel="stylesheet" href="style.css">
+    
     <link rel="stylesheet" href="manager.css">
     <script
       src="https://kit.fontawesome.com/21ef82ed30.js"
       crossorigin="anonymous"
     ></script>
     <style>
-        *{
-            padding:0;
-            margin:0;
-            box-sizing:border-box
-        }
-        #wrapper{
-            max-width:100%;
-            min-height:100vh;
-            display:grid;
-            place-content: center;
-        }
-        h1{
-            text-align: center;
-            font-size: 40px;
-            font-weight: 100;
-        }
-        h2{
-            /* margin-bottom: 10px; */
-            /* text-align: center; */
-        }
-        button{
-            width:150px;
-            margin: 0 auto;
-            cursor:pointer;
-            margin-bottom:20px;
-        }
-        nav li{
-            width:25%;
-            text-align: center;
-            padding: 5px 0;
-            border-radius: 20px;
-            cursor: pointer;
-        }
-        nav ul{
-            width:100%;
-        }
-        ul{
-            width:60ch;
-        }
-        .del,
-      .edit,
-      .archive,
-      .transfer,
-      .move-up,
-      .move-down {
-        cursor: pointer;
-        font-size: 20px;
-        transform:scaleX(3);
-      }
-      .move-up, .move-down{
-        color:green;
-        width:100%;
-        text-align: center;
-      }
-      .transfer {
-        color: blue;
-      }
-      .del {
-        color: red;
-      }
-      .edit {
-        color: rgb(183, 183, 0);
-      }
-      .archive {
-        color: #654321;
-      }
-      .special {
-        margin-bottom: 20px;
-      }
-      ul{
-        list-style-type: none;
-      }
-      li {
-        max-width: 50ch;
-      }
-      .active-page{
-        background: black;
-        color:white;
-        cursor: none;
-      }
+       
     </style>
 </head>
 
@@ -112,41 +33,35 @@ let dinnerCuredMeatsCount = <%=dinnerCuredMeatsCount%>
 
 
 
-<body style="overflow-x:hidden;min-height:100vh;">
-    
-    <nav style="width:60ch;margin:0 auto;margin-bottom:50px;">
-        <h1 style="padding:0 20px;
-                        display:flex;
-                        justify-content: space-between;
-                        align-items: center;
-                        ">
-                olea
-                <span style="font-size:20px;">Content Manager</span></h1>
+<body> 
+  <div id="wrapper">
+    <div id="content">
+    <nav>
+        <h1>olea<span id="content-manager">Content Manager</span></h1>
                 
                 
-                <ul style="display:flex;list-style-type: none;">
+                <ul>
                     <li id="specials">Specials</li>
                     <li class="active-page">Dinner</li>
                     <li>Dessert</li>
                     <li>Wine/Drinks</li>
                     <li id="archive">Archive</li>
                 </ul>
-                <ul style="display:flex;list-style-type: none;margin-top:10px;">
-                    <li class="active-page" style="width:33%;">Edit Menu Items</li>
-                    <li id="dinner-format-layout" style="width:33%;">Format Layout</li>
-                    <li id="dinner-print-preview" style="width:33%;">Print Preview</li>
+                <ul>
+                    <li class="active-page">Edit Menu Items</li>
+                    <a href="/dinnerLayout"><li id="dinner-format-layout">Format Layout</li></a>
+                    <a href="/dinnerPrintPreview"><li id="dinner-print-preview">Print Preview</li></a>
                 </ul>
-                <ul style="display:flex;list-style-type: none;margin-top:10px;">
-                    <li id="dinner-cured-meats" class="active-page" style="width:25%;">Cured Meats</li>
-                    <li id="dinner-appetizers" style="width:25%;">Appetizers</li>
-                    <li id="dinner-entrees" style="width:25%;">Entrées</li>
-                    <li id="dinner-sides" style="width:25%;">Sides</li>
+                <ul>
+                    <li id="dinner-cured-meats" class="active-page">Cured Meats</li>
+                    <a href="/dinnerUpdateAppetizers"><li id="dinner-appetizers">Appetizers</li></a>
+                    <a href="/dinnerUpdateEntrees"><li id="dinner-entrees">Entrées</li></a>
+                    <a href="/dinnerUpdateSides"><li id="dinner-sides">Sides</li></a>
                 </ul>
 
             </nav>
+      <main>
             
-            
-            <div id="wrapper" style="position: relative;">
         <% if(dinnerCuredMeatsCount == "1"){ %>
             <h2>DINNER: Cured Meat</h2>
         <%}%>
@@ -258,7 +173,18 @@ let dinnerCuredMeatsCount = <%=dinnerCuredMeatsCount%>
     
           <input type="submit" value="Update" />
         </form>
-    
+      </main>
+      
+      <footer>
+        <ul>
+          <li>Specials</li>
+          <li>Dinner</li>
+          <li>Dessert</li>
+          <li>Wine/Drinks</li>
+          <li>Archive</li>
+      </ul>
+      </footer>
+    </div><!--#content-->
       </div><!--#wrapper-->
     
         <script src="main.js"></script>

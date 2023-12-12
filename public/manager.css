@@ -2,6 +2,7 @@
     margin:0;
     padding:0;
     box-sizing:border-box;
+     
 }
 @font-face{
     font-family: FuturaLight;
@@ -14,6 +15,15 @@
 @font-face{
     font-family: FuturaHeavy;
     src: url("assets/FuturaHeavy.otf");
+}
+a{
+    text-decoration:none;
+}
+nav a{
+    flex:1;
+}
+nav a:visited{
+    color:black;
 }
 h1{
     font-family: FuturaLight;
