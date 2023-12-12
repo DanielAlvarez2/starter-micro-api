@@ -275,7 +275,7 @@ app.get('/specialsPrintPreview', (request, response) =>{
     })
 })
 app.get('/dinnerPrintPreview', (request, response) =>{
-    db.collection('Specials').find().toArray()
+    db.collection('Specials').find().sort({sequence:1}).toArray()
     .then(data => {
         response.render('dinnerPrintPreview.ejs', {info: data})
     })
