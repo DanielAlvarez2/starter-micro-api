@@ -223,7 +223,7 @@ app.post('/saveDinnerMenuChanges', async (request,response)=>{
 
 
     // setTimeout(()=>response.redirect('/dinner'),250)
-    response.redirect('/dinner')    
+    response.redirect(request.get('referer'))
 })
 app.get('/specialsLayout', (request, response) =>{
     db.collection('Specials').find().sort({sequence:1}).toArray()

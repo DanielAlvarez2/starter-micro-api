@@ -51,10 +51,10 @@ let dinnerCuredMeatsCount = <%=dinnerCuredMeatsCount%>
                     <a href="/dinnerPrintPreview"><li id="dinner-print-preview">Print Preview</li></a>
                 </ul>
                 <ul>
-                    <li id="dinner-cured-meats">Cured Meats</li>
+                    <a href="/dinnerUpdateCuredMeats"><li id="dinner-cured-meats">Cured Meats</li></a>
                     <li id="dinner-appetizers" class="active-page">Appetizers</li>
-                    <li id="dinner-entrees">Entrées</li>
-                    <li id="dinner-sides">Sides</li>
+                    <a href="/dinnerUpdateEntrees"><li id="dinner-entrees">Entrées</li></a>
+                    <a href="/dinnerUpdateSides"><li id="dinner-sides">Sides</li></a>
                 </ul>
 
             </nav>
@@ -187,27 +187,6 @@ let dinnerCuredMeatsCount = <%=dinnerCuredMeatsCount%>
       </div><!--#wrapper-->
     
         <script src="main.js"></script>
-        <script>
-          document.querySelector('#dinner-cured-meats').addEventListener('click',()=>{
-            location.replace('/dinnerUpdateCuredMeats')
-          })    
-          document.querySelector('#dinner-appetizers').addEventListener('click',()=>{
-                location.replace('/dinnerUpdateAppetizers')
-            })
-            document.querySelector('#dinner-entrees').addEventListener('click',()=>{
-                location.replace('/dinnerUpdateEntrees')
-            })
-            document.querySelector('#dinner-sides').addEventListener('click',()=>{
-                location.replace('/dinnerUpdateSides')
-            })
-
-            document.querySelector('#archive').addEventListener('click',()=>{
-                location.replace('/archive')
-            })
-            document.querySelector('#specials').addEventListener('click',()=>{
-                location.replace('/manager')
-            })
-
-        </script>
+        
 </body>
 </html>

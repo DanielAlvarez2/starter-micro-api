@@ -2,321 +2,416 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manager</title>
+    <title>Olea Dinner Menu</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="manager.css">
-    <script
-      src="https://kit.fontawesome.com/21ef82ed30.js"
-      crossorigin="anonymous"
-    ></script>
+    <script src="https://kit.fontawesome.com/21ef82ed30.js" crossorigin="anonymous"></script>
     <style>
-        *{
-            padding:0;
-            margin:0;
-            box-sizing:border-box
+        @media print{
+            .no-print{
+                display: none !important;
+            }
+        }
+        
+        .special{
+            margin-bottom: 0px;
         }
         #wrapper{
-            max-width:100%;
+            min-width:100%;
             min-height:100vh;
+
+            /* background:grey; */
             display:grid;
-            place-content: center;
+            place-content:center;
         }
+        #specials{
+            position: relative;
+        }
+        #controls{
+            line-height:30px;
+            font-size:19px;
+        }
+        #specials, #controls{
+            width:4.25in;
+            height:5.5in;
+            background:white;
+            border:solid 1px black;
+            padding: 0px 0px;
+            display:inline-block;
+            
+        }
+        #dinner-menu{
+            width: 8.5in;
+            height: 14in;
+            position: relative;
+            /* border: 1px solid red; */
+            /* transform: scale(0.75); */
+
+            padding-left:
+            <% 
+                for (let i=0; i<info.length; i++){
+                    if (info[i].category == 'controlsDinner' && info[i].name == 'dinnerPaddingSides'){ %>
+                        <%= info[i].pixels%>
+            <%
+                    } 
+                } 
+            %>;
+            
+            padding-right:
+            <% 
+                for (let i=0; i<info.length; i++){
+                    if (info[i].category == 'controlsDinner' && info[i].name == 'dinnerPaddingSides'){ %>
+                        <%= info[i].pixels%>
+            <%
+                    } 
+                } 
+            %>;
+            padding-top:
+            <% 
+                for (let i=0; i<info.length; i++){
+                    if (info[i].category == 'controlsDinner' && info[i].name == 'dinnerPaddingTop'){ 
+                        
+                        %>
+                        <%= info[i].pixels %>
+            <%
+                    } 
+                } 
+            %>;
+
+        }
+        #specials{
+            padding-top:
+            <% 
+                for (let i=0; i<info.length; i++){
+                    if (info[i].category == 'controls' && info[i].name == 'padding-top'){ 
+                        
+                        %>
+                        <%= info[i].pixels %>
+            <%
+                    } 
+                } 
+            %>;
+
+            padding-left:
+            <% 
+                for (let i=0; i<info.length; i++){
+                    if (info[i].category == 'controls' && info[i].name == 'padding-sides'){ %>
+                        <%= info[i].pixels%>
+            <%
+                    } 
+                } 
+            %>;
+            
+            padding-right:
+            <% 
+                for (let i=0; i<info.length; i++){
+                    if (info[i].category == 'controls' && info[i].name == 'padding-sides'){ %>
+                        <%= info[i].pixels%>
+            <%
+                    } 
+                } 
+            %>;
+            
+        }
+        
+        ul{
+            font-family:serif;
+        }
+        
         h1{
-            text-align: center;
-            font-size: 40px;
-            font-weight: 100;
+            padding-bottom:
+            <% 
+                for (let i=0; i<info.length; i++){
+                    if (info[i].category == 'controls' && info[i].name == 'h1paddingBottom'){ %>
+                        <%= info[i].pixels%>
+            <%
+                    } 
+                } 
+            %>;
+            font-size:
+            <% 
+                for (let i=0; i<info.length; i++){
+                    if (info[i].category == 'controlsDinner' && info[i].name == 'oleaLogoFontSize'){ %>
+                        <%= info[i].pixels%>
+            <%
+                    } 
+                } 
+            %>;
         }
         h2{
-            /* margin-bottom: 10px; */
-            /* text-align: center; */
+            font-family: FuturaLight;
+            font-size:
+            <% 
+                for (let i=0; i<info.length; i++){
+                    if (info[i].category == 'controlsDinner' && info[i].name == 'sidesFontSize'){ %>
+                        <%= info[i].pixels%>
+            <%
+                    } 
+                } 
+            %>;
         }
-        button{
-            width:150px;
-            margin: 0 auto;
-            cursor:pointer;
-            margin-bottom:20px;
+        h3{
+            font-family: FuturaLight;
+            font-size:
+            <% 
+                for (let i=0; i<info.length; i++){
+                    if (info[i].category == 'controlsDinner' && info[i].name == 'dinnerMenuFontSize'){ %>
+                        <%= info[i].pixels%>
+            <%
+                    } 
+                } 
+            %>;
         }
-        nav li{
-            width:25%;
+        li{
+            padding-top:            
+            <% 
+                for (let i=0; i<info.length; i++){
+                    if (info[i].category == 'controlsDinner' && info[i].name == 'dinnerMenuItemsPadding'){ 
+                        let half=(info[i].pixels).substring(0,info[i].pixels.length-2)/2
+                        %>
+                        <%= half%>px
+            <%
+                    } 
+                } 
+            %>;
+            padding-bottom:
+            <% 
+                for (let i=0; i<info.length; i++){
+                    if (info[i].category == 'controlsDinner' && info[i].name == 'dinnerMenuItemsPadding'){ 
+                        let half=(info[i].pixels).substring(0,info[i].pixels.length-2)/2
+                        %>
+                        <%= half%>px
+            <%
+                    } 
+                } 
+            %>;
+            line-height:
+            <% 
+                for (let i=0; i<info.length; i++){
+                    if (info[i].category == 'controlsDinner' && info[i].name == 'dinnerMenuLineHeight'){ %>
+                        <%= info[i].pixels%>
+            <%
+                    } 
+                } 
+            %>;
+            font-size:
+            <% 
+                for (let i=0; i<info.length; i++){
+                    if (info[i].category == 'controlsDinner' && info[i].name == 'dinnerMenuFontSize'){ %>
+                        <%= info[i].pixels%>
+            <%
+                    } 
+                } 
+            %>;
+        }
+        input{
             text-align: center;
-            padding: 5px 0;
-            border-radius: 20px;
-            cursor: pointer;
         }
-        nav ul{
-            width:100%;
+        #legal-disclaimer{
+            font-size:
+            <% 
+                for (let i=0; i<info.length; i++){
+                    if (info[i].category == 'controlsDinner' && info[i].name == 'legalDisclaimerFontSize'){ 
+                        
+                        %>
+                        <%= info[i].pixels %>
+            <%
+                    } 
+                } 
+            %>;
+
         }
-        ul{
-            width:60ch;
+        #flexbox{
+            display:flex;
         }
-        .del,
-      .edit,
-      .archive,
-      .transfer,
-      .move-up,
-      .move-down {
-        cursor: pointer;
-        font-size: 20px;
-        transform:scaleX(3);
-      }
-      .move-up, .move-down{
-        color:green;
-        width:100%;
-        text-align: center;
-      }
-      .transfer {
-        color: blue;
-      }
-      .del {
-        color: red;
-      }
-      .edit {
-        color: rgb(183, 183, 0);
-      }
-      .archive {
-        color: #654321;
-      }
-      .special {
-        margin-bottom: 20px;
-      }
-      ul{
-        list-style-type: none;
-      }
-      li {
-        max-width: 50ch;
-      }
-      .active-page{
-        background: black;
-        color:white;
-        cursor: none;
-      }
+        button, #save-changes{
+            padding:10px 20px;
+            cursor:pointer;
+        }
+        #top, #sides, #footer{
+            gap:
+            <% 
+                for (let i=0; i<info.length; i++){
+                    if (info[i].category == 'controlsDinner' && info[i].name == 'dinnerCenterGap'){ 
+                        
+                        %>
+                        <%= info[i].pixels %>
+            <%
+                    } 
+                } 
+            %>;
+        }
+        @media (orientation: landscape){
+            #flexbox{
+                flex-direction: row;
+            }
+            @media (max-width: 8.5in){
+                #wrapper{
+                    width:8.5in;
+                }
+            }
+        }
+        @media (orientation: portrait){
+            #flexbox{
+                flex-direction: column;
+            }
+            @media (max-width: 4.25in){
+                #wrapper{
+                    width:4.25in;
+                }
+            }
+
+        }
+
     </style>
 </head>
 
-
-
 <% 
-let dinnerCuredMeatsCount=0
-for (let i=0; i<info.length; i++){
-    if (info[i].category == "DINNER: Cured Meats" && info[i].sequence != "0") dinnerCuredMeatsCount++ 
-}
-
+    let appetizerCount=0
+    let entreeCount=0
+    let dessertCount=0
+    for (let i=0; i<info.length; i++){
+        if (info[i].category == "SPECIALS: Appetizer") appetizerCount++ 
+        if (info[i].category == "SPECIALS: Entrée") entreeCount++ 
+        if (info[i].category == "SPECIALS: Dessert") dessertCount++ 
+    }
+    
 %>
 <script>
-let dinnerCuredMeatsCount = <%=dinnerCuredMeatsCount%>
+    let appetizerCount = <%=appetizerCount%>
+    let entreeCount = <%=entreeCount%>
+    let dessertCount = <%=dessertCount%>
+   
 </script>
 
+<body>
+<div id="wrapper" class="no-print;" style="background-color:lightgray;place-content:center;">
 
 
 
-
-
-<body style="overflow-x:hidden;min-height:100vh;">
     
-    <nav style="width:60ch;margin:0 auto;margin-bottom:50px;">
-        <h1 style="padding:0 20px;
-                        display:flex;
-                        justify-content: space-between;
-                        align-items: center;
-                        ">
-                olea
-                <span style="font-size:20px;">Content Manager</span></h1>
-                
-                
-                <ul style="display:flex;list-style-type: none;">
-                    <li id="specials">Specials</li>
-                    <li class="active-page">Dinner</li>
-                    <li>Dessert</li>
-                    <li>Wine/Drinks</li>
-                    <li id="archive">Archive</li>
-                </ul>
-                <ul style="display:flex;list-style-type: none;margin-top:10px;">
-                    <li class="active-page" style="width:33%;">Edit Menu Items</li>
-                    <li id="specials-format-layout" style="width:33%;">Format Layout</li>
-                    <li id="specials-print-preview" style="width:33%;">Print Preview</li>
-                </ul>
-                <ul style="display:flex;list-style-type: none;margin-top:10px;">
-                    <li id="dinner-cured-meats" style="width:25%;">Cured Meats</li>
-                    <li id="dinner-appetizers" style="width:25%;">Appetizers</li>
-                    <li id="dinner-entrees" style="width:25%;">Entrées</li>
-                    <li id="dinner-sides" class="active-page" style="width:25%;">Sides</li>
-                </ul>
+<div id="dinner-menu" style="background-color: white;">
+    <h1 id="olea">olea</h1>
+    <hr>
+    <div id="top" style="display:flex;">
 
-            </nav>
+        <div id="left" style="width:50%;flex:1;">
+
+            <div id="cured-meats">
+                <ul>
+                    <% for(let i=0; i<info.length;i++){ %>
+                        <% if (info[i].category == "DINNER: Cured Meats" && info[i].sequence != "0"){ %>
+                        <li class="special">
+                            <span class="name"><%= info[i].name %></span><br>
+                            <span><%= info[i].description %></span>
+                            <span class="price"><%= info[i].price %></span>
+                        </li>
+                        <% } %>
+                    <% } %>
+                </ul>
+            </div><!--#cured-meats-->
+    
+            <ul>
+                <% for(let i=0; i<info.length;i++){ %>
+                    <% if (info[i].category == "DINNER: Appetizer" && info[i].sequence != "0"){ %>
+                    <li class="special">
+                        <span class="name"><%= info[i].name %></span><br>
+                        <span><%= info[i].description %></span>
+                        <span class="price"><%= info[i].price %></span>
+                    </li>
+                    <% } %>
+                <% } %>
+            </ul>
             
-            
-            <div id="wrapper" style="position: relative;">
+        </div><!--#left-->
+
         
-            <h2>DINNER: Sides Left</h2>
-            
+        <div id="right" style="width:50%;flex:1;">
+            <ul>
+                <% for(let i=0; i<info.length;i++){ %>
+                    <% if (info[i].category == "DINNER: Entrée" && info[i].sequence != "0"){ %>
+                    <li class="special">
+                        <span class="name"><%= info[i].name %></span><br>
+                        <span><%= info[i].description %></span>
+                        <span class="price"><%= info[i].price %></span>
+                    </li>
+                    <% } %>
+                <% } %>
+            </ul>
+
+            <div id="tasting-menu">
+                <ul>
+                    <% for(let i=0; i<info.length;i++){ %>
+                        <% if (info[i].category == "Tasting Menu"){ %>
+                        <li class="special">
+                            <span class="name"><%= info[i].name %></span><br>
+                            <span><%- info[i].description %></span>
+                        </li>
+                        <% } %>
+                    <% } %>
+                </ul>
         
-        <ul>
-          <% for(let i=0; i<info.length;i++){ 
-            if( info[i].sequence &&
-                info[i].sequence != "" &&
-                info[i].sequence != "0" && 
-                info[i].category == "DINNER: Sides Left"){ %>
-          <li class="special">
-            <% if(info[i].sequence == "1"){ %>
-                <div class="move-up" style="visibility:hidden"><i class="fa-solid fa-sort-up"></i></div>
-            <% }else{ %>
-                <div class="move-up"><i class="fa-solid fa-sort-up"></i></div>
-            <% } %>
-            <div><%= info[i]._id %></div>
-            <div><%= info[i].category %></div>
-            <div><%= info[i].sequence %></div>
-            <div><%= info[i].name %></div>
-            <div><%= info[i].description %></div>
-            <div><%= info[i].price %></div>
-            <div><%= info[i].allergies %></div>
-            <div><%- `${info[i].timestamp}`.substring(0,24) %></div>
+            </div><!--#tasting-menu-->
+        </div><!--#right-->
+    </div><!--#top-->
+<h2>sides</h2>
+    <div id="sides" style="display:flex">
+        <div class="left" style="width:50%">
+            <ul>
+                <% for(let i=0; i<info.length;i++){ %>
+                    <% if (info[i].category == "DINNER: Sides Left" && info[i].sequence != "0"){ %>
+                    <li class="special">
+                        <span class="name"><%= info[i].name %></span><br>
+                        <span><%= info[i].description %></span>
+                        <span class="price"><%= info[i].price %></span>
+                    </li>
+                    <% } %>
+                <% } %>
+            </ul>
+            
+        </div><!--.left-->
+        
+        <div class="right" style="width:50%">
+            <ul>
+                <% for(let i=0; i<info.length;i++){ %>
+                    <% if (info[i].category == "DINNER: Sides Right" && info[i].sequence != "0"){ %>
+                    <li class="special">
+                        <span class="name"><%= info[i].name %></span><br>
+                        <span><%= info[i].description %></span>
+                        <span class="price"><%= info[i].price %></span>
+                    </li>
+                    <% } %>
+                <% } %>
+            </ul>
+        
+        </div><!--.right-->
+    </div><!--#sides-->
 
-            <span class="edit"><i class="fa-solid fa-pencil"></i> Edit</span
-                >&nbsp;&nbsp;
-                <span class="archive"
-                ><i class="fa-solid fa-box-archive"></i> Archive</span
-                >&nbsp;&nbsp;
-                <span class="del"><i class="fa-solid fa-trash-can"></i> Delete</span
-                    >&nbsp;&nbsp;
-                    <span class="transfer"
-                    ><i class="fa-solid fa-arrow-right-arrow-left"></i> Transfer</span
-                    >&nbsp;&nbsp;
-            <% if(info[i].sequence != dinnerCuredMeatsCount){ %>
-                <div class="move-down"><i class="fa-solid fa-sort-down"></i></div>
-            <% } %>
-           </li>
-          <% } } %>
-        </ul>
-    
-        <h2>DINNER: Sides Right</h2>
-        <ul>
-            <% for(let i=0; i<info.length;i++){ 
-              if( info[i].sequence &&
-                  info[i].sequence != "" &&
-                  info[i].sequence != "0" && 
-                  info[i].category == "DINNER: Sides Right"){ %>
-            <li class="special">
-              <% if(info[i].sequence == "1"){ %>
-                  <div class="move-up" style="visibility:hidden"><i class="fa-solid fa-sort-up"></i></div>
-              <% }else{ %>
-                  <div class="move-up"><i class="fa-solid fa-sort-up"></i></div>
-              <% } %>
-              <div><%= info[i]._id %></div>
-              <div><%= info[i].category %></div>
-              <div><%= info[i].sequence %></div>
-              <div><%= info[i].name %></div>
-              <div><%= info[i].description %></div>
-              <div><%= info[i].price %></div>
-              <div><%= info[i].allergies %></div>
-              <div><%- `${info[i].timestamp}`.substring(0,24) %></div>
+    <div id="footer" style="display:flex;">
+        <div id="chef" style="width:50%">
+            <h3>manuel romero, chef</h3>
+        </div>
+        <div id="legal-disclaimer" style="width:50%">
+            <% for(let i=0; i<info.length;i++){ %>
+                <% if (info[i].category == "dinnerLegalDisclaimer"){ %>
+                
+                    <span><%= info[i].description %></span>
+                
+                <% } 
+            } %>
+        </div>
+    </div><!--#footer-->
 
-              <span class="edit"><i class="fa-solid fa-pencil"></i> Edit</span
-                  >&nbsp;&nbsp;
-                  <span class="archive"
-                  ><i class="fa-solid fa-box-archive"></i> Archive</span
-                  >&nbsp;&nbsp;
-                  <span class="del"><i class="fa-solid fa-trash-can"></i> Delete</span
-                      >&nbsp;&nbsp;
-                      <span class="transfer"
-                      ><i class="fa-solid fa-arrow-right-arrow-left"></i> Transfer</span
-                      >&nbsp;&nbsp;
-              <% if(info[i].sequence != dinnerCuredMeatsCount){ %>
-                  <div class="move-down"><i class="fa-solid fa-sort-down"></i></div>
-              <% } %>
-             </li>
-            <% } } %>
-          </ul>
-      
-        <h2>Add New Menu Item:</h2>
     
-        <form action="/addSpecial" method="POST">
-          <input type="text" placeholder="Category" name="category" /><br />
-          <input type="text" placeholder="Sequence" name="sequence" /><br />
-          <input type="text" placeholder="Name" name="name" /><br />
-          <textarea
-            rows="5"
-            cols="40"
-            placeholder="Description"
-            name="description"
-          ></textarea
-          ><br />
-          <input type="text" placeholder="Price" name="price" /><br />
-          <input type="text" placeholder="Allergies" name="allergies" /><br />
-          <input type="submit" id="update-button" value="Create" />
-        </form>
-    
-        <h2>Edit Exisiting Menu Item:</h2>
-    
-        <form action="/editSpecial" method="POST">
-          <div name="_id" id="display-ID"></div>
-          <input type="text" id="edit-id" placeholder="ID#" name="_id" /><br />
-          <input
-            type="text"
-            id="edit-category"
-            placeholder="Category"
-            name="category"
-          /><br />
-          <input
-            type="text"
-            id="edit-sequence"
-            placeholder="Sequence"
-            name="sequence"
-          /><br />
-          <input type="text" id="edit-name" placeholder="Name" name="name" /><br />
-          <textarea
-            rows="5"
-            cols="40"
-            placeholder="Description"
-            id="edit-description"
-            name="description"
-          ></textarea
-          ><br />
-          <input
-            type="text"
-            id="edit-price"
-            placeholder="Price"
-            name="price"
-          /><br />
-          <input
-            type="text"
-            id="edit-allergies"
-            placeholder="Allergies"
-            name="allergies"
-          /><br />
-    
-          <!-- <input type="hidden" name="timestamp" id="timestamp-edit-special">
-          <script>
-            document.querySelector('#timestamp-edit-special').value = new Date()
-          </script> -->
-    
-          <input type="submit" value="Update" />
-        </form>
-    
-      </div><!--#wrapper-->
-    
-        <script src="main.js"></script>
-        <script>
-          document.querySelector('#dinner-cured-meats').addEventListener('click',()=>{
-            location.replace('/dinnerUpdateCuredMeats')
-          })    
-          document.querySelector('#dinner-appetizers').addEventListener('click',()=>{
-                location.replace('/dinnerUpdateAppetizers')
-            })
-            document.querySelector('#dinner-entrees').addEventListener('click',()=>{
-                location.replace('/dinnerUpdateEntrees')
-            })
-            document.querySelector('#dinner-sides').addEventListener('click',()=>{
-                location.replace('/dinnerUpdateSides')
-            })
+</div><!--#dinner-menu-->
 
-            document.querySelector('#archive').addEventListener('click',()=>{
-                location.replace('/archive')
-            })
-            document.querySelector('#specials').addEventListener('click',()=>{
-                location.replace('/manager')
-            })
 
-        </script>
+
+</div><!--#wrapper-->
+<script src="main.js"></script>
+
+
+
 </body>
 </html>

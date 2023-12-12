@@ -18,6 +18,7 @@
 }
 a{
     text-decoration:none;
+    color:black;
 }
 nav a{
     flex:1;
@@ -57,8 +58,12 @@ body{
     overflow-x:hidden;
     min-height:100vh;
 }
-h1{
-    font-family: FuturaLight;
+button, #save-changes{
+    padding:10px 0px;
+    cursor:pointer;
+    width:130px;
+    margin: 0 auto;
+    margin-bottom:20px;
 }
 h2{
     font-family: FuturaHeavy;
@@ -76,17 +81,11 @@ h2{
 .archive{
     color:blue;
 }
-ul{
-    list-style-type:none;
-}
+
 .name, .price{
     font-weight:900;
 }
-*{
-    padding:0;
-    margin:0;
-    box-sizing:border-box
-}
+
 #wrapper{
     position: relative;
     max-width:100%;
@@ -103,12 +102,7 @@ h2{
     /* margin-bottom: 10px; */
     /* text-align: center; */
 }
-button{
-    width:150px;
-    margin: 0 auto;
-    cursor:pointer;
-    margin-bottom:20px;
-}
+
 nav li{
     flex:1;
     text-align: center;
@@ -120,7 +114,7 @@ nav li{
 
 nav ul{
     width:100%;
-    list-style-type: none;
+  
     display:flex;
     width:60ch;
 }
@@ -155,9 +149,7 @@ color: #654321;
 .special {
 /* margin-bottom: 20px; */
 }
-ul{
-list-style-type: none;
-}
+
 li {
 max-width: 50ch;
 }

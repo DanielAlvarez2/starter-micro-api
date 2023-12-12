@@ -215,11 +215,7 @@
             display:flex;
             margin: 0 auto;
         }
-        button, #save-changes{
-            padding:5px 10px;
-            width:120px;
-            cursor:pointer;
-        }
+     
         @media (orientation: landscape){
             #flexbox{
                 flex-direction: row;
@@ -278,7 +274,7 @@ let dessertCount = <%=dessertCount%>
         <h1>olea<span id="content-manager">Content Manager</span></h1>
         <ul>
             <li class="active-page">Specials</li>
-            <li>Dinner</li>
+            <a href="/dinnerUpdateCuredMeats"><li>Dinner</li></a>
             <li>Dessert</li>
             <li>Wine/Drinks</li>
             <li id="archive">Archive</li>
@@ -609,18 +605,6 @@ let dessertCount = <%=dessertCount%>
             </script>
                 
         <script src="main.js"></script>
-        <script>
-          document.querySelector('#specials-edit').addEventListener('click',()=>{
-            location.replace('/manager')
-          })    
-          document.querySelector('#specials-print-preview').addEventListener('click',()=>{
-            location.replace('/specialsPrintPreview')
-          })    
-          document.querySelector('#archive').addEventListener('click',()=>{
-                location.replace('/archive')
-            })
-
-
-        </script>
+       
 </body>
 </html>

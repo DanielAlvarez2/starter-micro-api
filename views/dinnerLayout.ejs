@@ -5,29 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Olea Dinner Menu</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="manager.css">
+
     <script src="https://kit.fontawesome.com/21ef82ed30.js" crossorigin="anonymous"></script>
     <style>
         
         
-        .special{
-            margin-bottom: 0px;
-        }
-        #wrapper{
-            min-width:100%;
-            min-height:100vh;
-            /* background:grey; */
-            display:grid;
-            place-content:center;
-        }
-        #specials{
-            position: relative;
-        }
+       
         #controls{
             line-height:30px;
             font-size:19px;
-        }
-        #controls{
             width:4.25in;
             height:5.5in;
             background:white;
@@ -76,11 +63,10 @@
 
         }
         
-        ul{
-            font-family:serif;
-        }
         
-        h1{
+        
+        #dinner-menu h1{
+            text-align: left;
             padding-bottom:
             <% 
                 for (let i=0; i<info.length; i++){
@@ -100,7 +86,7 @@
                 } 
             %>;
         }
-        h2{
+        #dinner-menu h2{
             font-family: FuturaLight;
             font-size:
             <% 
@@ -112,7 +98,7 @@
                 } 
             %>;
         }
-        h3{
+        #dinner-menu h3{
             font-family: FuturaLight;
             font-size:
             <% 
@@ -124,7 +110,7 @@
                 } 
             %>;
         }
-        li{
+        #dinner-menu li{
             padding-top:            
             <% 
                 for (let i=0; i<info.length; i++){
@@ -187,10 +173,7 @@
             display:flex;
             /* border:1px solid blue; */
         }
-        button, #save-changes{
-            padding:10px 20px;
-            cursor:pointer;
-        }
+      
         #top, #sides, #footer{
             gap:
             <% 
@@ -204,22 +187,9 @@
                 } 
             %>;
         }
-        nav li{
-            width:25%;
-            text-align: center;
-            padding: 5px 0;
-            border-radius: 20px;
-            cursor: pointer;
-        }
-        nav ul{
-            width:100%;
-        }
+        
       
-        .active-page{
-        background: black;
-        color:white;
-        cursor: none;
-      }
+       
 
         @media (orientation: landscape){
             #flexbox{
@@ -249,19 +219,7 @@
             }
 
         }
-        nav li{
-            font-size:16px;
-            width:25%;
-            text-align: center;
-            padding: 5px 0;
-            border-radius: 20px;
-            cursor: pointer;
-        }
-        nav h1{
-            text-align: center;
-            font-size: 40px;
-            font-weight: 100;
-        }
+        
     </style>
 </head>
 
@@ -284,39 +242,33 @@
 </script>
 
 <body>
-
-    <nav style="width:60ch;margin:0 auto;margin-bottom:50px;">
-        <h1 style="padding:0 20px;
-                        display:flex;
-                        justify-content: space-between;
-                        align-items: center;
-                        ">
-                olea
-                <span style="font-size:20px;">Content Manager</span></h1>
+    <div id="wrapper">
+    <div id="content">
+    <nav>
+        <h1>olea<span id="content-manager">Content Manager</span></h1>
                 
                 
-                <ul style="display:flex;list-style-type: none;">
-                    <li id="specials">Specials</li>
+                <ul>
+                    <a href="/manager"><li id="specials">Specials</li></a>
                     <li class="active-page">Dinner</li>
                     <li>Dessert</li>
                     <li>Wine/Drinks</li>
                     <li id="archive">Archive</li>
                 </ul>
-                <ul style="display:flex;list-style-type: none;margin-top:10px;">
-                    <li id="dinner-update-cured-meats" style="width:33%;">Edit Menu Items</li>
-                    <li class="active-page" id="specials-format-layout" style="width:33%;">Format Layout</li>
-                    <li id="specials-print-preview" style="width:33%;">Print Preview</li>
+                <ul>
+                    <a href="/dinnerUpdateCuredMeats"><li>Edit Menu Items</li></a>
+                    <li class="active-page" id="dinner-format-layout">Format Layout</li>
+                    <a href="/dinnerPrintPreview"><li id="dinner-print-preview">Print Preview</li></a>
                 </ul>
-
+             
             </nav>
             
-            
-<div id="wrapper">
+         <main>   
 
 
 <div id="flexbox">    
 
-<div id="controls" style="position:relative;top:300px;">
+<div id="controls" style="position:relative;top:10px;">
     <form method="POST" action="/saveDinnerMenuChanges">
         FORMAT PAGE LAYOUT<br>
         Page Space Left & Right: <input name="dinnerPaddingSides" id="dinner-padding-sides" type="text" size="2"> px <br>
@@ -457,7 +409,17 @@
 
 
 </div><!--#flexbox-->
-
+</main>
+<footer>
+  <ul>
+    <li>Specials</li>
+    <li>Dinner</li>
+    <li>Dessert</li>
+    <li>Wine/Drinks</li>
+    <li>Archive</li>
+</ul>
+</footer>
+</div><!--#content-->
 </div><!--#wrapper-->
 <script src="main.js"></script>
 
@@ -548,17 +510,6 @@
     })
 
 
-    document.querySelector('#dinner-update-cured-meats').addEventListener('click',()=>{
-                location.replace('/dinnerUpdateCuredMeats')
-            })
-
-    
-            document.querySelector('#archive').addEventListener('click',()=>{
-                location.replace('/archive')
-            })
-            document.querySelector('#specials').addEventListener('click',()=>{
-                location.replace('/manager')
-            })
 </script>
 
 </body>

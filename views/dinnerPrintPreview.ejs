@@ -5,41 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Olea Dinner Menu</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="manager.css">
+
     <script src="https://kit.fontawesome.com/21ef82ed30.js" crossorigin="anonymous"></script>
     <style>
+        
+        
+        
         @media print{
             .no-print{
                 display: none !important;
             }
-        }
-        
-        .special{
-            margin-bottom: 0px;
-        }
-        #wrapper{
-            min-width:100%;
-            min-height:100vh;
-
-            /* background:grey; */
-            display:grid;
-            place-content:center;
-        }
-        #specials{
-            position: relative;
-        }
-        #controls{
-            line-height:30px;
-            font-size:19px;
-        }
-        #specials, #controls{
-            width:4.25in;
-            height:5.5in;
-            background:white;
-            border:solid 1px black;
-            padding: 0px 0px;
-            display:inline-block;
-            
         }
         #dinner-menu{
             width: 8.5in;
@@ -80,46 +56,11 @@
             %>;
 
         }
-        #specials{
-            padding-top:
-            <% 
-                for (let i=0; i<info.length; i++){
-                    if (info[i].category == 'controls' && info[i].name == 'padding-top'){ 
-                        
-                        %>
-                        <%= info[i].pixels %>
-            <%
-                    } 
-                } 
-            %>;
-
-            padding-left:
-            <% 
-                for (let i=0; i<info.length; i++){
-                    if (info[i].category == 'controls' && info[i].name == 'padding-sides'){ %>
-                        <%= info[i].pixels%>
-            <%
-                    } 
-                } 
-            %>;
-            
-            padding-right:
-            <% 
-                for (let i=0; i<info.length; i++){
-                    if (info[i].category == 'controls' && info[i].name == 'padding-sides'){ %>
-                        <%= info[i].pixels%>
-            <%
-                    } 
-                } 
-            %>;
-            
-        }
         
-        ul{
-            font-family:serif;
-        }
         
-        h1{
+        
+        #dinner-menu h1{
+            text-align: left;
             padding-bottom:
             <% 
                 for (let i=0; i<info.length; i++){
@@ -139,7 +80,7 @@
                 } 
             %>;
         }
-        h2{
+        #dinner-menu h2{
             font-family: FuturaLight;
             font-size:
             <% 
@@ -151,7 +92,7 @@
                 } 
             %>;
         }
-        h3{
+        #dinner-menu h3{
             font-family: FuturaLight;
             font-size:
             <% 
@@ -163,7 +104,7 @@
                 } 
             %>;
         }
-        li{
+        #dinner-menu li{
             padding-top:            
             <% 
                 for (let i=0; i<info.length; i++){
@@ -224,11 +165,9 @@
         }
         #flexbox{
             display:flex;
+            /* border:1px solid blue; */
         }
-        button, #save-changes{
-            padding:10px 20px;
-            cursor:pointer;
-        }
+      
         #top, #sides, #footer{
             gap:
             <% 
@@ -242,10 +181,15 @@
                 } 
             %>;
         }
+        
+      
+       
+
         @media (orientation: landscape){
             #flexbox{
                 flex-direction: row;
             }
+            
             @media (max-width: 8.5in){
                 #wrapper{
                     width:8.5in;
@@ -255,6 +199,12 @@
         @media (orientation: portrait){
             #flexbox{
                 flex-direction: column;
+                align-items: center;
+                
+            }
+            #dinner-menu{
+                position: relative;
+                /* margin-top:-150px; */
             }
             @media (max-width: 4.25in){
                 #wrapper{
@@ -263,7 +213,12 @@
             }
 
         }
-
+        body{
+            background-color: lightgray;
+        }
+        #dinner-menu{
+            background-color: white;
+        }
     </style>
 </head>
 
@@ -286,12 +241,32 @@
 </script>
 
 <body>
-<div id="wrapper" class="no-print;" style="background-color:lightgray;place-content:center;">
-
+    <div id="wrapper">
+    <div id="content">
+    <nav class="no-print">
+        <h1>olea<span id="content-manager">Content Manager</span></h1>
+                
+                
+                <ul>
+                    <a href="/manager"><li id="specials">Specials</li></a>
+                    <li class="active-page">Dinner</li>
+                    <li>Dessert</li>
+                    <li>Wine/Drinks</li>
+                    <li id="archive">Archive</li>
+                </ul>
+                <ul>
+                    <a href="/dinnerUpdateCuredMeats"><li>Edit Menu Items</li></a>
+                    <li class="active-page" id="dinner-format-layout">Format Layout</li>
+                    <a href="/dinnerPrintPreview"><li id="dinner-print-preview">Print Preview</li></a>
+                </ul>
+             
+            </nav>
+            
+         <main>   
 
 
     
-<div id="dinner-menu" style="background-color: white;">
+<div id="dinner-menu">
     <h1 id="olea">olea</h1>
     <hr>
     <div id="top" style="display:flex;">
@@ -407,11 +382,108 @@
 </div><!--#dinner-menu-->
 
 
-
+</main>
+<footer class="no-print">
+  <ul>
+    <li>Specials</li>
+    <li>Dinner</li>
+    <li>Dessert</li>
+    <li>Wine/Drinks</li>
+    <li>Archive</li>
+</ul>
+</footer>
+</div><!--#content-->
 </div><!--#wrapper-->
 <script src="main.js"></script>
 
+<script>
+    let specialsPage = document.querySelector('#specials')
+    let paddingBottom = document.querySelector('#padding-bottom')
+    let oleaPaddingBottom = document.querySelector('#olea-padding-bottom')
+    let paddingBottomControl = document.querySelector('#padding-bottom-control')
+    
+    
+    let appetizerHeading = document.querySelector('#appetizer-heading')
+    let entreeHeading = document.querySelector('#entree-heading')
+    let dessertHeading = document.querySelector('#dessert-heading')
+    let clearChanges = document.querySelector('#clear-changes')
+    
+    
+    let printPreview = document.querySelector('#print-preview')
+    let dinnerMenuItemsPadding = document.querySelector('#dinner-menu-items-padding')
+    let footer = document.querySelector('#footer')
+    let sides = document.querySelector('#sides')
+    let dinnerTop = document.querySelector('#top')
+    let dinnerCenterGap = document.querySelector('#dinner-center-gap')   
+    let dinnerPaddingTop = document.querySelector('#dinner-padding-top')
+    let dinnerMenu = document.querySelector('#dinner-menu')
+    let dinnerPaddingSides = document.querySelector('#dinner-padding-sides')
+    let chef = document.querySelector('h3')
+    let sidesHeading = document.querySelector('h2')
+    let sidesFontSize = document.querySelector('#sides-font-size')
+    let legalDisclaimer = document.querySelector('#legal-disclaimer')
+    let legalDisclaimerFontSize = document.querySelector('#legal-disclaimer-font-size')
+    let oleaLogoFontSize = document.querySelector('#olea-logo-font-size')
+    let olea = document.querySelector('#olea')
+    let dinnerMenuLineHeight = document.querySelector('#dinner-menu-line-height')
+    let p = document.querySelectorAll('.special')
+    let dinnerMenuFontSize = document.querySelector('#dinner-menu-font-size')
+    dinnerMenuFontSize.addEventListener('input', function(evt){
+        p.forEach((dinnerMenu,i)=>{
+            dinnerMenu.style.fontSize = `${Number(this.value)}px`
+        })
+        chef.style.fontSize = `${Number(this.value)}px`
+    })
+    dinnerMenuLineHeight.addEventListener('input', function(evt){
+        p.forEach((dinnerMenu,i)=>{
+            dinnerMenu.style.lineHeight = `${Number(this.value)}px`
+        })
+    })
+    oleaLogoFontSize.addEventListener('input', function(evt){
+        olea.style.fontSize = `${Number(this.value)}px`
+    })
+    legalDisclaimerFontSize.addEventListener('input', function(evt){
+        legalDisclaimer.style.fontSize = `${Number(this.value)}px`
+    })
+    sidesFontSize.addEventListener('input', function(evt){
+        sidesHeading.style.fontSize = `${Number(this.value)}px`
+    })
+    dinnerPaddingSides.addEventListener('input', function(evt){
+        dinnerMenu.style.paddingLeft = `${Number(this.value)}px`
+        dinnerMenu.style.paddingRight = `${Number(this.value)}px`
+    })
+    dinnerPaddingTop.addEventListener('input', function(evt){
+        dinnerMenu.style.paddingTop = `${Number(this.value)}px`
+    })
+    dinnerCenterGap.addEventListener('input', function(evt){
+        dinnerTop.style.gap = `${Number(this.value)}px`
+        sides.style.gap = `${Number(this.value)}px`
+        footer.style.gap = `${Number(this.value)}px`
+    })
+    dinnerMenuItemsPadding.addEventListener('input', function(evt){
+        p.forEach((special,i)=>{
+            special.style.paddingTop = `${(Number(this.value))/2}px`
+            special.style.paddingBottom = `${(Number(this.value))/2}px`
+        })
+    })
+    printPreview.addEventListener('click',(event)=>{
+        event.preventDefault()
+        location.replace('/printDinner')
+    })
+    
+    
 
+
+    clearChanges.addEventListener('click',(event)=>{
+        event.preventDefault()
+        location.reload()
+    })
+    oleaPaddingBottom.addEventListener('input', function(evt){
+        olea.style.paddingBottom = `${Number(this.value)}px`
+    })
+
+
+</script>
 
 </body>
 </html>
