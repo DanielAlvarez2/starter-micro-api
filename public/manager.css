@@ -57,6 +57,7 @@ ul{
 body{
     overflow-x:hidden;
     min-height:100vh;
+    overflow-y: scroll;
 }
 button, #save-changes{
     padding:10px 0px;
@@ -88,7 +89,7 @@ h2{
 
 #wrapper{
     position: relative;
-    max-width:100%;
+    width:100%;
     min-height:100vh;
     display:grid;
     place-content: center;
